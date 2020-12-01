@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 def shaperec(matrix, shapelist=[]):
     if type(matrix) == list:
         shapelist.append(len(matrix))
