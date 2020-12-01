@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-import copy
 
 
 def cat_matrices2D(mat1, mat2, axis=0):
+    import copy
+    
     if axis == 0:
         mat = mat1 + mat2
         return copy.deepcopy(mat)
