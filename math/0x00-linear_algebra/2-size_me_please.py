@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+""" calculates the shape of a matrix """
 
 def shaperec(matrix, shapelist=[]):
     if type(matrix) == list:
