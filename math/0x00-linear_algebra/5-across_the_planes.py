@@ -17,14 +17,15 @@ def matrix_shape(matrix):
 
 
 def add_arrays(arr1, arr2):
-    """ add arrays  """
-    if (matrix_shape(arr1) != matrix_shape(arr2)):
-        return(None)
-    new = []
-    for i in range(0, len(arr1)):
-        sm = arr1[i] + arr2[i]
-        new.append(sm)
-    return(new)
+    """ add """
+    try:
+        new = []
+        for i in range(0, len(arr1)):
+            sm = arr1[i] + arr2[i]
+            new.append(sm)
+        return(new)
+    except Exception:
+        return None
 
 
 def add_matrices2D(mat1, mat2):
