@@ -10,5 +10,5 @@ def add_arrays(arr1, arr2):
             sm = arr1[i] + arr2[i]
             new.append(sm)
         return(new)
-    except:
+    except Exception:
         return None
