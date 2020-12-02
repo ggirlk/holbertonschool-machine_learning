@@ -2,7 +2,6 @@
 """ add two arrays element-wise """
 
 
-
 def add_arrays(arr1, arr2):
     """ add """
     try:
