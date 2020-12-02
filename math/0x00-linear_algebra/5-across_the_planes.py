@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
+""" add two matrices element-wise """
+
+
 def shaperec(matrix, shapelist=[]):
+    """ recursion for the shape """
     if type(matrix) == list:
         shapelist.append(len(matrix))
         shaperec(matrix[0], shapelist)
 
 
 def matrix_shape(matrix):
+    """ matrix shape """
     shapelist = []
     shaperec(matrix, shapelist)
     return shapelist
 
 
 def add_arrays(arr1, arr2):
+    """ add arrays  """
     if (matrix_shape(arr1) != matrix_shape(arr2)):
         return(None)
     new = []
@@ -22,6 +28,7 @@ def add_arrays(arr1, arr2):
 
 
 def add_matrices2D(mat1, mat2):
+    """ add 2D matrices """
     if (matrix_shape(mat1) != matrix_shape(mat2)):
         return(None)
     mat = []
