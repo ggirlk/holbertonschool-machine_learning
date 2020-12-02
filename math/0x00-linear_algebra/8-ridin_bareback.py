@@ -7,7 +7,7 @@ def mat_mul(mat1, mat2):
     if (len(mat1[0]) != len(mat2)):
         return None
     mat = []
-    for i in range(0, len(mat1)):            
+    for i in range(0, len(mat1)):
         res = []
         for j in range(0, len(mat2[0])):
             sm = 0
