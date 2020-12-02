@@ -13,5 +13,5 @@ def cat_matrices2D(mat1, mat2, axis=0):
         for i in range(0, len(mat2)):
             for j in mat2[i]:
                 mat[i].append(j)
-        return copy.deepcopy(mat)
+        return mat
     return None
