@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
+""" concatenate 2 matrices along a specific axis """
 
 
 def cat_matrices2D(mat1, mat2, axis=0):
+    """ concatenate """
     import copy
-    
     if axis == 0:
         mat = mat1 + mat2
         return copy.deepcopy(mat)
