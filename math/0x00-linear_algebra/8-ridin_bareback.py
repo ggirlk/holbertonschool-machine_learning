@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+""" matrix multiplication """
 
 
 def mat_mul(mat1, mat2):
+    """ matrix multiplication """
     mat = []
     for i in range(0, len(mat1)):
         res = []
