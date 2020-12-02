@@ -4,5 +4,4 @@
 
 def np_transpose(matrix):
     """ transposes matrix """
-    import numpy as np
-    return np.transpose(matrix)
+    return matrix.transpose
