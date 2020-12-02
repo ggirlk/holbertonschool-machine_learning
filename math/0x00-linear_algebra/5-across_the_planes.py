@@ -30,8 +30,8 @@ def add_arrays(arr1, arr2):
 
 def add_matrices2D(mat1, mat2):
     """ add 2D matrices """
-    if (matrix_shape(mat1) != matrix_shape(mat2)):
-        return(None)
+    """if (matrix_shape(mat1) != matrix_shape(mat2)):
+        return(None)"""
     mat = []
     for i in range(0, len(mat1)):
         mat.append(add_arrays(mat1[i], mat2[i]))
