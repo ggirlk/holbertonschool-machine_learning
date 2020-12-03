@@ -20,9 +20,10 @@ def np_slice(matrix, axes={}):
         if i == 0:
             sl = slice (start)
             nmatrix = nmatrix[sl]
-        sl = slice (start, stop, step)
-        if (i == 1): 
+        if (i == 1):
+            sl = slice (start, stop)
             nmatrix = nmatrix[:,sl]
         if (i == 2):
+            sl = slice (start, stop, step)
             nmatrix = nmatrix[:,:,sl]
     return nmatrix
