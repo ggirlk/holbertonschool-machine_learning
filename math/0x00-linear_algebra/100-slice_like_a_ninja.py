@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """ slice a matrix along a specific axes """
-import numpy as np
 
 
 def np_slice(matrix, axes={}):
@@ -28,4 +27,4 @@ def np_slice(matrix, axes={}):
                 for ma in mat:
                     new1.append(ma[sl])
                 new.append(new1)
-    return np.asarray(new)
+    return new
