@@ -8,7 +8,7 @@ def np_slice(matrix, axes={}):
     nmatrix = matrix[:]
     new = []
     for i in axs:
-        start = axes[i][0]
+        start = axes[i][0]        
         if len(axes[i]) > 1:
             stop = axes[i][1]
         else:
@@ -17,9 +17,10 @@ def np_slice(matrix, axes={}):
             step = axes[i][2]
         else:
             step = None
-        sl = slice (start, stop, step)
         if i == 0:
-            nmatrix = nmatrix[:start]
+            sl = slice (start)
+            nmatrix = nmatrix[sl]
+        sl = slice (start, stop, step)
         if (i == 1): 
             nmatrix = nmatrix[:,sl]
         if (i == 2):
