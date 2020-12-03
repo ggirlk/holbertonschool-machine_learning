@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """ slice a matrix along a specific axes """
-import numpy as np
 
 
 def np_slice(matrix, axes={}):
     """ slice function"""
+    import numpy as np
     axs = list(axes.keys())
     new = []
     for i in axs:
@@ -18,6 +18,8 @@ def np_slice(matrix, axes={}):
         else:
             step = None
         sl = slice (start, stop, step)
+        if i == 0:
+            matrix = matrix[sl]
         for mat in matrix:
             if (i == 1): 
                 new.append(mat[sl])
