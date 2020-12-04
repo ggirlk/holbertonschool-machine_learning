@@ -21,9 +21,9 @@ def np_slice(matrix, axes={}):
             sl = slice (start)
             nmatrix = nmatrix[sl]
         if (i == 1):
-            sl = slice (start, stop)
+            sl = slice (start, stop, i)
             nmatrix = nmatrix[:,sl]
         if (i == 2):
-            sl = slice (start, stop, step)
+            sl = slice (start, stop, i)
             nmatrix = nmatrix[:,:,sl]
     return nmatrix
