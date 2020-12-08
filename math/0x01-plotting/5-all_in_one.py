@@ -52,7 +52,7 @@ ax4.set(xlabel='Time (years)', ylabel='Fraction Remaining')
 
 
 bins = np.arange(0, 11) * 10
-ax5.hist(student_grades, bins, edgecolor="#000")
+ax5.hist(student_grades, bins, edgecolor="black")
 ax5.set_title("Project A")
 ax5.set(xlabel="Grades", ylabel="Number of Students")
 ax5.set_ylim([0, 30])
