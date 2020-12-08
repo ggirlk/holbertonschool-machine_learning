@@ -4,6 +4,6 @@ import matplotlib.pyplot as plt
 
 y = np.arange(0, 11) ** 3
 
-x = np.arange(0, 11)
-plt.plot(x, y, color="red")
+plt.plot(y, color="red")
+plt.axis([0, len(y)-1, 0, y[-1]])
 plt.show()

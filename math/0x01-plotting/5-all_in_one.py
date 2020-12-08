@@ -36,6 +36,7 @@ ax5 = plt.subplot2grid(gridsize, (2, 0), colspan=2)
 fig.suptitle('All in One')
 
 ax1.plot(y0, color="red")
+ax1.axis([0, len(y0)-1, 0, y0[-1]])
 
 ax2.scatter(x1, y1, color="#CE4FCA")
 ax2.set_title('Men\'s Height vs Weight')
