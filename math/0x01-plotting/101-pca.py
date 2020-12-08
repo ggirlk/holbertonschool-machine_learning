@@ -17,7 +17,7 @@ ax = fig.add_subplot(projection='3d')
 xdata = pca_data[:, 0]
 ydata = pca_data[:, 1]
 zdata = pca_data[:, 2]
-ax.scatter(xdata , ydata , zdata, cmap=plt.get_cmap('plasma'), norm=norm_data)
+ax.scatter(xdata, ydata, zdata, cmap=plt.get_cmap('plasma'), norm=norm_data)
 ax.set_title("PCA of Iris Dataset")
 ax.set_xlabel('U1')
 ax.set_ylabel('U2')

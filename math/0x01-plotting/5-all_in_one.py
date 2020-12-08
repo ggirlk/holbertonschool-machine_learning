@@ -43,19 +43,19 @@ ax2.set(xlabel='Height (in)', ylabel='Weight (lbs)')
 
 ax3.plot(x2, y2)
 ax3.set_title('Exponential Decay of C-14')
-ax3.set(xlabel = 'Time (years)', ylabel = 'Fraction Remaining', yscale="log")
+ax3.set(xlabel='Time (years)', ylabel='Fraction Remaining', yscale="log")
 
 ax4.plot(x3, y31, ls="--", color="#EE3B1D")
 ax4.plot(x3, y32, color="#479000")
 ax4.set_title("Exponential Decay of Radioactive Elements")
-ax4.set(xlabel = 'Time (years)', ylabel = 'Fraction Remaining')
+ax4.set(xlabel='Time (years)', ylabel='Fraction Remaining')
 
 
 bins = np.arange(0, 11) * 10
 ax5.hist(student_grades, bins, edgecolor="#000")
 ax5.set_title("Project A")
-ax5.set(xlabel = "Grades", ylabel = "Number of Students")
-ax5.set_ylim([0,30])
+ax5.set(xlabel="Grades", ylabel="Number of Students")
+ax5.set_ylim([0, 30])
 
 fig.tight_layout(pad=3.0)
 
