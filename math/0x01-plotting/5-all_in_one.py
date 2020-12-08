@@ -55,6 +55,7 @@ bins = np.arange(0, 11) * 10
 ax5.hist(student_grades, bins, edgecolor="black")
 ax5.set_title("Project A")
 ax5.set(xlabel="Grades", ylabel="Number of Students")
+ax5.axis([0, 100, 0, 30])
 ax5.set_ylim([0, 30])
 
 fig.tight_layout(pad=3.0)
