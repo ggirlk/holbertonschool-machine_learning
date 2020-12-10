@@ -4,7 +4,7 @@
 
 def poly_integral(poly, C=0):
     """ doc """
-    if len(poly) == 0 or type(poly) != list:
+    if type(poly) != list or len(poly) == 0:
         return None
     if not isinstance(C, int):
         return None
