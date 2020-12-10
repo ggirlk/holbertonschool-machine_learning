@@ -4,5 +4,6 @@
 
 def summation_i_squared(n):
     """ summation n squared """
-    ls = list(range(n, n))
-    return sum(map(lambda x: pow(x, 2), ls))
+    ls = list(range(1, n+1))
+    s = sum(map(lambda x: pow(x, 2), ls))
+    return s
