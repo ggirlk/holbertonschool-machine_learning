@@ -9,7 +9,7 @@ def poly_derivative(poly):
 
     drv = []
     for i in range(0, len(poly)):
-        if type(poly[i]) != int and type(poly[i]) != float:
+        if not isinstance(poly[i], (int, float)):
             return None
         drv.append(poly[i] * i)
     if len(poly) == 1 or sum(drv) == 0:
