@@ -12,6 +12,8 @@ def poly_integral(poly, C=0):
     for i in range(0, len(poly)):
         if not isinstance(poly[i], (int, float)):
             return None
-        ingrl.append(poly[i] / (i + 1))
+        it = poly[i] / (i + 1)
+        it = it.__trunc__() if not it % 1 else float(it)
+        ingrl.append(it)
 
     return ingrl
