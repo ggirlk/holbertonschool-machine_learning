@@ -11,7 +11,7 @@ def poly_derivative(poly):
     for i in range(0, len(poly)):
         if type(poly[i]) != int and type(poly[i]) != float:
             return None
-        drv.append(poly[i] * i)    
+        drv.append(poly[i] * i)
     if len(poly) == 1 or sum(drv) == 0:
         return [0]
     del drv[0]
