@@ -4,9 +4,9 @@
 
 def poly_derivative(poly):
     """ doc """
-    if not poly or type(poly) != list:
+    if len(poly) == 0 or type(poly) != list:
         None
-    if len(poly) <= 1:
+    if len(poly) == 1:
         return [0]
     drv = []
     for i in range(1, len(poly)):
