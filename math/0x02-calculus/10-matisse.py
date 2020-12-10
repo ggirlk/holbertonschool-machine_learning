@@ -4,15 +4,15 @@
 
 def poly_derivative(poly):
     """ doc """
-    if len(poly) == 0 or type(poly) is not list:
+    if type(poly) is not list or len(poly) == 0:
         return None
-    
-    if len(poly) == 1:
-        return [0]
+
     drv = []
-    for i in range(1, len(poly)):
+    for i in range(0, len(poly)):
         if not isinstance(poly[i], (int, float)):
             return None
         drv.append(poly[i] * i)
-
+    if len(poly) == 0 or sum(drv) == 0:
+        return [0]
+    del drv[0]
     return drv
