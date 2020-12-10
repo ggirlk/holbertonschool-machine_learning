@@ -4,7 +4,7 @@
 
 def poly_derivative(poly):
     """ doc """
-    if len(poly) == 0 or type(poly) != list:
+    if len(poly) == 0 or type(poly) != list or sum(poly) == 0:
         return None
     drv = []
     for i in range(1, len(poly)):
@@ -12,6 +12,6 @@ def poly_derivative(poly):
             return None
         drv.append(poly[i] * i)
 
-    if len(poly) == 1:
+    if len(poly) == 1 or sum(drv) == 0:
         return [0]
     return drv
