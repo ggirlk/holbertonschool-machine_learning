@@ -12,7 +12,7 @@ def poly_derivative(poly):
         if not isinstance(poly[i], (int, float)):
             return None
         drv.append(poly[i] * i)
-    if len(drv) == 0 or sum(drv) == 0:
+    if sum(drv) == 0:
         return [0]
     del drv[0]
     return drv
