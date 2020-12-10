@@ -5,7 +5,7 @@
 def poly_derivative(poly):
     """ doc """
     if len(poly) == 0 or type(poly) != list:
-        None
+        return None
     drv = []
     for i in range(1, len(poly)):
         if type(poly[i]) != int and type(poly[i]) != float:
