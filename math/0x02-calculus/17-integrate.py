@@ -6,7 +6,7 @@ def poly_integral(poly, C=0):
     """ doc """
     if len(poly) == 0 or type(poly) != list:
         return None
-    if not isinstance(C, (int, float)):
+    if not isinstance(C, int):
         return None
     ingrl = [C]
     for i in range(0, len(poly)):
