@@ -7,8 +7,8 @@ def poly_derivative(poly):
     if len(poly) == 0 or type(poly) != list:
         return None
 
-    drv = []
-    for i in range(0, len(poly)):
+    drv = [0]
+    for i in range(1, len(poly)):
         if not isinstance(poly[i], (int, float)):
             return None
         drv.append(poly[i] * i)
