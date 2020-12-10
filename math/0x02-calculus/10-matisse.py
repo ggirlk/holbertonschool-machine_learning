@@ -12,6 +12,6 @@ def poly_derivative(poly):
             return None
         drv.append(poly[i] * i)
 
-    if len(poly) == 1 or sum(drv) == 0:
+    if len(poly) == 1:
         return [0]
     return drv
