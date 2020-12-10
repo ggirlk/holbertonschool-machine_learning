@@ -9,6 +9,8 @@ def poly_integral(poly, C=0):
     if not isinstance(C, int):
         return None
     ingrl = [C]
+    if (len(poly) == 0):
+        return ingrl
     for i in range(0, len(poly)):
         if not isinstance(poly[i], (int, float)):
             return None
