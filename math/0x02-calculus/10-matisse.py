@@ -4,7 +4,7 @@
 
 def poly_derivative(poly):
     """ doc """
-    if type(poly) != list:
+    if not poly or type(poly) != list:
         None
     if len(poly) == 1:
         return [0]
