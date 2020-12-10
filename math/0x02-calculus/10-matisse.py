@@ -10,5 +10,7 @@ def poly_derivative(poly):
         return [0]
     drv = []
     for i in range(1, len(poly)):
+        if type(poly[i]) != int:
+            return None
         drv.append(poly[i] * i)
     return drv
