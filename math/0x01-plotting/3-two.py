@@ -11,6 +11,7 @@ y2 = np.exp((r / t2) * x)
 
 plt.plot(x, y1, ls="--", color="#EE3B1D")
 plt.plot(x, y2, color="#479000")
+plt.xlim([0, 20000])
 plt.title("Exponential Decay of Radioactive Elements")
 plt.xlabel("Time (years)")
 plt.ylabel("Fraction Remaining")
