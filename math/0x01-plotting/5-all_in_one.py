@@ -39,26 +39,26 @@ ax1.plot(y0, color="red")
 ax1.axis([0, len(y0)-1, 0, y0[-1]])
 
 ax2.scatter(x1, y1, color="#CE4FCA")
-ax2.set_title('Men\'s Height vs Weight')
+ax2.set_title('Men\'s Height vs Weight', fontsize='x-small')
 ax2.set(xlabel='Height (in)', ylabel='Weight (lbs)')
 
 ax3.plot(x2, y2)
-ax3.set_title('Exponential Decay of C-14')
+ax3.set_title('Exponential Decay of C-14', fontsize='x-small')
 ax3.set(xlabel='Time (years)', ylabel='Fraction Remaining', yscale="log")
 
 ax4.plot(x3, y31, ls="--", color="#EE3B1D")
 ax4.plot(x3, y32, color="#479000")
-ax4.set_title("Exponential Decay of Radioactive Elements")
+ax4.set_title("Exponential Decay of Radioactive Elements", fontsize='x-small')
 ax4.set(xlabel='Time (years)', ylabel='Fraction Remaining')
 
 
 bins = np.arange(0, 11) * 10
 ax5.hist(student_grades, bins, edgecolor="black")
-ax5.set_title("Project A")
+ax5.set_title("Project A", fontsize='x-small')
 ax5.set(xlabel="Grades", ylabel="Number of Students")
 ax5.axis([0, 100, 0, 30])
 ax5.set_ylim([0, 30])
 
-fig.tight_layout(pad=3.0)
+fig.tight_layout(pad=2)
 
 plt.show()
