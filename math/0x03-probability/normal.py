@@ -4,10 +4,10 @@
 
 class Normal():
     """ Represents a normal distribution """
-    
+
     def __init__(self, data=None, mean=0., stddev=1.):
         """ constractor """
-        if data == None:
+        if data is None:
             if stddev < 0:
                 raise ValueError('stddev must be a positive value')
             self.stddev = stddev
@@ -16,7 +16,7 @@ class Normal():
             if type(data) is not list:
                 raise TypeError('data must be a list')
             if len(data) <= 2:
-                raise ValueError('data must contain multiple values')            
+                raise ValueError('data must contain multiple values')
             self.mean = sum(data)/len(data)
             s = 0
             for x in data:
@@ -42,7 +42,8 @@ class Normal():
             Calculates the value of the PDF
             for a given x-value
         """
-        return 2.7182818285**-((x-self.mean)**2/(2*self.stddev**2))/(self.stddev *(2*3.1415926536)**0.5)
+        puiss = -((x-self.mean)**2/(2*self.stddev**2))
+        return 2.7182818285**puiss/(self.stddev*(2*3.1415926536)**0.5)
 
     def cdf(self, x):
         """
@@ -51,8 +52,10 @@ class Normal():
         """
         mu = self.mean
         std = self.stddev
+
         def erf(a):
             """ Error Function """
-            return 2*(a-((a**3)/3)+((a**5)/10)-((a**7)/42)+((a**9)/216))/(3.1415926536**0.5)
-        n = ((x - mu) / std) / (2**0.5)
-        return (1 + erf(n)) / 2
+            an = (a - ((a**3)/3) + ((a**5)/10) - ((a**7)/42) + ((a**9)/216))
+            return 2*an/(3.1415926536**0.5)
+        n = ((x - mu)/std)/(2**0.5)
+        return (1 + erf(n))/2

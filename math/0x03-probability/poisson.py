@@ -6,8 +6,8 @@ class Poisson():
     """ Represent a poisson distribution """
 
     def __init__(self, data=None, lambtha=1.):
-        """ constractor """        
-        if data == None:
+        """ constractor """
+        if data is None:
             if lambtha <= 0:
                 raise ValueError('lambtha must be a positive value')
             self.lambtha = float(lambtha)
@@ -29,10 +29,10 @@ class Poisson():
                 return 0
             lmda = self.lambtha
             fact = 1
-            for i in range(1, k+1): 
+            for i in range(1, k+1):
                 fact = fact * i
             return 2.7182818285**-lmda*lmda**k/fact
-        except:
+        except Exception:
             return 0
 
     def cdf(self, k):
@@ -48,5 +48,5 @@ class Poisson():
             for i in range(0, k+1):
                 cdf += self.pmf(i)
             return cdf
-        except:
+        except Exception:
             return 0
