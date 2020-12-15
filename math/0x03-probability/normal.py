@@ -8,7 +8,7 @@ class Normal():
     def __init__(self, data=None, mean=0., stddev=1.):
         """ constractor """
         if data is None:
-            if stddev < 0:
+            if stddev <= 0:
                 raise ValueError('stddev must be a positive value')
             self.stddev = stddev
             self.mean = mean
