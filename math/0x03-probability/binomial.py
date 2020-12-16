@@ -26,6 +26,6 @@ class Binomial():
                 s += (x - mean)**2
             std = (s/len(data))**0.5
             v = s/len(data)
-            n = mean**2/(mean-v)
-            self.n = round(n)
+            n = round(mean**2/(mean-v))
+            self.n = n
             self.p = mean/n
