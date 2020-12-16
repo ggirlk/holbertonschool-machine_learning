@@ -20,6 +20,9 @@ class Binomial():
             if len(data) <= 2:
                 raise ValueError('data must contain multiple values')
             mean = sum(data)/len(data)
-            n = len(data)/2
-            self.n = int(round(n))
-            self.p = mean/self.n
+            for i in d:
+                if d[i] == 2:
+                    p = d[i]/n * mean
+            s = mean/p
+            self.n = int(s)
+            self.p = p
