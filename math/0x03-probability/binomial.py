@@ -27,3 +27,18 @@ class Binomial():
             n = round((mean**2)/(mean-v))
             self.n = int(n)
             self.p = mean/n
+
+    def fact(self, k):
+        """ calculate factorial """
+        fact = 1
+        for i in range(1, k+1):
+            fact = fact * i
+        return fact
+
+    def pmf(self, k):
+        """
+            Calculates the value of the PMF
+            for a given number of “successes”
+        """
+        nk = self.fact(n)/(self.fact(k)*self.fact(n - k))
+        nk * p**k * (1-p)**(n-k)
