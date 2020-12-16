@@ -10,7 +10,7 @@ class Binomial():
         if data is None:
             if n <= 0:
                 raise ValueError("the message n must be a positive value")
-            if p < 0 or p > 1:
+            if p <= 0 or p >= 1:
                 raise ValueError("the message p must be greater\
                                 than 0 and less than 1")
             self.p = float(p)
