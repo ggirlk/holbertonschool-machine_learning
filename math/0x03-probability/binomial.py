@@ -40,5 +40,8 @@ class Binomial():
             Calculates the value of the PMF
             for a given number of “successes”
         """
+        if k < 0:
+            return 0
+        k = int(k)
         nk = self.fact(n)/(self.fact(k)*self.fact(n - k))
         return nk * p**k * (1-p)**(n-k)
