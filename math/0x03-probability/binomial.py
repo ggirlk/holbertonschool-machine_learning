@@ -10,7 +10,7 @@ class Binomial():
         if data is None:
             if n <= 0:
                 raise ValueError("the message n must be a positive value")
-            if p <= 0 or p >= 1:
+            if p < 0 or p > 1:
                 raise ValueError("the message p must be greater\
                                 than 0 and less than 1")
             self.p = float(p)
@@ -24,8 +24,9 @@ class Binomial():
             s = 0
             for x in data:
                 s += (x - mean)**2
-            std = (s/len(data))**0.5
+            #std = (s/len(data))**0.5
             v = s/len(data)
             n = round(mean**2/(mean-v))
             self.n = int(n)
             self.p = mean/n
+        self.data = data
