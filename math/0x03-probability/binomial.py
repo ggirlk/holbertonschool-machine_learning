@@ -11,7 +11,8 @@ class Binomial():
             if n <= 0:
                 raise ValueError("the message n must be a positive value")
             if p < 0 or p > 1:
-                raise ValueError("the message p must be greater than 0 and less than 1")
+                raise ValueError("the message p must be greater\
+                                than 0 and less than 1")
             self.p = p
             self.n = n
         else:
@@ -20,6 +21,7 @@ class Binomial():
             if len(data) <= 2:
                 raise ValueError('data must contain multiple values')
             mean = sum(data)/len(data)
-            self.p = mean*2/len(data)
+            p = round(mean*2/len(data), 3)
+            self.p = p
             n = mean/p
             self.n = int(n)
