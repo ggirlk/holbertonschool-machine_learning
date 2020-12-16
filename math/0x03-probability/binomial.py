@@ -24,8 +24,6 @@ class Binomial():
             s = 0
             for x in data:
                 s += (x - mean)**2
-            #std = (s/len(data))**0.5
-            v = s/len(data)
-            n = round((mean**2)/(mean-v))
-            self.n = int(n)
-            self.p = mean/n
+            v = (s/len(data))
+            self.n = round(mean**2/(mean - v))
+            self.p = mean/self.n
