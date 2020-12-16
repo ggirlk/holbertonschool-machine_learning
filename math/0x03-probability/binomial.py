@@ -48,3 +48,19 @@ class Binomial():
             return nk * self.p**k * (1-self.p)**(self.n-k)
         except Exception:
             return 0
+
+    def cdf(self, k):
+        """
+            Calculates the value of the CDF
+            for a given number of “successes”
+        """
+        if k < 0:
+            return 0
+        try:
+            k = int(k)
+            cdf = 0
+            for i in range(0, k+1):
+                cdf += self.pmf(i)
+            return cdf
+        except Exception:
+            return 0
