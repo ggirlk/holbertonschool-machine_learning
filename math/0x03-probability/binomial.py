@@ -19,5 +19,13 @@ class Binomial():
                 raise TypeError('data must be a list')
             if len(data) <= 2:
                 raise ValueError('data must contain multiple values')
-            self.p = sum(data)*2/len(data)**2
-            self.n = len(data)/2
+            mean = sum(data)/len(data)
+            d = {}
+            for i in data:
+                if i not in d.keys():
+                    d[i] = data.count(i)
+            s = 0
+            for i in d:
+                s += d[i]/2
+            self.n = int(s)
+            self.p = mean/s
