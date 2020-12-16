@@ -9,9 +9,9 @@ class Binomial():
         """ constractor """
         if data is None:
             if n <= 0:
-                raise ValueError("the message n must be a positive value")
+                raise ValueError("n must be a positive value")
             if p < 0 or p > 1:
-                raise ValueError("the message p must be greater\
+                raise ValueError("p must be greater\
                                 than 0 and less than 1")
             self.p = float(p)
             self.n = int(n)
@@ -20,10 +20,11 @@ class Binomial():
                 raise TypeError('data must be a list')
             if len(data) <= 2:
                 raise ValueError('data must contain multiple values')
-            mean = float(sum(data)/len(data))
+            mean = sum(data)/len(data)
             s = 0
             for x in data:
                 s += (x - mean)**2
-            v = (s/len(data))
-            self.n = round(mean**2/(mean - v))
-            self.p = mean/self.n
+            v = s/len(data)
+            n = round((mean**2)/(mean-v))
+            self.n = int(n)
+            self.p = mean/n
