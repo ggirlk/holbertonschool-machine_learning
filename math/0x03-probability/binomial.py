@@ -27,5 +27,5 @@ class Binomial():
             std = (s/len(data))**0.5
             v = s/len(data)
             n = round(mean**2/(mean-v))
-            self.n = n
+            self.n = int(n)
             self.p = mean/n
