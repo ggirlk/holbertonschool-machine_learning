@@ -44,4 +44,4 @@ class Binomial():
             return 0
         k = int(k)
         nk = self.fact(n)/(self.fact(k)*self.fact(n - k))
-        return nk * p**k * (1-p)**(n-k)
+        return nk * self.p**k * (1-self.p)**(self.n-k)
