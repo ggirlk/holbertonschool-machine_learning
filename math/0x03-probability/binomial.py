@@ -20,7 +20,7 @@ class Binomial():
                 raise TypeError('data must be a list')
             if len(data) <= 2:
                 raise ValueError('data must contain multiple values')
-            mean = sum(data)/len(data)
+            mean = float(sum(data)/len(data))
             s = 0
             for x in data:
                 s += (x - mean)**2
