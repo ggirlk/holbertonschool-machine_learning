@@ -41,4 +41,4 @@ class Binomial():
             for a given number of “successes”
         """
         nk = self.fact(n)/(self.fact(k)*self.fact(n - k))
-        nk * p**k * (1-p)**(n-k)
+        return nk * p**k * (1-p)**(n-k)
