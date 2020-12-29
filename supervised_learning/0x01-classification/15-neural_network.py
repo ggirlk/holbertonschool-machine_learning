@@ -116,32 +116,36 @@ class NeuralNetwork():
         m = X.shape[1]
         n = A1.shape[0]
 
-        def wUpdate(X, A, w, n=1):
-            """ update weight """
-            x = A - Y
-            xlr = (-alpha*n/(m)) * X.T
-            return np.add(w, np.matmul(x, xlr))
+        def dw(dz, x):
+            """ weight derivative """
+            return (1/m) * np.matmul(dz, x.T)
 
-        # update weights
+        def db(dz):
+            """ bias derivative"""
+            return 1/m*np.sum(dz, axis=1, keepdims=True)
+
+        def der(x):
+            """ sigmoid derivative """
+            return x * (1-x)
+
+        def dz(w, dz, gprime):
+            """ z derivative """
+            x = gprime * np.matmul(w.T, dz)
+            return x
+
+        # output neuron
+        dz2 = A2 - Y
+        dw2 = dw(dz2, A1)
+        self.__W2 = np.add(self.W2, -alpha * dw2)
+        db2 = db(dz2)
+        self.__b2 += -alpha * db2
+
         # hidden layer
-        self.__W1 = wUpdate(X, A1, self.W1)
-        # neuron
-        self.__W2 = wUpdate(self.A1, A2, self.W2, 1)
-
-        # update biases
-        # hidden layer
-        ME = np.mean((Y-A1), axis=1)  # Mean Error
-        t = []
-        for i in range(n):
-            # a = (ME[i] * -alpha)
-            a = ME[i] * -alpha
-            t.append([a])
-        t = np.array(t)
-        self.__b1 = np.add(self.b1, t)
-
-        # neuron
-        ME = np.mean(A2 - Y)  # Mean Error
-        self.__b2 += ME * -alpha
+        dz1 = dz(self.W2, dz2, der(A1))
+        dw1 = dw(dz1, X)
+        self.__W1 = np.add(self.W1, -alpha * dw1)
+        db1 = db(dz1)
+        self.__b1 = np.add(self.b1, -alpha * db1)
 
     def train(self, X, Y, iterations=5000, alpha=0.05,
               verbose=True, graph=True, step=100):
