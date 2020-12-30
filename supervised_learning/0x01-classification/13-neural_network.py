@@ -107,6 +107,8 @@ class NeuralNetwork():
 
     def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
+        m = X.shape[1]
+        n = A1.shape[0]
 
         def dw(dz, x):
             """ weight derivative """
@@ -118,7 +120,7 @@ class NeuralNetwork():
 
         def der(x):
             """ sigmoid derivative """
-            return x * (1-x)
+            return np.matmul(x, (1-x))
 
         def dz(w, dz, gprime):
             """ z derivative """
@@ -126,11 +128,11 @@ class NeuralNetwork():
             return x
 
         # output neuron
-        dz2 = np.subtract(A2, Y)
+        dz2 = np.subtruct(A2, Y)
         dw2 = dw(dz2, A1)
         self.__W2 = np.add(self.W2, -alpha * dw2)
         db2 = db(dz2)
-        self.__b2 = np.add(-alpha * db2, self.b2)
+        self.__b2 += -alpha * db2
 
         # hidden layer
         dz1 = dz(self.W2, dz2, der(A1))
