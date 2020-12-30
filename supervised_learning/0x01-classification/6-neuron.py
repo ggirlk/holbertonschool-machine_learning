@@ -55,9 +55,7 @@ class Neuron():
     def cost(self, Y, A):
         """ Calculate the cost of the model using logistic regression """
 
-        m = A.shape[1]
-        s = np.mean(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)) 
-        return -(1) * s
+        return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
