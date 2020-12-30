@@ -62,7 +62,7 @@ class Neuron():
         A = self.forward_prop(X)
         cost = self.cost(Y, A)
         self.__A = np.where(A >= 0.5, 1, 0)
-        return (self.__A, cost)
+        return self.__A, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
