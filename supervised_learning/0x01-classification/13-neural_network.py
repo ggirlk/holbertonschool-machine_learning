@@ -120,7 +120,7 @@ class NeuralNetwork():
 
         def der(x):
             """ sigmoid derivative """
-            return np.matmul(x, (1-x))
+            return x * (1-x)
 
         def dz(w, dz, gprime):
             """ z derivative """
