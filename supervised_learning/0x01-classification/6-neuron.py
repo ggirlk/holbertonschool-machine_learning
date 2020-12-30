@@ -98,7 +98,7 @@ class Neuron():
             raise ValueError('alpha must be positive')
 
         # train the model
-        A = self.forward_prop(X)
         for i in range(iterations):
+            A = self.forward_prop(X)
             self.gradient_descent(X, Y, A, alpha)
         return self.evaluate(X, Y)
