@@ -12,7 +12,7 @@ class NeuralNetwork():
 
     def __init__(self, nx, nodes):
         """ Constractor """
-        
+
         # nx: number of input features to the neuron
         if type(nx) is not int:
             raise TypeError("nx must be an integer")
@@ -27,7 +27,7 @@ class NeuralNetwork():
         # weights vector for the hidden layer
         self.__W1 = np.random.randn(nodes, self.nx)
         # bias for the hidden layer
-        self.__b1 = np.array([[0]]* nodes)
+        self.__b1 = np.array([[0]] * nodes)
         # activated output of the hidden layer
         self.__A1 = 0
 
@@ -69,7 +69,7 @@ class NeuralNetwork():
     def A2(self):
         """ active output getter """
         return self.__A2
-    
+
     def sigmoid(self, X=None, w=None, b=None, x=None):
         """ sigmoid function """
         if (x is None):
@@ -79,7 +79,7 @@ class NeuralNetwork():
 
     def forward_prop(self, X):
         """
-            Calculate the forward 
+            Calculate the forward
             propagation of the neuron
             using sigmoid activation function
         """

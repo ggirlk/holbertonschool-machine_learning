@@ -12,7 +12,7 @@ class NeuralNetwork():
 
     def __init__(self, nx, nodes):
         """ Constractor """
-        
+
         # nx: number of input features to the neuron
         if type(nx) is not int:
             raise TypeError("nx must be an integer")
@@ -27,7 +27,7 @@ class NeuralNetwork():
         # weights vector for the hidden layer
         self.W1 = np.random.randn(nodes, self.nx)
         # bias for the hidden layer
-        self.b1 = np.array([[0]]* nodes)
+        self.b1 = np.array([[0]] * nodes)
         # activated output of the hidden layer
         self.A1 = 0
 
