@@ -74,6 +74,10 @@ class Neuron():
         self.__b += ME * -alpha
         # update weights
         m = X.shape[1]
-        x = A - Y
-        xlr = -alpha/m * X.T
-        self.__W = np.add(self.__W, np.matmul(x, xlr))
+
+        def dw(dz, x):
+            """ weight derivative """
+            return np.matmul(dz, x.T)/m
+        dz = A - Y
+        dw = dw(dz, X)
+        self.__W = np.add(self.W, -alpha * dw)
