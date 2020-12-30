@@ -68,19 +68,25 @@ class Neuron():
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
-        # The Mean Error
-        ME = np.mean((A - Y))
-        # update bias
-        self.__b += ME * -alpha
-        # update weights
         m = X.shape[1]
 
         def dw(dz, x):
             """ weight derivative """
             return np.matmul(dz, x.T)/m
+
+        def db(dz):
+            """ bias derivative"""
+            return np.sum(dz, axis=1, keepdims=True)/m
+
         dz = A - Y
+        # update weights
         dw = dw(dz, X)
         self.__W = np.add(self.W, -alpha * dw)
+        # update bias
+        db = db(dz)
+        self.__b += db * -alpha
+        
+        
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """ train the neuron """
@@ -96,7 +102,7 @@ class Neuron():
             raise ValueError('alpha must be positive')
         # train the model
         for i in range(iterations):
-            self.__A = self.forward_prop(X)
-            self.gradient_descent(X, Y, self.__A, alpha)
+            A = self.forward_prop(X)
+            self.gradient_descent(X, Y, A, alpha)
         self.__A, cost = self.evaluate(X, Y)
         return (self.__A, cost)
