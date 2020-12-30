@@ -128,7 +128,7 @@ class NeuralNetwork():
             return x
 
         # output neuron
-        dz2 = np.subtruct(A2, Y)
+        dz2 = A2 - Y
         dw2 = dw(dz2, A1)
         self.__W2 = np.add(self.W2, -alpha * dw2)
         db2 = db(dz2)
