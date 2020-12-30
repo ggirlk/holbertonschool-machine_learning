@@ -89,7 +89,7 @@ class Neuron():
         # check iterations validity
         if type(iterations) is not int:
             raise TypeError('iterations must be an integer')
-        if iterations <= 1:
+        if iterations < 1:
             raise ValueError('iterations must be a positive integer')
         # check alpha validity
         if type(alpha) is not float:
@@ -98,7 +98,7 @@ class Neuron():
             raise ValueError('alpha must be positive')
 
         # train the model
+        A, cost = self.evaluate(X, Y)
         for i in range(iterations):
-            self.__A = self.forward_prop(X)
-            self.gradient_descent(X, Y, self.__A, alpha)
+            self.gradient_descent(X, Y, A, alpha)
         return self.evaluate(X, Y)
