@@ -28,7 +28,7 @@ class NeuralNetwork():
         # weights vector for the hidden layer
         self.__W1 = np.random.randn(nodes, self.nx)
         # bias for the hidden layer
-        self.__b1 = np.array([[0]] * nodes)
+        self.b1 = np.array([[np.array(0.)]] * nodes)
         # activated output of the hidden layer
         self.__A1 = 0
 
