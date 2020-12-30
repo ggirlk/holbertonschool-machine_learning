@@ -142,7 +142,7 @@ class NeuralNetwork():
         db1 = db(dz1)
         self.__b1 = np.add(self.b1, -alpha * db1)
 
-    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=1):
+    def train(self, X, Y, iterations=5000, alpha=0.05):
         """ train the neuron """
         # check iterations validity
         if type(iterations) is not int:
@@ -161,26 +161,12 @@ class NeuralNetwork():
             if step < 0 or step > iterations:
                 raise ValueError('step must be positive and <= iterations')
         # train the model
-        costs = []
-        k = 0
         for i in range(iterations):
             A1, A2 = self.forward_prop(X)
             self.gradient_descent(X, Y, A1, A2, alpha)
-            costs.append(self.cost(Y, A2))
-            if verbose == True and i-1 == k-1:
-                print("Cost after {} iterations: {}".format(i, costs[i]))
-                k += step
+            
         # evaluation of the training data after iterations
         self.__A2, cost = self.evaluate(X, Y)
-        # last iteration
-        i += 1
-        print("Cost after {} iterations: {}".format(i, cost))
-        # ploting
-        if graph == True:
-            plt.plot(costs)
-            plt.xlabel('iteration')
-            plt.ylabel('cost')
-            plt.title('Training Cost')
-            plt.show()
+        
         # return the evaluation
         return (self.__A2, cost)
