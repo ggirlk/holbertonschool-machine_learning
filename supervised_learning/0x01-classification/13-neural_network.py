@@ -112,7 +112,7 @@ class NeuralNetwork():
 
         def dw(dz, x):
             """ weight derivative """
-            return np.mean(np.matmul(dz, x.T))
+            return np.matmul(dz, x.T)/m
 
         def db(dz):
             """ bias derivative"""
