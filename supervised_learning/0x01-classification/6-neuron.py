@@ -55,7 +55,7 @@ class Neuron():
     def cost(self, Y, A):
         """ Calculate the cost of the model using logistic regression """
 
-        return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
+        return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))) 
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
@@ -79,10 +79,10 @@ class Neuron():
         dz = np.subtract(A, Y)
         # update weights
         dw = dw(dz, X)
-        self.__W += -alpha * dw
+        self.__W = np.add(self.W, -alpha * dw)
         # update bias
         db = db(dz)
-        self.__b += db * -alpha
+        self.__b = np.add(db * -alpha, self.b)
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """ train the neuron """
