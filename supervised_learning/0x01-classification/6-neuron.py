@@ -56,8 +56,8 @@ class Neuron():
         """ Calculate the cost of the model using logistic regression """
 
         m = A.shape[1]
-        s = np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
-        return -(1 / m) * s
+        s = np.mean(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)) 
+        return -(1) * s
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
@@ -78,7 +78,7 @@ class Neuron():
             """ bias derivative"""
             return np.average(dz)
 
-        dz = A - Y
+        dz = np.subtract(A, Y)
         # update weights
         dw = dw(dz, X)
         self.__W += -alpha * dw
