@@ -129,7 +129,7 @@ class NeuralNetwork():
 
         # output neuron
         dz2 = A2 - Y
-        dw2 = dw(dz2, A1)
+        dw2 = dw(dz2, A2)
         self.__W2 = np.add(self.W2, -alpha * dw2)
         db2 = db(dz2)
         self.__b2 += -alpha * db2
