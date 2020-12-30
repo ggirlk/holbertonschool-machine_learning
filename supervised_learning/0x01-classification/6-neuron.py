@@ -76,7 +76,7 @@ class Neuron():
 
         def db(dz):
             """ bias derivative"""
-            return np.sum(dz, axis=1, keepdims=True)/m
+            return np.mean(dz)
 
         dz = A - Y
         # update weights
@@ -93,16 +93,16 @@ class Neuron():
         # check iterations validity
         if type(iterations) is not int:
             raise TypeError('iterations must be an integer')
-        if iterations <= 0:
+        if iterations < 0:
             raise ValueError('iterations must be a positive integer')
         # check alpha validity
         if type(alpha) is not float:
             raise TypeError('alpha must be a float')
-        if alpha <= 0:
+        if alpha < 0:
             raise ValueError('alpha must be positive')
         # train the model
         for i in range(iterations):
-            A = self.forward_prop(X)
-            self.gradient_descent(X, Y, A, alpha)
+            self.__A = self.forward_prop(X)
+            self.gradient_descent(X, Y, self.__A, alpha)
         self.__A, cost = self.evaluate(X, Y)
         return (self.__A, cost)

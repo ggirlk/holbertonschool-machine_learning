@@ -2,7 +2,7 @@
 
 import numpy as np
 
-Neuron = __import__('5-neuron').Neuron
+Neuron = __import__('6-neuron').Neuron
 
 lib_train = np.load('Binary_Train.npz')
 X_3D, Y = lib_train['X'], lib_train['Y']
