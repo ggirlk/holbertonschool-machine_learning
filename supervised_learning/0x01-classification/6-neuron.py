@@ -96,7 +96,7 @@ class Neuron():
         # check alpha validity
         if type(alpha) is not float:
             raise TypeError('alpha must be a float')
-        if alpha < 0.0000001:
+        if alpha < 0:
             raise ValueError('alpha must be positive')
 
         # train the model
