@@ -63,7 +63,7 @@ class Neuron():
         """ Evaluate the neuron’s predictions """
         A = self.forward_prop(X)
         cost = self.cost(Y, A)
-        self.__A = np.where(self.forward_prop(X) >= 0.5, 1, 0)
+        self.__A = np.where(A >= 0.5, 1, 0)
         return (self.__A, cost)
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
@@ -71,12 +71,12 @@ class Neuron():
 
         def dw(dz, x):
             """ weight derivative """
-            m = X.shape[1]
-            return np.matmul(dz, x.T)/m
+            m = x.shape[1]
+            return np.divide(np.matmul(dz, x.T), m)
 
         def db(dz):
             """ bias derivative"""
-            return np.mean(dz)
+            return np.average(dz)
 
         dz = A - Y
         # update weights
@@ -91,12 +91,12 @@ class Neuron():
         # check iterations validity
         if type(iterations) is not int:
             raise TypeError('iterations must be an integer')
-        if iterations < 1:
+        if iterations < 0:
             raise ValueError('iterations must be a positive integer')
         # check alpha validity
         if type(alpha) is not float:
             raise TypeError('alpha must be a float')
-        if alpha < 0:
+        if alpha < 0.0000001:
             raise ValueError('alpha must be positive')
 
         # train the model
