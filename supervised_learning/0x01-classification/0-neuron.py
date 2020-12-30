@@ -19,8 +19,8 @@ class Neuron():
             raise ValueError("nx must be a positive integer")
         self.nx = nx
         # weights vector for the neuron
-        self.__W = np.random.randn(1, self.nx)
+        self.W = np.random.randn(1, self.nx)
         # bias for the neuron
-        self.__b = 0
+        self.b = 0
         # activated output of the neuron (prediction)
-        self.__A = 0
+        self.A = 0
