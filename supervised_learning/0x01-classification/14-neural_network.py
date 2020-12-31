@@ -153,12 +153,6 @@ class NeuralNetwork():
             raise TypeError('alpha must be a float')
         if alpha <= 0:
             raise ValueError('alpha must be positive')
-        # check step validity
-        if (verbose or graph) is True:
-            if type(step) is not int:
-                raise TypeError('step must be an integer')
-            if step < 0 or step > iterations:
-                raise ValueError('step must be positive and <= iterations')
         # train the model
         for i in range(iterations):
             self.__A1, self.__A2 = self.forward_prop(X)
