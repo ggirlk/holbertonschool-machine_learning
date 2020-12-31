@@ -47,8 +47,8 @@ class Neuron():
             using sigmoid activation function
         """
 
-        aw = np.matmul(self.__W, X) + self.__b
-        self.__A = 1 / (1 + np.exp(-aw))
+        z = np.matmul(self.__W, X) + self.__b
+        self.__A = 1/(1+np.exp(-z))
         return self.__A
 
     def cost(self, Y, A):
@@ -57,7 +57,11 @@ class Neuron():
         # m = Y.shape[1]
         # s = np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
         # return -(1 / m) * s
-        return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
+        # return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
+        m = Y.shape[1]
+        loss = np.sum((Y * np.log(A)) + ((1 - Y) * np.log(1.0000001 - A)))
+        cost = -(1 / m) * loss
+        return cost
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
