@@ -112,28 +112,28 @@ class NeuralNetwork():
 
         def dw(dz, x):
             """ weight derivative """
-            return np.matmul(dz, x.T)/m
+            return np.divide(np.matmul(dz, x.T), m)
 
         def db(dz):
             """ bias derivative"""
             return np.mean(dz, axis=1, keepdims=True)
-
+        
         def der(x):
             """ sigmoid derivative """
             return x * (1-x)
-
+        
         def dz(w, dz, gprime):
             """ z derivative """
             x = gprime * np.matmul(w.T, dz)
             return x
-
+        
         # output neuron
-        dz2 = A2 - Y
+        dz2 = np.subtract(A2, Y)
         dw2 = dw(dz2, A2)
         self.__W2 = np.add(self.W2, -alpha * dw2)
         db2 = db(dz2)
-        self.__b2 += -alpha * db2
-
+        self.__b2 = np.add(-alpha * db2, self.b2)
+        
         # hidden layer
         dz1 = dz(self.W2, dz2, der(A1))
         dw1 = dw(dz1, X)
