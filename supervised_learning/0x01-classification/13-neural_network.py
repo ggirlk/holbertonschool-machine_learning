@@ -132,7 +132,7 @@ class NeuralNetwork():
         self.__W2 = np.subtract(self.W2, np.multiply(alpha, dw2))
         db2 = db(dz2)
         self.__b2 = np.subtract(self.b2, np.multiply(alpha, db2))
-        
+
         # hidden layer
         dz1 = dz(self.W2, dz2, der(A1))
         dw1 = dw(dz1, X)
