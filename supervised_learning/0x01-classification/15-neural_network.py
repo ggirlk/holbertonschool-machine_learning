@@ -108,8 +108,7 @@ class NeuralNetwork():
 
     def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
-        m = X.shape[1]
-        n = A1.shape[0]
+        m = Y.shape[1]
 
         def dw(dz, x):
             """ weight derivative """
@@ -127,20 +126,20 @@ class NeuralNetwork():
             """ z derivative """
             x = gprime * np.matmul(w.T, dz)
             return x
-
+        w2 = self.W2
         # output neuron
-        dz2 = A2 - Y
+        dz2 = np.subtract(A2, Y)
         dw2 = dw(dz2, A1)
-        self.__W2 = np.add(self.W2, -alpha * dw2)
+        self.__W2 = np.subtract(self.W2, np.multiply(alpha, dw2))
         db2 = db(dz2)
-        self.__b2 += -alpha * db2
+        self.__b2 = np.subtract(self.b2, np.multiply(alpha, db2))
 
         # hidden layer
-        dz1 = dz(self.W2, dz2, der(A1))
+        dz1 = dz(w2, dz2, der(A1))
         dw1 = dw(dz1, X)
-        self.__W1 = np.add(self.W1, -alpha * dw1)
+        self.__W1 = np.subtract(self.W1, np.multiply(alpha, dw1))
         db1 = db(dz1)
-        self.__b1 = np.add(self.b1, -alpha * db1)
+        self.__b1 = np.subtract(self.b1, np.multiply(alpha, db1))
 
     def train(self, X, Y, iterations=5000, alpha=0.05,
               verbose=True, graph=True, step=100):
@@ -172,7 +171,7 @@ class NeuralNetwork():
                 print("Cost after {} iterations: {}".format(i, costs[i]))
                 k += step
         # evaluation of the training data after iterations
-        self.__A2, cost = self.evaluate(X, Y)
+        A2, cost = self.evaluate(X, Y)
         # last iteration
         i += 1
         print("Cost after {} iterations: {}".format(i, cost))
@@ -184,4 +183,4 @@ class NeuralNetwork():
             plt.title('Training Cost')
             plt.show()
         # return the evaluation
-        return (self.__A2, cost)
+        return (A2, cost)
