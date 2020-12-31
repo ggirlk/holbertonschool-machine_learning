@@ -107,8 +107,7 @@ class NeuralNetwork():
 
     def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
-        m = X.shape[1]
-        n = A1.shape[0]
+        m = Y.shape[1]
 
         def dw(dz, x):
             """ weight derivative """
