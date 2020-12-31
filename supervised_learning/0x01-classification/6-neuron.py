@@ -48,8 +48,7 @@ class Neuron():
         """
 
         x = np.matmul(self.__W, X) + self.__b
-        # sigmoid
-        self.__A = (1/(1+np.exp(-x)))
+        self.__A = 1/(1+np.exp(-x))
         return self.__A
 
     def cost(self, Y, A):
