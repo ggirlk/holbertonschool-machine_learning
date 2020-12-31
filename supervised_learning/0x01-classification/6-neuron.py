@@ -89,12 +89,12 @@ class Neuron():
         # check iterations validity
         if type(iterations) is not int:
             raise TypeError('iterations must be an integer')
-        if iterations < 1:
+        if iterations <= 0:
             raise ValueError('iterations must be a positive integer')
         # check alpha validity
         if type(alpha) is not float:
             raise TypeError('alpha must be a float')
-        if alpha < 0:
+        if alpha <= 0:
             raise ValueError('alpha must be positive')
 
         # train the model
