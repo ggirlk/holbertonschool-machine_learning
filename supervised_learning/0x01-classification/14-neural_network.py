@@ -87,7 +87,7 @@ class NeuralNetwork():
         # layer active output
         self.__A1 = self.sigmoid(X, self.W1, self.b1)
         # neuron active output
-        self.__A2 = self.sigmoid(self.__A1, self.W2, self.b2)
+        self.__A2 = self.sigmoid(self.A1, self.W2, self.b2)
 
         return (self.A1, self.A2)
 
@@ -146,12 +146,12 @@ class NeuralNetwork():
         # check iterations validity
         if type(iterations) is not int:
             raise TypeError('iterations must be an integer')
-        if iterations < 0:
+        if iterations <= 0:
             raise ValueError('iterations must be a positive integer')
         # check alpha validity
         if type(alpha) is not float:
             raise TypeError('alpha must be a float')
-        if alpha < 0:
+        if alpha <= 0:
             raise ValueError('alpha must be positive')
         # check step validity
         if (verbose or graph) is True:
@@ -161,8 +161,8 @@ class NeuralNetwork():
                 raise ValueError('step must be positive and <= iterations')
         # train the model
         for i in range(iterations):
-            A1, A2 = self.forward_prop(X)
-            self.gradient_descent(X, Y, A1, A2, alpha)
+            self.__A1, self.__A2 = self.forward_prop(X)
+            self.gradient_descent(X, Y, self.A1, self.A2, alpha)
 
         # return the evaluation of the training data after iterations
         return self.evaluate(X, Y)
