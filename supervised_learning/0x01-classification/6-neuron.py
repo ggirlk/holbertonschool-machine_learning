@@ -47,8 +47,8 @@ class Neuron():
             using sigmoid activation function
         """
 
-        z = np.matmul(self.__W, X) + self.__b
-        self.__A = 1/(1+np.exp(-z))
+        aw = np.matmul(self.__W, X) + self.__b
+        self.__A = 1 / (1 + np.exp(-aw))
         return self.__A
 
     def cost(self, Y, A):
