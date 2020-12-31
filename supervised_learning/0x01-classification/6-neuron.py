@@ -47,7 +47,7 @@ class Neuron():
             using sigmoid activation function
         """
 
-        x = np.matmul(self.__W, X) + self.b
+        x = np.matmul(self.__W, X) + self.__b
         # sigmoid
         self.__A = (1/(1+np.exp(-x)))
         return self.__A
@@ -55,10 +55,10 @@ class Neuron():
     def cost(self, Y, A):
         """ Calculate the cost of the model using logistic regression """
 
-        #return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))) 
-        m = Y.shape[1]
-        s = np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
-        return -(1 / m) * s
+        # m = Y.shape[1]
+        # s = np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
+        # return -(1 / m) * s
+        return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
@@ -78,18 +78,13 @@ class Neuron():
     def gradient_descent(self, X, Y, A, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
         m = Y.shape[1]
-        """dz = np.subtract(A, Y)
+        dz = np.subtract(A, Y)
         # update weights
         dw = self.dw(dz, X, m)
         self.__W = np.subtract(self.W, np.multiply(alpha, dw))
         # update bias
         db = self.db(dz, m)
-        self.__b = np.subtract(self.b, np.multiply(alpha, db))"""
-        
-        dz = np.subtract(A, Y)
-        dw = np.matmul(dz, X.T) / m
-        self.__b = np.subtract(self.__b, alpha * (np.sum(dz) / m))
-        self.__W = np.subtract(self.__W, (np.multiply(alpha, dw)))
+        self.__b = np.subtract(self.b, np.multiply(alpha, db))
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """ train the neuron """
