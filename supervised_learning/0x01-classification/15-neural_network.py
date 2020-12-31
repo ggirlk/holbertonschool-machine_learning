@@ -169,8 +169,8 @@ class NeuralNetwork():
         costs = []
         k = 0
         for i in range(iterations):
-            A1, A2 = self.forward_prop(X)
-            self.gradient_descent(X, Y, A1, A2, alpha)
+            self.__A1, self.__A2 = self.forward_prop(X)
+            self.gradient_descent(X, Y, self.A1, self.A2, alpha)
             costs.append(self.cost(Y, A2))
             if verbose and i-1 == k-1:
                 print("Cost after {} iterations: {}".format(i, costs[i]))

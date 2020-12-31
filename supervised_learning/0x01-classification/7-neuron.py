@@ -118,7 +118,7 @@ class Neuron():
                 print("Cost after {} iterations: {}".format(i, costs[i]))
                 k += step
         # evaluation of the training data after iterations
-        self.__A, cost = self.evaluate(X, Y)
+        A, cost = self.evaluate(X, Y)
         # last iteration
         i += 1
         print("Cost after {} iterations: {}".format(i, cost))
@@ -130,4 +130,4 @@ class Neuron():
             plt.title('Training Cost')
             plt.show()
         # return the evaluation
-        return (self.__A, cost)
+        return (A, cost)
