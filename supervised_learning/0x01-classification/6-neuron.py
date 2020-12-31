@@ -12,13 +12,17 @@ class Neuron():
     def __init__(self, nx):
         """ Constractor """
 
+        """nx: number of input features to the neuron"""
         if type(nx) is not int:
             raise TypeError("nx must be an integer")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
         self.nx = nx
+        """weights vector for the neuron"""
         self.__W = np.random.randn(1, nx)
+        """bias for the neuron"""
         self.__b = 0
+        """activated output of the neuron (prediction)"""
         self.__A = 0
 
     @property
@@ -43,8 +47,8 @@ class Neuron():
             using sigmoid activation function
         """
 
-        x = np.matmul(self.__W, X) + self.__b
-        self.__A = 1/(1+np.exp(-x))
+        z = np.matmul(self.__W, X) + self.__b
+        self.__A = 1/(1+np.exp(-z))
         return self.__A
 
     def cost(self, Y, A):
