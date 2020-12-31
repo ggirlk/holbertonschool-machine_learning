@@ -128,14 +128,14 @@ class NeuralNetwork():
 
         # output neuron
         dz2 = np.subtract(A2, Y)
-        dw2 = dw(dz2, A2)
-        self.__W2 = np.add(self.W2, -alpha * dw2)
+        dw2 = dw(dz2, A1)
+        self.__W2 = np.subtract(self.W2, np.multiply(alpha, dw2))
         db2 = db(dz2)
-        self.__b2 = np.add(-alpha * db2, self.b2)
-
+        self.__b2 = np.subtract(self.b2, np.multiply(alpha, db2))
+        
         # hidden layer
         dz1 = dz(self.W2, dz2, der(A1))
         dw1 = dw(dz1, X)
-        self.__W1 = np.add(self.W1, -alpha * dw1)
+        self.__W1 = np.subtract(self.W1, np.multiply(alpha, dw1))
         db1 = db(dz1)
-        self.__b1 = np.add(self.b1, -alpha * db1)
+        self.__b1 = np.subtract(self.b1, np.multiply(alpha, db1))
