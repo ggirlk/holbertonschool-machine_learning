@@ -78,7 +78,7 @@ class Neuron():
         dz = np.subtract(A, Y)
         # update weights
         dw = self.dw(dz, X, m)
-        self.__W = np.subtract(self.__W, alpha * dw)
+        self.__W = np.subtract(self.__W, np.multiply(alpha, dw))
         # update bias
         db = self.db(dz, m)
         self.__b = np.subtract(self.__b, db * alpha)
