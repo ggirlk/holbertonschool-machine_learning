@@ -125,7 +125,7 @@ class NeuralNetwork():
             """ z derivative """
             x = gprime * np.matmul(w.T, dz)
             return x
-
+        w2 = self.W2
         # output neuron
         dz2 = np.subtract(A2, Y)
         dw2 = dw(dz2, A1)
@@ -134,7 +134,7 @@ class NeuralNetwork():
         self.__b2 = np.subtract(self.b2, np.multiply(alpha, db2))
 
         # hidden layer
-        dz1 = dz(self.W2, dz2, der(A1))
+        dz1 = dz(w2, dz2, der(A1))
         dw1 = dw(dz1, X)
         self.__W1 = np.subtract(self.W1, np.multiply(alpha, dw1))
         db1 = db(dz1)
