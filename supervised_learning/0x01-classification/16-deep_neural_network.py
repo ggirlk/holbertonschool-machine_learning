@@ -19,11 +19,12 @@ class DeepNeuralNetwork():
             raise ValueError("nx must be a positive integer")
         self.nx = nx
         # layers: number of nodes in each layer of the network
+        def check(b):
+            if b is not int and b <= 0:
+                raise ValueError("layers must be a list of positive integers")
         if type(layers) is not list:
             raise TypeError("layers must be a list of positive integers")
-        for i in layers:
-            if type(i) is not int or i < 0:
-                raise ValueError("layers must be a list of positive integers")
+        s = list(map(lambda b: check(b), layers))
         # number of layers in the neural network
         self.L = len(layers)
         # intermediary values of the network
