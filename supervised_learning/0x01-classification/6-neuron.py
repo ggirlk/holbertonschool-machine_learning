@@ -9,98 +9,75 @@ import numpy as np
 class Neuron():
     """ Class Neuron """
 
-    def __init__(self, nx):
-        """ Constractor """
 
-        # nx: number of input features to the neuron
+    def __init__(self, nx):
+        """ nx is number of input features
+            must be an integer and >= 1
+        """
         if type(nx) is not int:
             raise TypeError("nx must be an integer")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
         self.nx = nx
-        # weights vector for the neuron
-        self.__W = np.random.randn(1, self.nx)
-        # bias for the neuron
+        '''self.__W = np.random.normal(size=(1, nx))'''
+        self.__W = np.random.randn(1, nx)
         self.__b = 0
-        # activated output of the neuron (prediction)
         self.__A = 0
 
     @property
     def W(self):
-        """ weights getter """
+        """ W getter """
         return self.__W
 
     @property
     def b(self):
-        """ bias getter """
+        """ W getter """
         return self.__b
 
     @property
     def A(self):
-        """ active output getter """
+        """ W getter """
         return self.__A
 
     def forward_prop(self, X):
-        """
-            Calculate the forward
-            propagation of the neuron
-            using sigmoid activation function
-        """
-
-        x = np.matmul(self.__W, X) + self.__b
-        # sigmoid
-        self.__A = (1/(1+np.exp(-x)))
+        """ Forward propogation of the neuron """
+        aw = np.matmul(self.__W, X) + self.__b
+        self.__A = 1 / (1 + np.exp(-aw))
         return self.__A
 
     def cost(self, Y, A):
-        """ Calculate the cost of the model using logistic regression """
-
-        # m = Y.shape[1]
-        # s = np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
-        # return -(1 / m) * s
-        return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
+        """ calculates the cost of the model using logistic regression """
+        m = Y.shape[1]
+        loss = np.sum((Y * np.log(A)) + ((1 - Y) * np.log(1.0000001 - A)))
+        cost = -(1 / m) * loss
+        return cost
 
     def evaluate(self, X, Y):
-        """ Evaluate the neuron’s predictions """
-        A = self.forward_prop(X)
-        cost = self.cost(Y, A)
-        self.__A = np.where(A >= 0.5, 1, 0)
-        return self.__A, cost
-
-    def dw(self, dz, x, m):
-        """ weight derivative """
-        return np.divide(np.matmul(dz, x.T), m)
-
-    def db(self, dz, m):
-        """ bias derivative"""
-        return np.sum(dz)/m
+        """ Evaluates a neurons predictions """
+        prop = self.forward_prop(X)
+        cost = self.cost(Y, prop)
+        x = np.where(prop >= 0.5, 1, 0)
+        return x, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
-        """ Calculate one pass of gradient descent on the neuron """
+        """ Calculates one pass of gradient descent on the neuron """
         m = Y.shape[1]
         dz = np.subtract(A, Y)
-        # update weights
-        dw = self.dw(dz, X, m)
-        self.__W = np.subtract(self.__W, np.multiply(alpha, dw))
-        # update bias
-        db = self.db(dz, m)
-        self.__b = np.subtract(self.__b, np.multiply(alpha, db))
+        dw = np.matmul(dz, X.T) / m
+        self.__b = np.subtract(self.__b, alpha * (np.sum(dz) / m))
+        self.__W = np.subtract(self.__W, (np.multiply(alpha, dw)))
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
-        """ train the neuron """
-        # check iterations validity
+        """ Trains the neuron """
         if type(iterations) is not int:
-            raise TypeError('iterations must be an integer')
+            raise TypeError("iterations must be an integer")
         if iterations <= 0:
-            raise ValueError('iterations must be a positive integer')
-        # check alpha validity
+            raise ValueError("iterations must be a positive integer")
         if type(alpha) is not float:
-            raise TypeError('alpha must be a float')
+            raise TypeError("alpha must be a float")
         if alpha <= 0:
-            raise ValueError('alpha must be positive')
-
-        # train the model
-        for i in range(iterations):
+            raise ValueError("alpha must be positive")
+        for _ in range(iterations):
             A = self.forward_prop(X)
             self.gradient_descent(X, Y, A, alpha)
         return self.evaluate(X, Y)
