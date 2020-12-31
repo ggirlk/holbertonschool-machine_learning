@@ -101,10 +101,10 @@ class NeuralNetwork():
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
-        _, self.__A2 = self.forward_prop(X)
-        cost = self.cost(Y, self.__A2)
-        self.__A2 = np.where(self.__A2 >= 0.5, 1, 0)
-        return (self.__A2, cost)
+        _, A2 = self.forward_prop(X)
+        cost = self.cost(Y, A2)
+        A2 = np.where(A2 >= 0.5, 1, 0)
+        return (A2, cost)
 
     def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
@@ -171,7 +171,7 @@ class NeuralNetwork():
         for i in range(iterations):
             self.__A1, self.__A2 = self.forward_prop(X)
             self.gradient_descent(X, Y, self.A1, self.A2, alpha)
-            costs.append(self.cost(Y, A2))
+            costs.append(self.cost(Y, self.A2))
             if verbose and i-1 == k-1:
                 print("Cost after {} iterations: {}".format(i, costs[i]))
                 k += step
