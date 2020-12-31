@@ -13,17 +13,17 @@ class Neuron():
     def __init__(self, nx):
         """ Constractor """
 
-        # nx: number of input features to the neuron
+        """nx: number of input features to the neuron"""
         if type(nx) is not int:
             raise TypeError("nx must be an integer")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
         self.nx = nx
-        # weights vector for the neuron
-        self.__W = np.random.randn(1, self.nx)
-        # bias for the neuron
+        """weights vector for the neuron"""
+        self.__W = np.random.randn(1, nx)
+        """bias for the neuron"""
         self.__b = 0
-        # activated output of the neuron (prediction)
+        """activated output of the neuron (prediction)"""
         self.__A = 0
 
     @property
@@ -48,44 +48,40 @@ class Neuron():
             using sigmoid activation function
         """
 
-        x = np.matmul(self.__W, X) + self.b
-        # sigmoid
-        self.__A = (1/(1+np.exp(-x)))
+        z = np.matmul(self.__W, X) + self.__b
+        self.__A = 1/(1+np.exp(-z))
         return self.__A
 
     def cost(self, Y, A):
         """ Calculate the cost of the model using logistic regression """
 
-        m = A.shape[1]
-        s = np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
-        return -(1 / m) * s
+        return np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
-        A = self.forward_prop(X)
-        cost = self.cost(Y, A)
-        self.__A = np.where(A >= 0.5, 1, 0)
-        return (self.__A, cost)
+        self.__A = self.forward_prop(X)
+        cost = self.cost(Y, self.__A)
+        A = np.where(self.__A >= 0.5, 1, 0)
+        return A, cost
+
+    def dw(self, dz, X, m):
+        """ weight derivative """
+        return np.matmul(dz, X.T)/m
+
+    def db(self, dz, m):
+        """ bias derivative"""
+        return np.sum(dz)/m
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
-        m = X.shape[1]
-
-        def dw(dz, x):
-            """ weight derivative """
-            return np.matmul(dz, x.T)/m
-
-        def db(dz):
-            """ bias derivative"""
-            return np.mean(dz)
-
-        dz = A - Y
+        m = Y.shape[1]
+        dz = np.subtract(A, Y)
         # update weights
-        dw = dw(dz, X)
-        self.__W += -alpha * dw
+        dw = self.dw(dz, X, m)
+        self.__W = np.subtract(self.__W, np.multiply(alpha, dw))
         # update bias
-        db = db(dz)
-        self.__b += db * -alpha
+        db = self.db(dz, m)
+        self.__b = np.subtract(self.__b, np.multiply(alpha, db))
 
     def train(self, X, Y, iterations=5000, alpha=0.05,
               verbose=True, graph=True, step=100):
