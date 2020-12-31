@@ -81,10 +81,10 @@ class Neuron():
         dz = np.subtract(A, Y)
         # update weights
         dw = self.dw(dz, X, m)
-        self.__W = np.subtract(self.W, np.multiply(alpha, dw))
+        self.__W = np.subtract(self.__W, np.multiply(alpha, dw))
         # update bias
         db = self.db(dz, m)
-        self.__b = np.subtract(self.b, np.multiply(alpha, db))
+        self.__b = np.subtract(self.__b, np.multiply(alpha, db))
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """ train the neuron """
