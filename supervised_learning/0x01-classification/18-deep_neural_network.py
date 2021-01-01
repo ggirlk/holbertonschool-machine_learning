@@ -43,7 +43,7 @@ class DeepNeuralNetwork():
                 m = layers[i-1]
             self.weights['W' + str(i+1)] = np.random.randn(n, m) * np.sqrt(2/m)
             self.weights['b' + str(i+1)] = np.zeros((n, 1))
-        
+
     @property
     def L(self):
         """ number of layers L getter """

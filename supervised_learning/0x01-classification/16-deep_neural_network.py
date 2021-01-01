@@ -26,7 +26,7 @@ class DeepNeuralNetwork():
             """ check layer list elements """
             if type(b) is not int:
                 raise TypeError("layers must be a list of positive integers")
-            if b < 1:
+            if b < 0:
                 raise TypeError("layers must be a list of positive integers")
         s = list(map(lambda b: check(b), layers))
         # number of layers in the neural network
