@@ -22,7 +22,7 @@ class DeepNeuralNetwork():
 
         def check(b):
             """ check layer list elements """
-            if b is not int and b <= 0:
+            if b is not int and b < 0:
                 raise ValueError("layers must be a list of positive integers")
         if type(layers) is not list:
             raise TypeError("layers must be a list of positive integers")
