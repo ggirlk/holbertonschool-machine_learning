@@ -24,7 +24,7 @@ class DeepNeuralNetwork():
 
         def check(b):
             """ check layer list elements """
-            if b is not int or b < 0:
+            if b is not int and b < 0:
                 raise ValueError("layers must be a list of positive integers")
         s = list(map(lambda b: check(b), layers))
         # number of layers in the neural network
@@ -35,8 +35,9 @@ class DeepNeuralNetwork():
         self.weights = {}
         for i in range(self.L):
             n = layers[i]
-            m = layers[i-1]
             if i == 0:
                 m = self.nx
+            else:
+                m = layers[i-1]
             self.weights['W' + str(i+1)] = np.random.randn(n, m) * np.sqrt(2/m)
             self.weights['b' + str(i+1)] = np.zeros((n, 1))
