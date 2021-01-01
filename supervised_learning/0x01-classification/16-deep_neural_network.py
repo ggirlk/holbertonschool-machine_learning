@@ -24,7 +24,7 @@ class DeepNeuralNetwork():
 
         def check(b):
             """ check layer list elements """
-            if b is not int and b < 2:
+            if type(b) is not int or b < 1:
                 raise ValueError("layers must be a list of positive integers")
         s = list(map(lambda b: check(b), layers))
         # number of layers in the neural network
