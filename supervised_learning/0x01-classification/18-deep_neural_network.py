@@ -72,18 +72,19 @@ class DeepNeuralNetwork():
             propagation of the neuron
             using sigmoid activation function
         """
-        i = 0
+        i = 1
         x = X
+        n = self.L
         # active outputs
-        for i in range(self.L):
+        for i in range(n):
             if i != 0:
-                x = self.__cache['A' + str(i-1)]
-            self.__cache['A' + str(i)] = self.sigmoid(x, 
-                                                        self.weights['W' + str(i+1)], 
-                                                        self.weights['b' + str(i+1)]
-                                                       )
-        self.__cache['A' + str(i+1)] = self.sigmoid(x, 
-                                                        self.weights['W' + str(i+1)], 
-                                                        self.weights['b' + str(i+1)]
-                                                       )
-        return self.cache['A' + str(self.L)], self.cache
+                x = self.__cache['A'+str(i-1)]
+            self.__cache['A'+str(i)] = self.sigmoid(x,
+                                                    self.weights['W'+str(i+1)],
+                                                    self.weights['b'+str(i+1)]
+                                                    )
+        self.__cache['A'+str(n)] = self.sigmoid(x,
+                                                self.weights['W'+str(i+1)],
+                                                self.weights['b'+str(i+1)]
+                                                )
+        return self.cache['A'+str(n)], self.cache
