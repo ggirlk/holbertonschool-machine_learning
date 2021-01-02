@@ -8,7 +8,10 @@ import numpy as np
 
 def one_hot_encode(Y, classes):
     """ doc """
-    mx = np.zeros((classes, classes))
+    if not Y:
+        return None
+    m = Y.shape[0]
+    mx = np.zeros((classes, m))
     i = 0
     for n in Y:
         mx[n:n+1, i:i+1] = 1
