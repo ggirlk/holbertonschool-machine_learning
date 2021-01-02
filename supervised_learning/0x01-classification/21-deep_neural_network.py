@@ -119,18 +119,18 @@ class DeepNeuralNetwork():
             return np.multiply(gprimei, x)
 
         n = self.L
-        wb = self.weights
+        wb = self.weights.copy()
         dzi = np.subtract(self.cache['A'+str(n)], Y)
         for i in reversed(range(1, n+1)):
             A1 = self.cache['A'+str(i)]
-            A2 = self.cache['A'+str(i-1)]
+            A0 = self.cache['A'+str(i-1)]
             b = wb['b'+str(i)]
             if i == n:
                 dzi = np.subtract(self.cache['A'+str(n)], Y)
             else:
                 w = wb['W'+str(i+1)]
                 dzi = dz(w, dzi, der(A1))
-            dwi = dw(dzi, A2)
+            dwi = dw(dzi, A0)
             dbi = db(dzi)
             self.__weights['b'+str(i)] = wb['b'+str(i)]-alpha*dbi
             self.__weights['W'+str(i)] = wb['W'+str(i)]-alpha*dwi
