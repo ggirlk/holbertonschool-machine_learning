@@ -11,7 +11,7 @@ def one_hot_encode(Y, classes):
     if type(Y) != np.ndarray\
        or type(classes) is not int\
        or len(Y) == 0\
-       or classes != len(Y):
+       or classes-1 != Y.max():
         return None
     m = Y.shape[0]
     mx = np.zeros((classes, m))
