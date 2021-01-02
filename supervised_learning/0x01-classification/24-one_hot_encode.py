@@ -8,7 +8,7 @@ import numpy as np
 
 def one_hot_encode(Y, classes):
     """ doc """
-    if type(Y) != np.ndarray:
+    if type(Y) != np.ndarray or not Y:
         return None
     m = Y.shape[0]
     mx = np.zeros((classes, m))
