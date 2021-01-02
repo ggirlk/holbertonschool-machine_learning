@@ -13,7 +13,6 @@ def one_hot_encode(Y, classes):
        or classes < 1\
        or len(Y) == 0\
        or len(Y.shape) != 1\
-       or Y.max()+1 != len(Y)\
        or classes != Y.max()+1:
         return None
     m = Y.shape[0]
