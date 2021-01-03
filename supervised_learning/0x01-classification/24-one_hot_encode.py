@@ -18,10 +18,8 @@ def one_hot_encode(Y, classes):
     mx = np.zeros((classes, m))
     i = 0
     for n in Y:
-        if type(n) is not np.int64:
+        if type(n) is not np.int64 or n < 0:
             return None
-        if n < 0:
-            n *= -1
         mx[n:n+1, i:i+1] = 1
         i += 1
     return mx
