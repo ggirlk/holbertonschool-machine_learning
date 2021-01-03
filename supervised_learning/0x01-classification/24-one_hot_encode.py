@@ -15,4 +15,9 @@ def one_hot_encode(Y, classes):
        or len(Y.shape) != 1\
        or classes-1 != Y.max():
         return None
-    return np.eye(classes)[Y].T
+    mx = np.zeros((classes, Y.shape[0]))
+    i = 0
+    for n in Y:
+        mx[n:n+1, i:i+1] = 1
+        i += 1
+    return mx
