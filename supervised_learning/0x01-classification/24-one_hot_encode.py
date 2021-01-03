@@ -12,8 +12,7 @@ def one_hot_encode(Y, classes):
        or type(classes) is not int\
        or classes <= 0\
        or len(Y) == 0\
-       or len(Y.shape) != 1:
+       or len(Y.shape) != 1\
+       or classes-1 != Y.max():
         return None
-    if classes-1 != Y.max():
-        classes = Y.max()+1
-    return np.eye(classes)[Y].T
+    return None
