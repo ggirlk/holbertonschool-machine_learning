@@ -11,6 +11,6 @@ def one_hot_encode(Y, classes):
     if Y is None\
        or type(Y) is not np.ndarray\
        or type(classes) is not int\
-       or classes != Y.max():
+       or classes != Y.max()+1:
         return None
     return np.eye(classes)[Y].T
