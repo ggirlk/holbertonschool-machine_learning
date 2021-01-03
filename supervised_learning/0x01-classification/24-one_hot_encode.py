@@ -8,7 +8,8 @@ import numpy as np
 
 def one_hot_encode(Y, classes):
     """ doc """
-    if type(Y) is not np.ndarray\
+    if Y is None\
+       or type(Y) is not np.ndarray\
        or type(classes) is not int\
        or len(Y) == 0\
        or len(Y) != classes\
