@@ -22,4 +22,4 @@ def one_hot_decode(one_hot):
                 mx[i] = j
     if mx.max()+1 != one_hot.shape[0]:
         return None
-    return None
+    return mx

@@ -15,11 +15,11 @@ def one_hot_encode(Y, classes):
        or classes != Y.max()+1:
         return None
     m = Y.shape[0]
-    mx = np.zeros((classes, m))
-    i = 0
-    for n in Y:
-        if type(n) is not np.int64 or n < 0:
-            return None
-        mx[n:n+1, i:i+1] = 1
-        i += 1
+    # mx = np.zeros((classes, m))
+    mx = []
+    k=0
+    for i in Y:
+        mx.append(np.eye(1, classes, k=i).reshape(classes))
+        k+=1
+    mx = np.array(mx).T
     return mx
