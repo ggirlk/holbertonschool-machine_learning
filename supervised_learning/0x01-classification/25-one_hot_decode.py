@@ -8,7 +8,8 @@ import numpy as np
 
 def one_hot_decode(one_hot):
     """ doc """
-    if type(one_hot) is not np.ndarray\
+    if one_hote is None\
+       or type(one_hot) is not np.ndarray\
        or len(one_hot) == 0\
        or len(one_hot.shape) != 2:
         return None
