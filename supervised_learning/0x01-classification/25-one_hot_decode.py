@@ -7,7 +7,8 @@ import numpy as np
 
 
 def one_hot_decode(one_hot):
-    if type(one_hot) is not np.ndarray:
+    if type(one_hot) is not np.ndarray\
+       len(one_hot.shape) != 2:
         return None
     m = one_hot.shape[0]
     mx = np.array([0]*m)
