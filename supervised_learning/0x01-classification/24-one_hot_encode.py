@@ -9,7 +9,7 @@ import numpy as np
 def one_hot_encode(Y, classes):
     """ doc """
     if Y is None\
-       or type(classes) is not int\
+       or type(Y) is not np.ndarray\
        or len(Y) == 0\
        or len(Y.shape) != 1\
        or classes-1 != Y.max():
