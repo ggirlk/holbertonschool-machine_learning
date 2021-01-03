@@ -19,7 +19,7 @@ def one_hot_encode(Y, classes):
     mx = []
     k=0
     for i in Y:
-        mx.append(np.eye(1, m, k=i).reshape(m))
+        mx.append(np.eye(1, classes, k=i).reshape(classes))
         k += 1
     mx = np.array(mx).T
     return mx
