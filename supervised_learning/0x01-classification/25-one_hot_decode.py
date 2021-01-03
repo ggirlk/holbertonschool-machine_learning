@@ -10,7 +10,7 @@ def one_hot_decode(one_hot):
     if type(one_hot) is not np.ndarray\
        or len(one_hot.shape) != 2:
         return None
-    m = one_hot.shape[0]
+    m = one_hot.shape[1]
     mx = np.array([0]*m)
     i = 0
     for i in range(len(one_hot)):
@@ -19,6 +19,6 @@ def one_hot_decode(one_hot):
                 return None
             if one_hot[j][i] == 1:
                 mx[i] = j
-    if mx.max()+1 != one_hot.shape[1]:
+    if mx.max()+1 != one_hot.shape[0]:
         return None
     return mx
