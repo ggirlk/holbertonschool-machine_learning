@@ -191,7 +191,7 @@ class DeepNeuralNetwork():
             to a file in pickle format
         """
         pkl = ".pkl"
-        if filename[-4:] != pkl:
+        if len(filename) < 4 or filename[-4:] != pkl:
             filename += pkl
         with open(filename, "wb") as f:
             pickle.dump(self,
@@ -204,8 +204,6 @@ class DeepNeuralNetwork():
             Loads a pickled
             DeepNeuralNetwork object
         """
-        if filename[-4:] != '.pkl':
-            return None
         try:
             with open(filename, "rb") as f:
                 return pickle.load(f)
