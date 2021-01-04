@@ -6,7 +6,6 @@ define a deep neural network performing binary classification
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-import os.path
 
 
 class DeepNeuralNetwork():
@@ -205,9 +204,8 @@ class DeepNeuralNetwork():
             Loads a pickled
             DeepNeuralNetwork object
         """
-        if os.path.isfile(filename):
+        try:
             with open(filename, "rb") as f:
                 return pickle.load(f)
-        else:
+        except Exception:
             return None
-            
