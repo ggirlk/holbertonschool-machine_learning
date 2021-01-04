@@ -191,6 +191,8 @@ class DeepNeuralNetwork():
             to a file in pickle format
         """
         pkl = ".pkl"
+        if type(filename) is not str:
+            return None
         if filename[-4:] != pkl:
             filename += pkl
         with open(filename, "wb") as f:
