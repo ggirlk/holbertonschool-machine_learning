@@ -200,8 +200,8 @@ class DeepNeuralNetwork():
                             f,
                             pickle.HIGHEST_PROTOCOL
                             )
-        except Exception:
-            pass
+        except Exception as ex:
+            raise ex
 
     @staticmethod
     def load(filename):
