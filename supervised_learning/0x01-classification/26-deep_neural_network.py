@@ -193,6 +193,9 @@ class DeepNeuralNetwork():
         pkl = ".pkl"
         if filename[-4:] != pkl:
             filename += pkl
+        if type(filename) is not str\
+           or len(filename) == 0:
+            return None
         with open(filename, "wb") as f:
             pickle.dump(self,
                         f,
