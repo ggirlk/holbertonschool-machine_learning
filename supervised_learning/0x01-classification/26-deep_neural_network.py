@@ -196,7 +196,7 @@ class DeepNeuralNetwork():
         if filename[-4:] != pkl:
             filename += pkl
         with open(filename, "wb") as f:
-            pickle.dump(self, f, -1)
+            pickle.dump(self, f)
 
     @staticmethod
     def load(filename):
@@ -206,6 +206,6 @@ class DeepNeuralNetwork():
         """
         try:
             with open(filename, "rb") as f:
-                return pickle.load(f, -1)
+                return pickle.load(f)
         except Exception:
             return None
