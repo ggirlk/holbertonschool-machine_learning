@@ -196,7 +196,7 @@ class DeepNeuralNetwork():
             return
         pkl = ".pkl"
         if filename[-4:] != pkl:
-            filename += pkl
+            filename = filename[:] + pkl
         with open(filename, "wb") as f:
             pickle.dump(self, f)
 
