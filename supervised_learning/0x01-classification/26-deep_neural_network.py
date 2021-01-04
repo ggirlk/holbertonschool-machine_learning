@@ -191,10 +191,11 @@ class DeepNeuralNetwork():
             to a file in pickle format
         """
         pkl = ".pkl"
-        if type(filename) is not str:
-            return None
         if filename[-4:] != pkl:
             filename += pkl
+        if type(filename) is not str\
+           or len(filename) == 0:
+            return None
         with open(filename, "wb") as f:
             pickle.dump(self,
                         f,
@@ -206,6 +207,9 @@ class DeepNeuralNetwork():
             Loads a pickled
             DeepNeuralNetwork object
         """
+        if type(filename) is not str\
+           or len(filename) == 0:
+            return None
         try:
             with open(filename, "rb") as f:
                 return pickle.load(f)
