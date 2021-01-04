@@ -173,8 +173,9 @@ class DeepNeuralNetwork():
         # evaluation of the training data after iterations
         A2, cost = self.evaluate(X, Y)
         # last iteration
-        i += 1
-        print("Cost after {} iterations: {}".format(i, cost))
+        if verbose:
+            i += 1
+            print("Cost after {} iterations: {}".format(i, cost))
         # ploting
         if graph:
             plt.plot(costs)
