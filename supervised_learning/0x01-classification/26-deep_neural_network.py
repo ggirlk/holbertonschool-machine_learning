@@ -32,6 +32,7 @@ class DeepNeuralNetwork():
                 raise TypeError("layers must be a list of positive integers")
         s = list(map(lambda b: check(b), layers))
         # number of layers in the neural network
+        self.layers = layers
         self.__L = len(layers)
         # intermediary values of the network
         self.__cache = {}
@@ -191,10 +192,9 @@ class DeepNeuralNetwork():
             Save the instance object
             to a file in pickle format
         """
-
-        pkl = ".pkl"
+        """pkl = ".pkl"
         if filename[-4:] != pkl:
-            filename += pkl
+            filename += pkl"""
         with open(filename, "wb") as f:
             pickle.dump(self, f, -1)
 
