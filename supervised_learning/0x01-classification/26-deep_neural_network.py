@@ -190,11 +190,10 @@ class DeepNeuralNetwork():
             Save the instance object
             to a file in pickle format
         """
+        pkl = ".pkl"
+        if filename[-4:] != pkl:
+            filename += pkl
         try:
-            pkl = ".pkl"
-            if filename[-4:] != pkl:
-                filename += pkl
-
             with open(filename, "wb") as f:
                 pickle.dump(self,
                             f,
