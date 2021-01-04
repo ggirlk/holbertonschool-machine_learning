@@ -4,7 +4,7 @@ class DeepNeuralNetwork
 define a deep neural network performing binary classification
 """
 import numpy as np
-import pickle
+import matplotlib.pyplot as plt
 
 
 class DeepNeuralNetwork():
@@ -88,8 +88,8 @@ class DeepNeuralNetwork():
         """ Calculate the cost of the model using logistic regression """
 
         m = Y.shape[1]
-        s = np.mean(-1 * (Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
-        return s
+        s = np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
+        return -(1 / m) * s
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
@@ -123,15 +123,15 @@ class DeepNeuralNetwork():
         wb = self.weights.copy()
         dzi = np.subtract(self.cache['A'+str(n)], Y)
         for i in reversed(range(1, n+1)):
-            A1 = self.cache['A'+str(i)]
-            A0 = self.cache['A'+str(i-1)]
+            Ai = self.cache['A'+str(i)]
+            Ai_1 = self.cache['A'+str(i-1)]
             b = wb['b'+str(i)]
             if i == n:
                 dzi = np.subtract(self.cache['A'+str(n)], Y)
             else:
                 w = wb['W'+str(i+1)]
-                dzi = dz(w, dzi, der(A1))
-            dwi = dw(dzi, A0)
+                dzi = dz(w, dzi, der(Ai))
+            dwi = dw(dzi, Ai_1)
             dbi = db(dzi)
             self.__weights['b'+str(i)] = wb['b'+str(i)]-alpha*dbi
             self.__weights['W'+str(i)] = wb['W'+str(i)]-alpha*dwi
