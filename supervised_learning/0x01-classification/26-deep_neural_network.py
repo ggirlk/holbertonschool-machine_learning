@@ -208,9 +208,6 @@ class DeepNeuralNetwork():
             Loads a pickled
             DeepNeuralNetwork object
         """
-        if type(filename) is not str\
-           or len(filename) == 0:
-            return None
         try:
             with open(filename, "rb") as f:
                 return pickle.load(f)
