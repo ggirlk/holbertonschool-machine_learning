@@ -195,13 +195,13 @@ class DeepNeuralNetwork():
             pkl = ".pkl"
             if filename[-4:] != pkl:
                 filename += pkl
-            with open(filename, "wb") as f:
+            with open(filename, "ab") as f:
                 pickle.dump(self,
                             f,
                             pickle.HIGHEST_PROTOCOL
                             )
         except Exception as ex:
-            pass
+            raise ex
 
     @staticmethod
     def load(filename):
