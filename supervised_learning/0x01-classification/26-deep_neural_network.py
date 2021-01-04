@@ -197,8 +197,7 @@ class DeepNeuralNetwork():
                 filename += pkl
             with open(filename, "wb") as f:
                 pickle.dump(self,
-                            f,
-                            pickle.HIGHEST_PROTOCOL
+                            f
                             )
         except Exception:
             pass
@@ -209,7 +208,6 @@ class DeepNeuralNetwork():
             Loads a pickled
             DeepNeuralNetwork object
         """
-        return None
         try:
             with open(filename, "rb") as f:
                 return pickle.load(f)
