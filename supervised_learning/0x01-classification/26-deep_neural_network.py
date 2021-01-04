@@ -192,8 +192,6 @@ class DeepNeuralNetwork():
             to a file in pickle format
         """
         try:
-            if type(filename) is int:
-                filename = str(filename)
             pkl = ".pkl"
             if filename[-4:] != pkl:
                 filename += pkl
@@ -211,6 +209,7 @@ class DeepNeuralNetwork():
             Loads a pickled
             DeepNeuralNetwork object
         """
+        return None
         try:
             with open(filename, "rb") as f:
                 return pickle.load(f)
