@@ -190,17 +190,16 @@ class DeepNeuralNetwork():
             Save the instance object
             to a file in pickle format
         """
-        pkl = ".pkl"
-        if filename[-4:] != pkl:
-            filename += pkl
-        if type(filename) is not str\
-           or len(filename) == 0:
-            return None
-        with open(filename, "wb") as f:
-            pickle.dump(self,
-                        f,
-                        pickle.HIGHEST_PROTOCOL
-                        )
+        if type(filename) is str:
+            pkl = ".pkl"
+            if filename[-4:] != pkl:
+                filename += pkl
+
+            with open(filename, "wb") as f:
+                pickle.dump(self,
+                            f,
+                            pickle.HIGHEST_PROTOCOL
+                            )
 
     def load(filename):
         """
