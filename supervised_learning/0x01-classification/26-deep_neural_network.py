@@ -190,8 +190,6 @@ class DeepNeuralNetwork():
             Save the instance object
             to a file in pickle format
         """
-        if type(filename) is not str:
-            return None
         pkl = ".pkl"
         if filename[-4:] != pkl:
             filename += pkl
