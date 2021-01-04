@@ -192,16 +192,18 @@ class DeepNeuralNetwork():
             to a file in pickle format
         """
         try:
+            if type(filename) is int:
+                filename = str(filename)
             pkl = ".pkl"
             if filename[-4:] != pkl:
                 filename += pkl
-            with open(filename, "ab") as f:
+            with open(filename, "wb") as f:
                 pickle.dump(self,
                             f,
                             pickle.HIGHEST_PROTOCOL
                             )
-        except Exception as ex:
-            raise ex
+        except Exception:
+            pass
 
     @staticmethod
     def load(filename):
