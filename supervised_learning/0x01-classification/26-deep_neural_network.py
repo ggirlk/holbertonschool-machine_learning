@@ -191,7 +191,7 @@ class DeepNeuralNetwork():
             to a file in pickle format
         """
         pkl = ".pkl"
-        if len(filename) < 4 or filename[-4:] != pkl:
+        if len(filename) < 4:
             filename += pkl
         with open(filename, "wb") as f:
             pickle.dump(self,
