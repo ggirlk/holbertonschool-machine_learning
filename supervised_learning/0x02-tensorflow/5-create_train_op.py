@@ -6,4 +6,4 @@ import tensorflow as tf
 def create_train_op(loss, alpha):
     """ doc """
     gr = tf.train.GradientDescentOptimizer(alpha)
-    return gr.compute_gradients(loss)
+    return gr.minimize(loss)
