@@ -8,4 +8,4 @@ def calculate_accuracy(y, y_pred):
     m = tf.keras.metrics.Accuracy()
     m.update_state(y, y_pred, sample_weight=None)
 
-    return m.result().numpy()
+    return m.result()
