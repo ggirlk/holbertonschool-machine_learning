@@ -5,6 +5,6 @@ import tensorflow as tf
 
 def calculate_accuracy(y, y_pred):
     """ doc """
-    acc = tf.compat.v1.metrics.accuracy(y, y_pred)
-
-    return tf.reduce_mean(tf.cast(acc, tf.float32))
+    #acc = tf.compat.v1.metrics.accuracy(y, y_pred)
+    acc = tf.math.reduce_mean(y == y_pred)
+    return tf.cast(acc, tf.float32)
