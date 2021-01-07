@@ -7,4 +7,4 @@ def calculate_accuracy(y, y_pred):
     """ doc """
     acc = tf.compat.v1.metrics.accuracy(y, y_pred)
 
-    return tf.cast(acc, tf.float32)
+    return tf.reduce_mean(tf.cast(acc, tf.float32))
