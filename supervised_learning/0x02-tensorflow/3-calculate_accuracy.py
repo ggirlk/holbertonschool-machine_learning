@@ -5,7 +5,6 @@ import tensorflow as tf
 
 def calculate_accuracy(y, y_pred):
     """ doc """
-    m = tf.keras.metrics.Accuracy()
-    m.update_state(y, y_pred, sample_weight=None)
+    acc = compat.v1.metrics.accuracy(y, y_pred)
 
-    return tf.Tensor(m.result().numpy(), shape=(), dtype=float32)
+    return acc
