@@ -4,6 +4,6 @@ import tensorflow as tf
 
 def create_placeholders(nx, classes):
     """ doc """
-    x = tf.placeholder("float", None)
+    x = tf.placeholder("float")
     y = x * 2
     return x, y
