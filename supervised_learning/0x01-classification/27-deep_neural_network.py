@@ -37,7 +37,7 @@ class DeepNeuralNetwork():
         self.__cache = {}
         # weights and biased of the network
         self.__weights = {}
-        for i in range(self.L):
+        for i in range(0, self.L):
             n = layers[i]
             if i == 0:
                 m = self.nx
@@ -88,9 +88,8 @@ class DeepNeuralNetwork():
     def cost(self, Y, A):
         """ Calculate the cost of the model using logistic regression """
 
-        m = Y.shape[1]
-        s = np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
-        return -(1 / m) * s
+        cost = np.mean(-1*(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
+        return cost
 
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
@@ -101,7 +100,7 @@ class DeepNeuralNetwork():
 
     def gradient_descent(self, Y, cache, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
-        m = Y.shape[1]
+        m = Y.shape[0]
 
         def dw(dz, x):
             """ weight derivative """
@@ -192,17 +191,13 @@ class DeepNeuralNetwork():
             Save the instance object
             to a file in pickle format
         """
-        try:
-            pkl = ".pkl"
-            if filename[-4:] != pkl:
-                filename += pkl
-            with open(filename, "wb") as f:
-                pickle.dump(self,
-                            f,
-                            pickle.HIGHEST_PROTOCOL
-                            )
-        except Exception:
-            pass
+        if type(filename) is not str:
+            return
+        pkl = ".pkl"
+        if filename[-4:] != pkl:
+            filename += pkl
+        with open(filename, "wb") as f:
+            pickle.dump(self, f)
 
     @staticmethod
     def load(filename):
