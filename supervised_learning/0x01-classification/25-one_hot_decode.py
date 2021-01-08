@@ -11,5 +11,9 @@ def one_hot_decode(one_hot):
     if type(one_hot) is not np.ndarray\
        or len(one_hot.shape) != 2:
         return None
-    return np.array([np.where(i == 1)[0][0]
-                     for i in one_hot.T])
+    arr = []
+    for i in one_hot.T:
+        new = np.where(i == 1)[0]
+        if len(new) != 0:
+            arr.append(new[0])
+    return np.array(arr)

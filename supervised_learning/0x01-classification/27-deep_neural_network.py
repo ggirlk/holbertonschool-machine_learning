@@ -100,7 +100,7 @@ class DeepNeuralNetwork():
 
     def gradient_descent(self, Y, cache, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
-        m = Y.shape[0]
+        m = Y.shape[1]
 
         def dw(dz, x):
             """ weight derivative """
@@ -108,7 +108,7 @@ class DeepNeuralNetwork():
 
         def db(dz):
             """ bias derivative"""
-            return np.mean(dz, axis=1, keepdims=True)
+            return np.sum(dz, axis=1, keepdims=True)/m
 
         def der(x):
             """ sigmoid derivative """
