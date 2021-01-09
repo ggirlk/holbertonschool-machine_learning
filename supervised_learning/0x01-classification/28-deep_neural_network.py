@@ -32,7 +32,7 @@ class DeepNeuralNetwork():
                 raise TypeError("layers must be a list of positive integers")
         s = list(map(lambda b: check(b), layers))
         # check actvation
-        if activation != sig or activation != tanh:
+        if activation != 'sig' or activation != 'tanh':
             raise ValueError("activation must be 'sig' or 'tanh'")
         self.__activation = activation
         # number of layers in the neural network
@@ -89,8 +89,7 @@ class DeepNeuralNetwork():
         if (x is None):
             x = np.matmul(w, X)
             x = np.add(x, b)
-        return np.tanh(x)
-        # return (2/(1+np.exp(-x))) - 1
+        return (np.exp(x) - np.exp(-x)) / (np.exp(x) + np.exp(-x))
 
     def forward_prop(self, X):
         """
@@ -98,7 +97,6 @@ class DeepNeuralNetwork():
             propagation of the neuron
             using sigmoid activation function
         """
-        i = 0
         n = self.L
         self.__cache['A0'] = X
         # active outputs
