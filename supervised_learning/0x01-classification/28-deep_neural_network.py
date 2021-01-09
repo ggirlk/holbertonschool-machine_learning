@@ -90,6 +90,7 @@ class DeepNeuralNetwork():
             x = np.matmul(w, X)
             x = np.add(x, b)
         return np.tanh(x)
+        # return (2/(1+np.exp(-x))) - 1
 
     def forward_prop(self, X):
         """
@@ -148,7 +149,7 @@ class DeepNeuralNetwork():
             if self.activation == 'sig':
                 return x * (1-x)
             if self.activation == 'tanh':
-                return 1 - (np.tanh(x))**2
+                return 1 - (x)**2
 
         def dz(wi, dzi, gprimei):
             """ z derivative """
