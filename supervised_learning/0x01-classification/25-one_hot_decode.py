@@ -11,9 +11,13 @@ def one_hot_decode(one_hot):
     if type(one_hot) is not np.ndarray\
        or len(one_hot.shape) != 2:
         return None
-    arr = []
+    """arr = []
     for i in one_hot.T:
         new = np.where(i == 1)[0]
         if len(new) != 0:
             arr.append(new[0])
-    return np.array(arr)
+    return np.array(arr)"""
+    try:
+        return np.argmax(one_hot, axis=0)
+    except Exception:
+        return None

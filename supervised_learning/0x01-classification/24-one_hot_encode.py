@@ -13,6 +13,9 @@ def one_hot_encode(Y, classes):
        or type(classes) is not int:
         return None
     try:
-        return np.eye(classes)[Y].T
+        oh = np.zeros((classes, Y.shape[0]))
+        oh[Y, np.arange(Y.shape[0])] = 1
+        return oh
+        # return np.eye(classes)[Y].T
     except Exception:
         return None
