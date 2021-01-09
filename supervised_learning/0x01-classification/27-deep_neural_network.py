@@ -43,8 +43,8 @@ class DeepNeuralNetwork():
                 m = self.nx
             else:
                 m = layers[i-1]
-            self.weights['W' + str(i+1)] = np.random.randn(n, m) * np.sqrt(2/m)
-            self.weights['b' + str(i+1)] = np.zeros((n, 1))
+            self.__weights['W' + str(i+1)] = np.random.randn(n, m)*np.sqrt(2/m)
+            self.__weights['b' + str(i+1)] = np.zeros((n, 1))
 
     @property
     def L(self):
@@ -66,7 +66,14 @@ class DeepNeuralNetwork():
         if (x is None):
             x = np.matmul(w, X)
             x = np.add(x, b)
-        return (1/(1+np.exp(-x)))
+        return (1/(1+(np.exp(-x))))
+
+    def softmax(self, X=None, w=None, b=None, x=None):
+        """ softmax function """
+        if (x is None):
+            x = np.matmul(w, X)
+            x = np.add(x, b)
+        return np.exp(x)/(np.sum(np.exp(x), axis=0))
 
     def forward_prop(self, X):
         """
@@ -78,17 +85,21 @@ class DeepNeuralNetwork():
         n = self.L
         self.__cache['A0'] = X
         # active outputs
-        for i in range(1, n+1):
+        for i in range(1, n):
             self.__cache['A'+str(i)] = self.sigmoid(self.__cache['A'+str(i-1)],
                                                     self.weights['W'+str(i)],
                                                     self.weights['b'+str(i)]
                                                     )
+        self.__cache['A'+str(n)] = self.softmax(self.__cache['A'+str(n-1)],
+                                                self.weights['W'+str(n)],
+                                                self.weights['b'+str(n)]
+                                                )
         return self.cache['A'+str(n)], self.cache
 
     def cost(self, Y, A):
         """ Calculate the cost of the model using logistic regression """
-
-        cost = np.mean(-1*(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
+        m = Y.shape[1]
+        cost = np.sum(-Y * np.log(A))/m
         return cost
 
     def evaluate(self, X, Y):
@@ -108,7 +119,7 @@ class DeepNeuralNetwork():
 
         def db(dz):
             """ bias derivative"""
-            return np.sum(dz, axis=1, keepdims=True)/m
+            return np.mean(dz, axis=1, keepdims=True)
 
         def der(x):
             """ sigmoid derivative """
