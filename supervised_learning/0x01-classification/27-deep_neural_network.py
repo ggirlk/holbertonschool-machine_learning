@@ -102,12 +102,37 @@ class DeepNeuralNetwork():
         cost = np.sum(-Y * np.log(A))/m
         return cost
 
+    def one_hot_encode(self, Y, classes):
+        """ doc """
+        if Y is None\
+           or type(Y) is not np.ndarray\
+           or type(classes) is not int:
+            return None
+        try:
+            oh = np.zeros((classes, Y.shape[0]))
+            oh[Y, np.arange(Y.shape[0])] = 1
+            return oh
+        except Exception:
+            return None
+
+    def one_hot_decode(self, one_hot):
+        """ doc """
+        if type(one_hot) is not np.ndarray\
+           or len(one_hot.shape) != 2:
+            return None
+        try:
+            return np.argmax(one_hot, axis=0)
+        except Exception:
+            return None
+
     def evaluate(self, X, Y):
         """ Evaluate the neuron’s predictions """
         A, _ = self.forward_prop(X)
         cost = self.cost(Y, A)
-        A = np.where(A >= 0.5, 1, 0)
-        return (A, cost)
+        # A = np.where(A >= 0.5, 1, 0)
+        oh = self.one_hot_decode(A)
+        A = self.one_hot_encode(oh, Y.shape[0])
+        return (A.astype(int), cost)
 
     def gradient_descent(self, Y, cache, alpha=0.05):
         """ Calculate one pass of gradient descent on the neuron """
