@@ -32,7 +32,7 @@ class DeepNeuralNetwork():
                 raise TypeError("layers must be a list of positive integers")
         s = list(map(lambda b: check(b), layers))
         # check actvation
-        if activation != 'sig' or activation != 'tanh':
+        if activation != 'sig' and activation != 'tanh':
             raise ValueError("activation must be 'sig' or 'tanh'")
         self.__activation = activation
         # number of layers in the neural network
@@ -109,19 +109,20 @@ class DeepNeuralNetwork():
         # active outputs
         for i in range(1, n):
             if self.activation == 'sig':
-                self.__cache['A'+str(i)] = self.sigmoid(self.__cache['A'+str(i-1)],
-                                                        self.weights['W'+str(i)],
-                                                        self.weights['b'+str(i)]
-                                                        )
+                self.__cache['A'+str(i)] = self.sigmoid(
+                                                    self.cache['A'+str(i-1)],
+                                                    self.weights['W'+str(i)],
+                                                    self.weights['b'+str(i)]
+                                                    )
             if self.activation == 'tanh':
-                self.__cache['A'+str(i)] = self.tanh(self.__cache['A'+str(i-1)],
+                self.__cache['A'+str(i)] = self.tanh(self.cache['A'+str(i-1)],
                                                      self.weights['W'+str(i)],
                                                      self.weights['b'+str(i)]
                                                      )
-        self.__cache['A'+str(n)] = self.softmax(self.__cache['A'+str(n-1)],
-                                                    self.weights['W'+str(n)],
-                                                    self.weights['b'+str(n)]
-                                                    )
+        self.__cache['A'+str(n)] = self.softmax(self.cache['A'+str(n-1)],
+                                                self.weights['W'+str(n)],
+                                                self.weights['b'+str(n)]
+                                                )
         return self.cache['A'+str(n)], self.cache
 
     def cost(self, Y, A):
