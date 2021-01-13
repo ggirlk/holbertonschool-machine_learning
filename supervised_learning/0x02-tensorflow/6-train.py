@@ -33,23 +33,25 @@ def train(X_train, Y_train,
     sess.run(tf.global_variables_initializer())
     sess.run(tf.local_variables_initializer())
     # iterations
-    for i in range(iterations):
-        # Training
-        # Calculating cost on current iteration 
-        cost_train, accuracy_train = sess.run((loss, acc), feed_dict = {x : X_train, y : Y_train})
+    for i in range(iterations+1):
+        # Training data
         sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+        sess.run(train_op, feed_dict={x: X_valid, y: Y_valid})
         # Displaying training result on current iteration
         if (i % 100 == 0):
-            print("After " + str(i) + " iterations:")
-            print("\tTraining Cost: " + str(cost_train)
-                  + "\n\tTraining Accuracy: " + str(accuracy_train))
-        # validation
-        cost_valid, accuracy_valid = sess.run((loss, acc), feed_dict = {x : X_valid, y : Y_valid})
-        sess.run(train_op, feed_dict={x: X_valid, y: Y_valid})
-        # Displaying validation result on current iteration 
-        if (i % 100 == 0):
-            print("\tValidation Cost: " + str(cost_valid)
+            # Calculating costs && accuracies on current iteration 
+            cost_train, accuracy_train = sess.run((loss, acc),
+                                                  feed_dict = {x : X_train,
+                                                               y : Y_train})
+            cost_valid, accuracy_valid = sess.run((loss, acc),
+                                                  feed_dict = {x : X_valid,
+                                                               y : Y_valid})
+            print("After " + str(i) + " iterations:"
+                  +"\n\tTraining Cost: " + str(cost_train)
+                  + "\n\tTraining Accuracy: " + str(accuracy_train)
+                  + "\n\tValidation Cost: " + str(cost_valid)
                   + "\n\tValidation Accuracy: " + str(accuracy_valid))
+
     # Save Training session
     trainSaver = tf.train.Saver()
     return trainSaver.save(sess, save_path)
