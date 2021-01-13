@@ -46,11 +46,11 @@ def train(X_train, Y_train,
             cost_valid, accuracy_valid = sess.run((loss, acc),
                                                   feed_dict = {x : X_valid,
                                                                y : Y_valid})
-            print("After " + str(i) + " iterations:"
-                  +"\n\tTraining Cost: " + str(cost_train)
-                  + "\n\tTraining Accuracy: " + str(accuracy_train)
-                  + "\n\tValidation Cost: " + str(cost_valid)
-                  + "\n\tValidation Accuracy: " + str(accuracy_valid))
+            print("After {} iterations:".format(i)
+                  +"\n\tTraining Cost: {}".format(cost_train)
+                  + "\n\tTraining Accuracy: {}".format(accuracy_train)
+                  + "\n\tValidation Cost: {}".format(cost_valid)
+                  + "\n\tValidation Accuracy: {}".format(accuracy_valid))
 
     # Save Training session
     trainSaver = tf.train.Saver()
