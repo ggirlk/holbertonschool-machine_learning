@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ doc """
 import tensorflow as tf
-import numpy as np
 
 
 calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy
