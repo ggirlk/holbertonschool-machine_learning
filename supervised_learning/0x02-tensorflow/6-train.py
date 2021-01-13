@@ -49,6 +49,6 @@ def train(X_train, Y_train,
         # Training data
         sess.run(train_op, feed_dict={x: X_train, y: Y_train})
         # sess.run(train_op, feed_dict={x: X_valid, y: Y_valid})
-        # Save Training session
-        trainSaver = tf.train.Saver()
-        return trainSaver.save(sess, save_path)
+    # Save Training session
+    trainSaver = tf.train.Saver()
+    return trainSaver.save(sess, save_path)
