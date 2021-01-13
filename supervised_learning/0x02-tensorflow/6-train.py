@@ -39,7 +39,7 @@ def train(X_train, Y_train,
         cost_train, accuracy_train = sess.run((loss, acc), feed_dict = {x : X_train, y : Y_train})
         sess.run(train_op, feed_dict={x: X_train, y: Y_train})
         # Displaying training result on current iteration
-        if (i % 10 == 0):
+        if (i % 100 == 0):
             print("After " + str(i) + " iterations:")
             print("\tTraining Cost: " + str(cost_train)
                   + "\n\tTraining Accuracy: " + str(accuracy_train))
@@ -47,7 +47,7 @@ def train(X_train, Y_train,
         cost_valid, accuracy_valid = sess.run((loss, acc), feed_dict = {x : X_valid, y : Y_valid})
         sess.run(train_op, feed_dict={x: X_valid, y: Y_valid})
         # Displaying validation result on current iteration 
-        if (i % 10 == 0):
+        if (i % 100 == 0):
             print("\tValidation Cost: " + str(cost_valid)
                   + "\n\tValidation Accuracy: " + str(accuracy_valid))
     # Save Training session
