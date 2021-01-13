@@ -40,7 +40,7 @@ def train(X_train, Y_train,
         cost_valid = loss.eval({x : X_valid, y : Y_valid}, sess)
         accuracy_valid = acc.eval({x : X_valid, y : Y_valid}, sess)
         # Displaying training result on current iteration
-        if (i % 100 == 0 or i == iterations):
+        if (i % 100 == 0):
             print("After {} iterations:".format(i)
                   +"\n\tTraining Cost: {}".format(cost_train)
                   + "\n\tTraining Accuracy: {}".format(accuracy_train)
