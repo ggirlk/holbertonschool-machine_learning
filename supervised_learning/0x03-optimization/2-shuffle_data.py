@@ -9,4 +9,4 @@ import numpy as np
 def shuffle_data(X, Y):
     """ doc """
     x = np.random.permutation(X.shape[0])
-    return X[x], Y[y]
+    return X[x], Y[x]
