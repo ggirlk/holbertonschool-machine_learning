@@ -3,6 +3,7 @@
 calculates the normalization
 (standardization) constants of a matrix
 """
+import numpy as np
 
 
 def normalization_constants(X):
