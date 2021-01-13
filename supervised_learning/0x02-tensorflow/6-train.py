@@ -32,6 +32,7 @@ def train(X_train, Y_train,
     # Initializing the Variables 
     sess.run(tf.global_variables_initializer())
     # sess.run(tf.local_variables_initializer())
+    sess.as_default()
     # iterations
     for i in range(iterations+1):
         # Displaying training result on current iteration
