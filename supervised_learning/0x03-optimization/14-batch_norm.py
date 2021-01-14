@@ -17,4 +17,4 @@ def create_batch_norm_layer(prev, n, activation):
                                          beta_initializer=tf.zeros_initializer(),
                                          gamma_initializer=tf.ones_initializer(),
                                          )
-    output = batch.compute_mask(layer)
+    output = batch.apply(layer)
