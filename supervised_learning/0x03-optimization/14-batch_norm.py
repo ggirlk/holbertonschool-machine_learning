@@ -14,7 +14,7 @@ def create_batch_norm_layer(prev, n, activation):
     layer = tf.layers.Dense(n, activation,
                             kernel_initializer=init)(prev)
     batch = tf.layers.BatchNormalization(epsilon=1e-8,
-                                         beta_initializer=0,
-                                         gamma_initializer=1,
+                                         beta_initializer=tf.zeros_initializer(),
+                                         gamma_initializer=tf.ones_initializer(),
                                          )
     output = batch.compute_mask(layer)
