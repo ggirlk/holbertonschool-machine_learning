@@ -36,9 +36,9 @@ if __name__ == '__main__':
     db_prev = 0
     for i in range(1000):
         A = forward_prop(X, W, b)
-        #if not (i % 100):
-        cost = calculate_cost(Y, A)
-        print('Cost after {} iterations: {}'.format(i, cost))
+        if not (i % 100):
+            cost = calculate_cost(Y, A)
+            print('Cost after {} iterations: {}'.format(i, cost))
         dW, db = calculate_grads(Y, A, W, b)
         W, dW_prev = update_variables_momentum(0.01, 0.9, W, dW, dW_prev)
         b, db_prev = update_variables_momentum(0.01, 0.9, b, db, db_prev)
