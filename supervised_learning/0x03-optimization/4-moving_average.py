@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-calculates the weighted
+calculates the exponential weighted
 moving average of a data set
 """
 
