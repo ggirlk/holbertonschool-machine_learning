@@ -9,4 +9,10 @@ import tensorflow as tf
 
 def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):
     """ doc """
-    
+    st = np.add(s*beta2, (grad**2)*(1-beta2))
+
+    newgrad = np.subtract(var,
+                          np.divide(np.multiply(grad, alpha),
+                                    (st**0.5)+epsilon))
+
+    return newgrad, vs
