@@ -9,5 +9,5 @@ import tensorflow as tf
 
 def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
     """ doc """
-    obj = tf.train.RMSPropOptimizer(alpha, beta2, beta1, epsilon=epsilon)
+    obj = tf.train.AdamOptimizer(alpha, beta1, beta2, epsilon=epsilon)
     return obj.minimize(loss)
