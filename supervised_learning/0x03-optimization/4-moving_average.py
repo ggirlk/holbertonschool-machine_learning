@@ -5,7 +5,7 @@ moving average of a data set
 """
 
 
-def def moving_average(data, beta):
+def moving_average(data, beta):
     """ doc """
     m_avg = []
     vt = 0
