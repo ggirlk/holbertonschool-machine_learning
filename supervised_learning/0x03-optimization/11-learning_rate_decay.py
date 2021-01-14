@@ -9,4 +9,4 @@ with momentum optimization algorithm
 def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
     """ doc """
 
-    return alpha/(1+(decay_rate*(global_step)))
+    return alpha/(1+(decay_rate*(global_step//decay_step)))
