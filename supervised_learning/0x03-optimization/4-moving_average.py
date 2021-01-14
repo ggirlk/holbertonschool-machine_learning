@@ -3,7 +3,6 @@
 calculates the weighted
 moving average of a data set
 """
-import numpy as np
 
 
 def def moving_average(data, beta):
