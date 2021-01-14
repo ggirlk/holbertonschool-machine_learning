@@ -13,6 +13,6 @@ def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):
 
     newgrad = np.subtract(var,
                           np.divide(np.multiply(grad, alpha),
-                                    (st**0.5)+epsilon))
+                                    (np.sqrt(st)+epsilon)))
 
-    return newgrad, vs
+    return newgrad, st
