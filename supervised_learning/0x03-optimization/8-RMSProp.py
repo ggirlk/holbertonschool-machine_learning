@@ -9,5 +9,5 @@ import tensorflow as tf
 
 def create_RMSProp_op(loss, alpha, beta2, epsilon):
     """ doc """
-    obj = tf.train.RMSPropOptimizer(alpha, beta1, epsilon=epsilon)
+    obj = tf.train.RMSPropOptimizer(alpha, beta2, epsilon=epsilon)
     return obj.minimize(loss)
