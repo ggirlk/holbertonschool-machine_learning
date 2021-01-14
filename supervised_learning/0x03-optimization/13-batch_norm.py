@@ -7,7 +7,6 @@ with momentum optimization algorithm
 import tensorflow as tf
 
 
-def create_RMSProp_op(loss, alpha, beta2, epsilon):
+def batch_norm(Z, gamma, beta, epsilon):
     """ doc """
-    obj = tf.train.RMSPropOptimizer(alpha, beta2, epsilon=epsilon)
-    return obj.minimize(loss)
+    

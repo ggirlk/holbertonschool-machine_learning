@@ -7,7 +7,7 @@ with momentum optimization algorithm
 import tensorflow as tf
 
 
-def create_RMSProp_op(loss, alpha, beta2, epsilon):
+def create_batch_norm_layer(prev, n, activation):
     """ doc """
-    obj = tf.train.RMSPropOptimizer(alpha, beta2, epsilon=epsilon)
-    return obj.minimize(loss)
+    layer = tf.layers.Dense(n, activation)(prev)
+    return layer
