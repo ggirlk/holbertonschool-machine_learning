@@ -13,4 +13,4 @@ def update_variables_momentum(alpha, beta1, var, grad, v):
     vt = np.add(v*beta1, grad*(1-beta1))
 
     newgrad = np.subtract(var, np.multiply(vt, alpha))
-    return newgrad, grad
+    return newgrad, vt
