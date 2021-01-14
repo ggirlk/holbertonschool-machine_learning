@@ -18,10 +18,10 @@ def create_batch_norm_layer(prev, n, activation):
     gamma = tf.Variable(tf.ones([n]))
     epsilon = 1e-8,
     scale = None
-    output = tf.nn.batch_norm_with_global_normalization(layer,
-                                                        m, v,
-                                                        beta,
-                                                        gamma,
-                                                        epsilon,
-                                                        scale)
+    output = tf.nn.batch_normalization(layer,
+                                        m, v,
+                                        beta,
+                                        gamma,
+                                        epsilon,
+                                        scale)
     return output
