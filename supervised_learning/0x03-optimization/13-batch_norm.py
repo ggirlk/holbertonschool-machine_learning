@@ -8,7 +8,7 @@ with momentum optimization algorithm
 
 def batch_norm(Z, gamma, beta, epsilon):
     """ doc """
-    µ = Z.mean()
-    var = (np.subtract(Z, µ)**2).mean()
+    µ = Z.mean(axis=0)
+    var = (np.subtract(Z, µ)**2).mean(axis=0)
     znorm = np.subtract(Z, µ)/(np.sqrt(var+epsilon))
     return gamma*znorm + beta
