@@ -4,6 +4,7 @@ training operation for a neural network
 in tensorflow using the gradient descent
 with momentum optimization algorithm
 """
+import numpy as np
 
 
 def batch_norm(Z, gamma, beta, epsilon):
