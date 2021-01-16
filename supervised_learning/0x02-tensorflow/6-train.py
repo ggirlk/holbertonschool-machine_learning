@@ -32,8 +32,6 @@ def train(X_train, Y_train,
     with sess.as_default():
         # Initializing the Variables
         sess.run(tf.global_variables_initializer())
-        # Training session Saver
-        trainSaver = tf.train.Saver()
         # iterations
         for i in range(iterations+1):
             # Displaying training result on current iteration
@@ -51,5 +49,7 @@ def train(X_train, Y_train,
             if i != iterations:
                 # Training data
                 sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+        # Training session Saver
+        trainSaver = tf.train.Saver()
         trainSaver.save(sess, save_path)
         return trainSaver.restore(sess, save_path)
