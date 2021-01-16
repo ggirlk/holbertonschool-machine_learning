@@ -31,8 +31,11 @@ def train(X_train, Y_train,
     with tf.Session() as sess:
         # Initializing the Variables 
         sess.run(tf.global_variables_initializer())
+        # Training session Saver
+        trainSaver = tf.train.Saver()
         # iterations
         for i in range(iterations+1):
+            trainSaver.save(sess, save_path)
             # Displaying training result on current iteration
             if (i % 100 == 0 or i == iterations):
                 # Calculating costs && accuracies on current iteration 
@@ -48,6 +51,5 @@ def train(X_train, Y_train,
             if i != iterations:
                 # Training data
                 sess.run(train_op, feed_dict={x: X_train, y: Y_train})
-        # Save Training session
-        trainSaver = tf.train.Saver()
-        return trainSaver.save(sess, save_path, global_step=100)
+        
+        return trainSaver.restore(sess, save_path)
