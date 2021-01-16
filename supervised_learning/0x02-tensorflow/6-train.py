@@ -47,7 +47,7 @@ def train(X_train, Y_train,
                   +"\n\tTraining Cost: {}".format(cost_train)
                   + "\n\tTraining Accuracy: {}".format(accuracy_train)
                   + "\n\tValidation Cost: {}".format(cost_valid)
-                  + "\n\tValidation Accuracy: {}".format(accuracy_train))
+                  + "\n\tValidation Accuracy: {}".format(accuracy_valid))
         if (i != iterations):
             # Training data
             sess.run(train_op, feed_dict={x: X_train, y: Y_train})
