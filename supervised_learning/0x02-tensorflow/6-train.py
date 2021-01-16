@@ -37,7 +37,7 @@ def train(X_train, Y_train,
     for i in range(iterations+1):
         
         # Displaying training result on current iteration
-        if (i % 100 == 0):
+        if (i == 0 or i % 100 == 0):
             # Calculating costs && accuracies on current iteration 
             cost_train = loss.eval({x : X_train, y : Y_train}, sess)
             accuracy_train = acc.eval({x : X_train, y : Y_train}, sess)
