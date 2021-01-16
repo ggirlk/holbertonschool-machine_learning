@@ -28,29 +28,26 @@ def train(X_train, Y_train,
     # train operation
     train_op = create_train_op(loss, alpha)
     # Starting the Tensorflow Session 
-    sess = tf.Session()
-    # Initializing the Variables 
-    sess.run(tf.global_variables_initializer())
-    sess.as_default()
-    # sess.run(tf.local_variables_initializer())
-    # iterations
-    for i in range(iterations+1):
-        
-        # Displaying training result on current iteration
-        if (i % 100 == 0 or i == iterations):
-            # Calculating costs && accuracies on current iteration 
-            cost_train = loss.eval({x : X_train, y : Y_train}, sess)
-            accuracy_train = acc.eval({x : X_train, y : Y_train}, sess)
-            cost_valid = loss.eval({x : X_valid, y : Y_valid}, sess)
-            accuracy_valid = acc.eval({x : X_valid, y : Y_valid}, sess)
-            print("After {} iterations:".format(i)
-                  +"\n\tTraining Cost: {}".format(cost_train)
-                  + "\n\tTraining Accuracy: {}".format(accuracy_train)
-                  + "\n\tValidation Cost: {}".format(cost_valid)
-                  + "\n\tValidation Accuracy: {}".format(accuracy_valid))
-        if i != iterations:
-            # Training data
-            sess.run(train_op, feed_dict={x: X_train, y: Y_train})
-    # Save Training session
-    trainSaver = tf.train.Saver()
-    return trainSaver.save(sess, save_path)
+    with tf.Session() as sess:
+        # Initializing the Variables 
+        sess.run(tf.global_variables_initializer())
+        # iterations
+        for i in range(iterations+1):
+            # Displaying training result on current iteration
+            if (i % 100 == 0 or i == iterations):
+                # Calculating costs && accuracies on current iteration 
+                cost_train = loss.eval({x : X_train, y : Y_train}, sess)
+                accuracy_train = acc.eval({x : X_train, y : Y_train}, sess)
+                cost_valid = loss.eval({x : X_valid, y : Y_valid}, sess)
+                accuracy_valid = acc.eval({x : X_valid, y : Y_valid}, sess)
+                print("After {} iterations:".format(i)
+                      +"\n\tTraining Cost: {}".format(cost_train)
+                      + "\n\tTraining Accuracy: {}".format(accuracy_train)
+                      + "\n\tValidation Cost: {}".format(cost_valid)
+                      + "\n\tValidation Accuracy: {}".format(accuracy_valid))
+            if i != iterations:
+                # Training data
+                sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+        # Save Training session
+        trainSaver = tf.train.Saver()
+        return trainSaver.save(sess, save_path)
