@@ -28,7 +28,8 @@ def train(X_train, Y_train,
     # train operation
     train_op = create_train_op(loss, alpha)
     # Starting the Tensorflow Session
-    with tf.Session() as sess.as_default():
+    with tf.Session() as sess:
+        sess.as_default()
         # Initializing the Variables
         sess.run(tf.global_variables_initializer())
         # iterations
