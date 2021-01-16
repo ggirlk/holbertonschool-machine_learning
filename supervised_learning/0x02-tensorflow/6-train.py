@@ -45,9 +45,10 @@ def train(X_train, Y_train,
                       + "\n\tTraining Accuracy: {}".format(accuracy_train)
                       + "\n\tValidation Cost: {}".format(cost_valid)
                       + "\n\tValidation Accuracy: {}".format(accuracy_valid))
-            # Training data
-            sess.run(train_op, feed_dict={x: X_train, y: Y_train})
-            # Training session Saver
-            trainSaver = tf.train.Saver()
-            p = trainSaver.save(sess, save_path)
+            if i != iterations:
+                # Training data
+                sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+                # Training session Saver
+                trainSaver = tf.train.Saver()
+                p = trainSaver.save(sess, save_path)
         return p
