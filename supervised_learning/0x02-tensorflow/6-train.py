@@ -50,4 +50,4 @@ def train(X_train, Y_train,
                 sess.run(train_op, feed_dict={x: X_train, y: Y_train})
         # Save Training session
         trainSaver = tf.train.Saver()
-        return trainSaver.save(sess.as_default(), save_path)
+        return trainSaver.save(sess, save_path, global_step=100)
