@@ -28,7 +28,7 @@ def train(X_train, Y_train,
     # train operation
     train_op = create_train_op(loss, alpha)
     # Starting the Tensorflow Session 
-    with tf.Session() as sess.as_default():
+    with tf.Session() as sess:
         # Initializing the Variables 
         sess.run(tf.global_variables_initializer())
         # iterations
@@ -36,16 +36,10 @@ def train(X_train, Y_train,
             # Displaying training result on current iteration
             if (i % 100 == 0 or i == iterations):
                 # Calculating costs && accuracies on current iteration 
-                cost_train, accuracy_train = sess.run((loss, acc),
-                                                feed_dict={x: X_train,
-                                                           y: Y_train})
-                cost_valid, accuracy_valid = sess.run((loss, acc),
-                                                feed_dict={x: X_train,
-                                                           y: Y_train})
-                """cost_train = loss.eval({x : X_train, y : Y_train})
-                accuracy_train = acc.eval({x : X_train, y : Y_train})
-                cost_valid = loss.eval({x : X_valid, y : Y_valid})
-                accuracy_valid = acc.eval({x : X_valid, y : Y_valid})"""
+                cost_train = loss.eval({x : X_train, y : Y_train}, sess)
+                accuracy_train = acc.eval({x : X_train, y : Y_train}, sess)
+                cost_valid = loss.eval({x : X_valid, y : Y_valid}, sess)
+                accuracy_valid = acc.eval({x : X_valid, y : Y_valid}, sess)
                 print("After {} iterations:".format(i)
                       +"\n\tTraining Cost: {}".format(cost_train)
                       + "\n\tTraining Accuracy: {}".format(accuracy_train)
@@ -56,4 +50,4 @@ def train(X_train, Y_train,
                 sess.run(train_op, feed_dict={x: X_train, y: Y_train})
         # Save Training session
         trainSaver = tf.train.Saver()
-        return trainSaver.save(sess, save_path)
+        return trainSaver.save(sess.as_default(), save_path)
