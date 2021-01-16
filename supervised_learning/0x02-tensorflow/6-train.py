@@ -34,7 +34,7 @@ def train(X_train, Y_train,
     sess.as_default()
     # sess.run(tf.local_variables_initializer())
     # iterations
-    for i in range(iterations):
+    for i in range(iterations+1):
         
         # Displaying training result on current iteration
         if (i == 0 or i % 100 == 0):
