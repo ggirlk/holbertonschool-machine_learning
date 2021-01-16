@@ -34,7 +34,7 @@ def train(X_train, Y_train,
     sess.as_default()
     # sess.run(tf.local_variables_initializer())
     # iterations
-    for i in range(iterations+1):
+    for i in range(iterations):
         
         # Displaying training result on current iteration
         if (i == 0 or i % 100 == 0):
@@ -48,9 +48,8 @@ def train(X_train, Y_train,
                   + "\n\tTraining Accuracy: {}".format(accuracy_train)
                   + "\n\tValidation Cost: {}".format(cost_valid)
                   + "\n\tValidation Accuracy: {}".format(accuracy_valid))
-        if (i != iterations):
-            # Training data
-            sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+        # Training data
+        sess.run(train_op, feed_dict={x: X_train, y: Y_train})
     # Save Training session
     trainSaver = tf.train.Saver()
     return trainSaver.save(sess, save_path)
