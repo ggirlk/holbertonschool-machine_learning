@@ -27,10 +27,14 @@ def train(X_train, Y_train,
     acc = calculate_accuracy(y, y_pred)
     # train operation
     train_op = create_train_op(loss, alpha)
+    
     # Starting the Tensorflow Session
     with tf.Session().as_default() as sess:
         # Initializing the Variables
         sess.run(tf.global_variables_initializer())
+        # Training session Saver
+        trainSaver = tf.train.Saver()
+        trainSaver.save(sess, save_path)
         # iterations
         for i in range(iterations+1):
             # Displaying training result on current iteration
@@ -45,9 +49,8 @@ def train(X_train, Y_train,
                       + "\n\tTraining Accuracy: {}".format(accuracy_train)
                       + "\n\tValidation Cost: {}".format(cost_valid)
                       + "\n\tValidation Accuracy: {}".format(accuracy_valid))
-            if i == iterations:
-                # Training session Saver
-                trainSaver = tf.train.Saver()
-                return trainSaver.save(sess, save_path)
-            # Training data
-            sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+            if i != iterations:
+                # Training data
+                sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+        
+        return trainSaver.restore(sess, save_path)
