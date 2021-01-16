@@ -28,7 +28,7 @@ def train(X_train, Y_train,
     # train operation
     train_op = create_train_op(loss, alpha)
     # Starting the Tensorflow Session
-    with tf.Session() as sess.as_default():
+    with tf.Session() as sess:
         # Initializing the Variables
         sess.run(tf.global_variables_initializer())
         # iterations
@@ -36,10 +36,10 @@ def train(X_train, Y_train,
             # Displaying training result on current iteration
             if (i % 100 == 0 or i == iterations):
                 # Calculating costs && accuracies on current iteration
-                cost_train = loss.eval(feed_dict={x : X_train, y : Y_train})
-                accuracy_train = acc.eval(feed_dict={x : X_train, y : Y_train})
-                cost_valid = loss.eval(feed_dict={x : X_valid, y : Y_valid})
-                accuracy_valid = acc.eval(feed_dict={x : X_valid, y : Y_valid})
+                cost_train = loss.eval({x : X_train, y : Y_train}, sess)
+                accuracy_train = acc.eval({x : X_train, y : Y_train}, sess)
+                cost_valid = loss.eval({x : X_valid, y : Y_valid}, sess)
+                accuracy_valid = acc.eval({x : X_valid, y : Y_valid}, sess)
                 print("After {} iterations:".format(i)
                       +"\n\tTraining Cost: {}".format(cost_train)
                       + "\n\tTraining Accuracy: {}".format(accuracy_train)
@@ -49,6 +49,7 @@ def train(X_train, Y_train,
                 # Training data
                 sess.run(train_op, feed_dict={x: X_train, y: Y_train})
         # Training session Saver
+        sess.as_default()
         trainSaver = tf.train.Saver()
         trainSaver.save(sess, save_path)
         return trainSaver.restore(sess, save_path)
