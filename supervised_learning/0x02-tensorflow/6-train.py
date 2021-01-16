@@ -36,24 +36,18 @@ def train(X_train, Y_train,
             # Displaying training result on current iteration
             if (i % 100 == 0 or i == iterations):
                 # Calculating costs && accuracies on current iteration
-                cost_train, accuracy_train = sess.run((loss, acc),
-                                                feed_dict={x: X_valid,
-                                                           y: Y_valid})
-                cost_valid, accuracy_valid = sess.run((loss, acc),
-                                                feed_dict={x: X_valid,
-                                                           y: Y_valid})
-                """cost_train = loss.eval({x : X_train, y : Y_train}, sess)
+                cost_train = loss.eval({x : X_train, y : Y_train}, sess)
                 accuracy_train = acc.eval({x : X_train, y : Y_train}, sess)
                 cost_valid = loss.eval({x : X_valid, y : Y_valid}, sess)
-                accuracy_valid = acc.eval({x : X_valid, y : Y_valid}, sess)"""
+                accuracy_valid = acc.eval({x : X_valid, y : Y_valid}, sess)
                 print("After {} iterations:".format(i)
                       +"\n\tTraining Cost: {}".format(cost_train)
                       + "\n\tTraining Accuracy: {}".format(accuracy_train)
                       + "\n\tValidation Cost: {}".format(cost_valid)
                       + "\n\tValidation Accuracy: {}".format(accuracy_valid))
-            if i != iterations:
-                # Training data
-                sess.run(train_op, feed_dict={x: X_train, y: Y_train})
-        # Training session Saver
-        trainSaver = tf.train.Saver()
-        return trainSaver.save(sess, save_path)
+            if i == iterations:
+                # Training session Saver
+                trainSaver = tf.train.Saver()
+                return trainSaver.save(sess, save_path)
+            # Training data
+            sess.run(train_op, feed_dict={x: X_train, y: Y_train})
