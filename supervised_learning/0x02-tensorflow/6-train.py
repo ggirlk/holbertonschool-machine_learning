@@ -50,5 +50,5 @@ def train(X_train, Y_train,
                 sess.run(train_op, feed_dict={x: X_train, y: Y_train})
         # Training session Saver
         trainSaver = tf.train.Saver()
-        p = trainSaver.save(sess, save_path)
-        return p
+        trainSaver.save(sess, save_path)
+        return trainSaver.restore(sess, save_path)
