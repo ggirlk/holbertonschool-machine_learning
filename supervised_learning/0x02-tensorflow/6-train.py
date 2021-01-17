@@ -15,6 +15,7 @@ def train(X_train, Y_train,
           layer_sizes, activations,
           alpha, iterations, save_path="/tmp/model.ckpt"):
     """ doc """
+
     nx = X_train.shape[1]
     ny = Y_train.shape[1]
     # Placeholders
@@ -27,6 +28,15 @@ def train(X_train, Y_train,
     acc = calculate_accuracy(y, y_pred)
     # train operation
     train_op = create_train_op(loss, alpha)
+
+    # graph’s collection
+    tf.add_to_collection("x", x)
+    tf.add_to_collection("y", y)
+    tf.add_to_collection("y_pred", y_pred)
+    tf.add_to_collection("loss", loss)
+    tf.add_to_collection("accuracy", acc)
+    tf.add_to_collection("train_op", train_op)
+    
     sess = tf.Session()
     # Starting the Tensorflow Session
     with sess.as_default():
