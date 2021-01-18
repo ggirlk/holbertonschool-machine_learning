@@ -14,4 +14,4 @@ def create_confusion_matrix(labels, logits):
         for j in range(k):
             a, b = true[i], pred[i]
             result[a][b] += 1
-    return (result/10)
+    return (result)
