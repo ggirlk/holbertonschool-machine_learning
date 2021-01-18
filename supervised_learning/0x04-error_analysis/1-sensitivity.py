@@ -5,7 +5,5 @@ import numpy as np
 
 def sensitivity(confusion):
     """ doc """
-    r = []
-    for i in confusion:
-        r.append(np.round(i.max()/i.sum(), 8))
-    return(np.array(r))
+    true_pos = np.diag(confusion)
+    return (np.round(true_pos / np.sum(confusion, axis=1), 8))
