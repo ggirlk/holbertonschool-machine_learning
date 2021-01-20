@@ -9,7 +9,8 @@ def specificity(confusion):
     r = []
     for i in range(m):
         tp = confusion[i][i]
-        fp = confusion.T[i].sum()-tp
-        tn = confusion.sum() - fp - tp
-        r.append(np.round(tn/(tn+fp), 8))
+        fn = confusion.T[i].sum()-tp
+        tn = confusion.sum() - fn - tp
+        allnegatives = confusion.sum() - confusion[i].sum()
+        r.append(np.round(tn/allnegatives, 8))
     return np.array(r)
