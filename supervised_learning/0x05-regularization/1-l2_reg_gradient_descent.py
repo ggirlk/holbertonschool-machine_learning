@@ -39,5 +39,5 @@ def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):
         dwi = dw(dzi, Ai_1)
         dbi = db(dzi)
         weights['b'+str(i)] = wb['b'+str(i)]-alpha*(dbi)
-        weights['W'+str(i)] = wb['W'+str(i)]-alpha*(dwi + lambtha/m*wb['W'+str(i)])
-        
+        dwi = dwi + lambtha/m*wb['W'+str(i)]
+        weights['W'+str(i)] = wb['W'+str(i)]-alpha*(dwi)
