@@ -11,4 +11,4 @@ def f1_score(confusion):
     """ doc """
     recall = sensitivity(confusion)
     pr = precision(confusion)
-    return (recall*pr)/(recall+pr)
+    return 2*(recall*pr)/(recall+pr)
