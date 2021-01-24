@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """ doc """
-import tensorflow as tf
 import numpy as np
 
 
