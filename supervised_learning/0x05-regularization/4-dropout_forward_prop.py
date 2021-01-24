@@ -11,7 +11,6 @@ def dropout_forward_prop(X, weights, L, keep_prob):
     def tanh(z):
         """ tanh function """
         return np.tanh(z)
-    np.random.seed(1)
     cache = {}
     cache["A0"] = X
     for i in range(1, L+1):
