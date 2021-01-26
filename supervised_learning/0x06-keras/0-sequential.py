@@ -16,6 +16,6 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
                                kernel_regularizer=freg)
         model.add(layer)
         if i != len(layers)-1:
-            dropped = K.layers.Dropout(rate=keep_prob)
+            dropped = K.layers.Dropout(rate=1-keep_prob)
             model.add(dropped)
     return (model)
