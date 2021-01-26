@@ -6,9 +6,9 @@ import tensorflow.keras as K
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """ doc """
     inputs = K.Input(shape=(nx,))
+    freg = K.regularizers.l2(lambtha)
     x = inputs
     for i in range(0, len(layers)):
-        freg = K.regularizers.l2(lambtha)
         x = K.layers.Dense(layers[i], activation=activations[i],
                            kernel_regularizer=freg)(x)
         if i != len(layers)-1:
