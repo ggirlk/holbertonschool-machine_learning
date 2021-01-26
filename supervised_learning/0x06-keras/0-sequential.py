@@ -7,8 +7,8 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     """ doc """
     model = K.Sequential()
     for i in range(len(layers)):
-        freg = K.regularizers.l2(l=lambtha)
-        layer = K.layers.Dense(layers[i], input_shape=(nx,),
+        freg = K.layers.ActivityRegularization(l2=lambtha)
+        layer = K.layers.Dense(layers[i], input_dim=nx,
                                activation=activations[i],
                                kernel_regularizer=freg)
         model.add(layer)
