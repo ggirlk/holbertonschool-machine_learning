@@ -5,16 +5,17 @@ import tensorflow.keras as K
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """ doc """
-    model = K.Sequential()
-    for i in range(len(layers)):
-        init = K.initializers.VarianceScaling(mode="fan_avg")
-        freg = K.layers.ActivityRegularization(l2=lambtha)
-        layer = K.layers.Dense(layers[i], input_dim=nx,
-                               activation=activations[i],
-                               kernel_initializer=init,
-                               kernel_regularizer=freg)
-        model.add(layer)
-        if i != len(layers)-1:
-            dropped = K.layers.Dropout(rate=keep_prob)
-            model.add(dropped)
+    inputs = K.Input(shape=(nx,))
+    init = K.initializers.VarianceScaling(mode="fan_avg")
+    freg = K.layers.ActivityRegularization(l2=lambtha)
+    dropped = K.layers.Dropout(rate=keep_prob)
+    x = K.layers.Dense(layers[0], activation=activations[0],
+                       kernel_initializer=init,
+                       kernel_regularizer=freg)(inputs)
+    for i in range(1, len(layers)):
+        x = K.layers.Dense(layers[i], activation=activations[i],
+                           kernel_initializer=init,
+                           kernel_regularizer=freg,
+                           activity_regularizer=dropped)(x)
+    model = tf.keras.Model(inputs=inputs, outputs=x)
     return (model)
