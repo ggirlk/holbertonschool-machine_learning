@@ -11,7 +11,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
         init = (tf.contrib.layers.
             variance_scaling_initializer(mode="FAN_AVG"))
         freg = K.layers.ActivityRegularization(l2=lambtha)
-        layer = K.layers.Dense(layers[i], input_dim=nx,
+        layer = K.layers.Dense(layers[i], input_shape=(nx,),
                                activation=activations[i],
                                kernel_initializer=init,
                                kernel_regularizer=freg)
