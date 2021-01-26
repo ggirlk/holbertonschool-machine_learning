@@ -8,12 +8,11 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     inputs = K.Input(shape=(nx,))
     x = inputs
     for i in range(0, len(layers)):
-        init = K.initializers.VarianceScaling(mode="fan_avg")
         freg = K.regularizers.l2(lambtha)
         x = K.layers.Dense(layers[i], activation=activations[i],
-                           kernel_initializer=init,
                            kernel_regularizer=freg)(x)
-        x = K.layers.Dropout(rate=1-keep_prob)(x)
+        if i != len(layers)-1:
+            x = K.layers.Dropout(rate=1-keep_prob)(x)
         
     model = tf.keras.Model(inputs=inputs, outputs=x)
     return (model)
