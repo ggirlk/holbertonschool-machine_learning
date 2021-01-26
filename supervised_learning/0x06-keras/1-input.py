@@ -10,7 +10,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     for i in range(0, len(layers)):
         init = K.initializers.VarianceScaling(mode="fan_avg")
         freg = K.regularizers.l2(lambtha)
-        dropped = K.layers.Dropout(rate=1-keep_prob)
+        dropped = K.layers.Dropout(rate=keep_prob)
         x = K.layers.Dense(layers[i], activation=activations[i],
                            kernel_initializer=init,
                            kernel_regularizer=freg)(x)
