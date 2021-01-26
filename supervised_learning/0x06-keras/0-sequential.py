@@ -9,9 +9,9 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     for i in range(len(layers)):
         freg = K.layers.ActivityRegularization(l2=lambtha)
         layer = K.layers.Dense(layers[i], input_dim=nx,
-                               activation=activations[i],
-                               kernel_regularizer=freg)
+                               activation=activations[i])
         model.add(layer)
+        model.add(freg)
         if i != len(layers)-1:
             dropped = K.layers.Dropout(rate=keep_prob)
             model.add(dropped)
