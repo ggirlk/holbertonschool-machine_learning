@@ -15,7 +15,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     for i in range(1, len(layers)):
         x = K.layers.Dense(layers[i], activation=activations[i],
                            kernel_initializer=init,
-                           kernel_regularizer=freg,
-                           activity_regularizer=dropped)(x)
+                           kernel_regularizer=freg)(x)
     model = tf.keras.Model(inputs=inputs, outputs=x)
+    model.Dropout = dropped
     return (model)
