@@ -6,7 +6,6 @@ import tensorflow.keras as K
 def save_model(network, filename):
     """ doc """
     network.save(filepath)
-    return None
 
 
 def load_model(filename):
