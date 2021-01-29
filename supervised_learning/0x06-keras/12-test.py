@@ -3,7 +3,8 @@
 import tensorflow.keras as K
 
 
-def predict(network, data, verbose=False):
+def test_model(network, data, labels, verbose=True):
     """ doc """
-    return network.predict(data,
-                           verbose=verbose)
+    return network.evaluate(x=data,
+                            y=labels,
+                            verbose=verbose)
