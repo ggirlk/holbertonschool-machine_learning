@@ -10,7 +10,7 @@ def train_model(network, data, labels, batch_size,
                 decay_rate=1, save_best=False, filepath=None,
                 verbose=True, shuffle=False):
     """ doc """
-    callbacks = None
+    callbacks = []
     if validation_data:
         callbacks = [K.callbacks.EarlyStopping(monitor="loss",
                                                patience=patience,
@@ -20,10 +20,11 @@ def train_model(network, data, labels, batch_size,
             """ new learning """
             return alpha/(1+(decay_rate*(epoch)))
         callbacks.append(K.callbacks.LearningRateScheduler(scheduler, 1))
+    if save_best:
         callbacks.append(K.callbacks.ModelCheckpoint(filepath,
                                                      monitor='loss',
                                                      save_best_only=save_best,
-                                                     verbose=1,
+                                                     verbose=0,
                                                      mode='auto'))
 
     return network.fit(data, labels,
