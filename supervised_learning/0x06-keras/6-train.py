@@ -10,8 +10,8 @@ def train_model(network, data, labels, batch_size, epochs,
     callbacks = None
     if validation_data:
         callbacks = [K.callbacks.EarlyStopping(monitor="loss",
-                                              patience=patience,
-                                              mode="auto")]
+                                               patience=patience,
+                                               mode="auto")]
     return network.fit(data, labels,
                        batch_size=batch_size,
                        epochs=epochs,
