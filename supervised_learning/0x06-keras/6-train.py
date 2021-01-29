@@ -8,7 +8,7 @@ def train_model(network, data, labels, batch_size, epochs,
                 patience=0, verbose=True, shuffle=False):
     """ doc """
     callbacks = None
-    if validation_data == True and early_stopping == True:
+    if validation_data:
         callbacks = [K.callbacks.EarlyStopping(monitor="loss",
                                               patience=patience,
                                               mode="auto")]
