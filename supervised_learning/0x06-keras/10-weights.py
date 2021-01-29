@@ -12,4 +12,4 @@ def save_weights(network, filename, save_format='h5'):
 
 def load_weights(network, filename):
     """ doc """
-    return network.load_weights(filename)
+    network.load_weights(filename)
