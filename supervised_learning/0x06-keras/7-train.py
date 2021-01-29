@@ -15,13 +15,10 @@ def train_model(network, data, labels, batch_size,
         callbacks = [K.callbacks.EarlyStopping(monitor="loss",
                                                patience=patience,
                                                mode="auto")]
-        
+
         def scheduler(epoch):
-            e = 2.7182818285
-            if epoch < 10:
-                return alpha
-            else:
-                return alpha * e**(-0.1)
+            """ new learning """
+            return alpha/(1+(decay_rate*(epoch)))
         callbacks.append(K.callbacks.LearningRateScheduler(scheduler, 1))
     return network.fit(data, labels,
                        batch_size=batch_size,
