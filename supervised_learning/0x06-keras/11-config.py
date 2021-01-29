@@ -5,7 +5,7 @@ import tensorflow.keras as K
 
 def save_config(network, filename):
     """ doc """
-    with open(filename, "rw") as f:
+    with open(filename, "w+") as f:
         f.write(network.to_json())
 
 
