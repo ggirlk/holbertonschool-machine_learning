@@ -23,6 +23,7 @@ def train_model(network, data, labels, batch_size,
         callbacks.append(K.callbacks.ModelCheckpoint(filepath,
                                                      monitor='val_loss',
                                                      save_best_only=save_best,
+                                                     verbose=1,
                                                      mode='auto'))
 
     return network.fit(data, labels,
