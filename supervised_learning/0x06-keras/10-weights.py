@@ -10,6 +10,6 @@ def save_weights(network, filename, save_format='h5'):
     network.save_weights(filename)
 
 
-def load_model(filename):
+def load_weights(network, filename):
     """ doc """
-    return K.models.load_weights(filename)
+    return network.load_weights(filename)
