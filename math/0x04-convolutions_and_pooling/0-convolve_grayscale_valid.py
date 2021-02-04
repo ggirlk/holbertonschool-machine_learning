@@ -12,7 +12,7 @@ def convolve_grayscale_valid(images, kernel):
     for i in range(imgh):
         for j in range(imgw):
             output[:, i, j] = np.tensordot(images[:,
-                                                  i:i+kh,
-                                                  j:j+kw],
-                                                  kernel)
+                                           i:i+kh,
+                                           j:j+kw],
+                                           kernel)
     return output
