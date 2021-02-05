@@ -7,10 +7,9 @@ def convolve_grayscale_padding(images, kernel, padding):
     """ doc """
     m, imgh, imgw = images.shape
     kh, kw = kernel.shape
+    imghp, imgwp = 0, 0
     if padding == 'same':
         imghp, imgwp = kh//2, kw//2
-    if padding == 'valid':
-        imghp, imgwp = 0, 0
     if type(padding) == tuple:
         imghp, imgwp = padding
     imgh, imgw = imgh - kh + 2*imghp + 1, imgw - kw + 2*imgwp + 1
