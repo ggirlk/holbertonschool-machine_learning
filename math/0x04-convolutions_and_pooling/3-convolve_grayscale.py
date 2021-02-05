@@ -16,14 +16,10 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
         imghp, imgwp = padding
     imgh, imgw = (imgh-kh+2*imghp)//sh + 1, (imgw-kw+2*imgwp)//sw + 1
     output = np.zeros((m, imgh, imgw))
-    if padding != 'valid':
-        images = np.pad(images, ((0, 0),
-                                 (imghp, imghp),
-                                 (imgwp, imgwp)),
-                        'constant')
+    new = np.pad(images, ((0, 0), (imghp, imghp), (imgwp, imgwp)), 'constant')
     for i in range(imgh):
         for j in range(imgw):
-            output[:, i, j] = np.tensordot(images[:,
+            output[:, i, j] = np.tensordot(new[:,
                                            i*sh:i*sh+kh,
                                            j*sw:j*sw+kw],
                                            kernel)
