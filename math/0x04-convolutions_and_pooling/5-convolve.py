@@ -16,7 +16,7 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
     if type(padding) == tuple:
         imghp, imgwp = padding
     imgh, imgw = (imgh-kh+2*imghp)//sh + 1, (imgw-kw+2*imgwp)//sw + 1
-    output = np.zeros((m, imgh, imgw, c))
+    output = np.zeros((m, imgh, imgw, knc))
     new = np.pad(images, ((0, 0), (imghp, imghp),
                           (imgwp, imgwp), (0, 0)),
                  'constant',
@@ -24,9 +24,9 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
     for k in range(knc):
         for i in range(imgh):
             for j in range(imgw):
-                output[:, i, j, k] = np.sum(kernels[..., k]
-                                            * new[:,
+                output[:, i, j, k] = np.sum(new[:,
                                                 i*sh:i*sh+kh,
-                                                j*sw:j*sw+kw, :],
+                                                j*sw:j*sw+kw, :]
+                                            * kernels[..., k],
                                             axis=(1, 2, 3))
     return output
