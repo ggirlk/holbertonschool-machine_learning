@@ -16,7 +16,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     if type(padding) == tuple:
         imghp, imgwp = padding
     imgh, imgw = (imgh-kh+2*imghp)//sh + 1, (imgw-kw+2*imgwp)//sw + 1
-    output = np.zeros((m, imgh, imgw, c))
+    output = np.zeros((m, imgh, imgw, knc))
     new = np.pad(A_prev, ((0, 0), (imghp, imghp),
                           (imgwp, imgwp), (0, 0)),
                  'constant')
