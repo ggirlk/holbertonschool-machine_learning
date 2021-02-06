@@ -18,7 +18,9 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
     imgh, imgw = (imgh-kh+2*imghp)//sh + 1, (imgw-kw+2*imgwp)//sw + 1
     output = np.zeros((m, imgh, imgw, c))
     new = np.pad(images, ((0, 0), (imghp, imghp),
-                          (imgwp, imgwp), (0, 0)), 'constant')
+                          (imgwp, imgwp), (0, 0)),
+                 'constant',
+                 constant_values=0)
     for k in range(knc):
         for i in range(imgh):
             for j in range(imgw):
