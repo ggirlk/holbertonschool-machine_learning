@@ -8,25 +8,19 @@ def pool(images, kernel_shape, stride, mode='max'):
     m, imgh, imgw, c = images.shape
     kh, kw = kernel_shape
     sh, sw = stride
-    imghp, imgwp = 0, 0
-    # imghp = (((imgh - 1) * sh + kh - imgh) // 2) + 1
-    # imgwp = (((imgw - 1) * sw + kw - imgw) // 2) + 1
-    imgh, imgw = (imgh-kh+2*imghp)//sh + 1, (imgw-kw+2*imgwp)//sw + 1
-    output = np.zeros((m, imgh, imgw))
-    new = np.pad(images, ((0, 0), (imghp, imghp),
-                          (imgwp, imgwp), (0, 0)),
-                 'constant')
+    imgh, imgw = (imgh-kh)//sh + 1, (imgw-kw)//sw + 1
+    output = np.zeros((m, imgh, imgw, c))
 
     for i in range(imgh):
         for j in range(imgw):
             if mode == 'max':
-                output[:, i, j] = np.max(new[:,
-                                                i*sh:i*sh+kh,
-                                                j*sw:j*sw+kw, :],
+                output[:, i, j, :] = np.max(images[:,
+                                                   i*sh:i*sh+kh,
+                                                   j*sw:j*sw+kw, :],
                                             axis=(1, 2))
             if mode == 'avg':
-                output[:, i, j] = np.average(new[:,
-                                                    i*sh:i*sh+kh,
-                                                    j*sw:j*sw+kw, :],
-                                                axis=(1, 2))
+                output[:, i, j, :] = np.average(images[:,
+                                                       i*sh:i*sh+kh,
+                                                       j*sw:j*sw+kw, :],
+                                                 axis=(1, 2))
     return output
