@@ -19,7 +19,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     output = np.zeros((m, imgh, imgw, knc))
     new = np.pad(A_prev, ((0, 0), (imghp, imghp),
                           (imgwp, imgwp), (0, 0)),
-                 'constant')
+                 'constant', constant_values=0)
     for k in range(knc):
         for i in range(imgh):
             for j in range(imgw):
