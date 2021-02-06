@@ -10,8 +10,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     sh, sw = stride
     imghp, imgwp = 0, 0
     if padding == 'same':
-        imghp = (((imgh - 1) * sh + kh - imgh) // 2) + int(kh % 2==0)
-        imgwp = (((imgw - 1) * sw + kw - imgw) // 2) + int(kw % 2==0)
+        imghp = (((imgh - 1) * sh + kh - imgh) // 2) + int(kh % 2 == 0)
+        imgwp = (((imgw - 1) * sw + kw - imgw) // 2) + int(kw % 2 == 0)
 
     if type(padding) == tuple:
         imghp, imgwp = padding
