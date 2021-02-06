@@ -15,19 +15,18 @@ def pool(images, kernel_shape, stride, mode='max'):
     output = np.zeros((m, imgh, imgw))
     new = np.pad(images, ((0, 0), (imghp, imghp),
                           (imgwp, imgwp), (0, 0)),
-                 'constant',
-                 constant_values=0)
+                 'constant')
 
     for i in range(imgh):
         for j in range(imgw):
             if mode == 'max':
-                output[:, i, j] = np.max(new[:,
-                                             i*sh:i*sh+kh,
-                                             j*sw:j*sw+kw, :],
-                                         axis=(1, 2, 3))
+                output[:, i, j, :] = np.max(new[:,
+                                                i*sh:i*sh+kh,
+                                                j*sw:j*sw+kw, :],
+                                            axis=(1, 2))
             if mode == 'avg':
-                output[:, i, j] = np.average(new[:,
-                                             i*sh:i*sh+kh,
-                                             j*sw:j*sw+kw, :],
-                                         axis=(1, 2, 3))
+                output[:, i, j, :] = np.average(new[:,
+                                                    i*sh:i*sh+kh,
+                                                    j*sw:j*sw+kw, :],
+                                                axis=(1, 2))
     return output
