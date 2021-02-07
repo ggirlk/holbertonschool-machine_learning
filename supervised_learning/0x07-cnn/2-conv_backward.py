@@ -10,8 +10,8 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     sh, sw = stride
     imghp, imgwp = 0, 0
     if padding == 'same':
-        imghp = (((imgh - 1) * sh + kh - imgh) // 2) + int(kh % 2 == 0)
-        imgwp = (((imgw - 1) * sw + kw - imgw) // 2) + int(kw % 2 == 0)
+        imghp = (((imgh * sh) - sh + kh - imgh) // 2)
+        imgwp = (((imgw * sw) - sw + kw - imgw) // 2)
     if type(padding) == tuple:
         imghp, imgwp = padding
     imgh, imgw = (imgh-kh+2*imghp)//sh + 1, (imgw-kw+2*imgwp)//sw + 1
@@ -38,5 +38,5 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                                                   i*sh:i*sh+kh,
                                                   j*sw:j*sw+kw, :])
 
-    newDZ = newDZ[:, imghp:-imghp, imgwp:-imgwp, :]
+    # newDZ = newDZ[:, imghp:-imghp, imgwp:-imgwp, :]
     return newDZ, dW, db
