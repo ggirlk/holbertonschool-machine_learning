@@ -28,5 +28,5 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
                     if mode == 'avg':
                         newDA[n,
                               i*sh:i*sh+kh,
-                              j*sw:j*sw+kw, k] += dA[n, i, j, k].mean()
+                              j*sw:j*sw+kw, k] += dA[n, i, j, k]/kh/kw
     return newDA
