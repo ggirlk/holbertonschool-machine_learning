@@ -20,22 +20,21 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     new = np.pad(A_prev, ((0, 0), (imghp, imghp),
                           (imgwp, imgwp), (0, 0)),
                  'constant', constant_values=0)
-    db = np.sum(dZ, axis=(1, 2, 3), keepdims=True)
+    db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
     newDZ = np.zeros(new.shape)
     dW = np.zeros_like(W)
-    for i in range(m):
-        for h in range(imgh):
-            for w in range(imgw):
-                for f in range(c):
-                    newDZ[i,
-                       h*sh:h*sh+kh,
-                       w*sw:(w*sw)+kw,
-                       :] += dZ[i, h, w, f] * W[..., f]
+    for n in range(m):
+        for i in range(imgh):
+            for j in range(imgw):
+                for k in range(knc):
+                    newDZ[n,
+                          i*sh:i*sh+kh,
+                          j*sw:j*sw+kw, :] += np.multiply(dZ[n, i, j, k],
+                                                          W[..., k])
+                    dW[..., k] += np.multiply(dZ[n, i, j, k],
+                                              A_prev[n,
+                                                     i*sh:i*sh+kh,
+                                                     j*sw:j*sw+kw, :])
 
-
-                    dW[..., f] += new[i,
-                                      h*sh:h*sh+kh,
-                                      w*sw:(w*sw)+kw,
-                                      :] * dZ[i, h, w, f]
 
     return newDZ, dW, db
