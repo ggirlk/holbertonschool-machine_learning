@@ -32,7 +32,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                           j*sw:j*sw+kw, :] += np.multiply(dZ[n, i, j, k],
                                                           W[..., k])
                     dW[..., k] += np.multiply(dZ[n, i, j, k],
-                                              A_prev[n,
+                                              new[n,
                                                      i*sh:i*sh+kh,
                                                      j*sw:j*sw+kw, :])
 
