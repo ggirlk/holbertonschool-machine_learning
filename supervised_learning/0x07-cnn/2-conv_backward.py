@@ -37,6 +37,4 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                                               new[n,
                                                   i*sh:i*sh+kh,
                                                   j*sw:j*sw+kw, :])
-    if padding == 'same':
-        newDZ = newDZ[:, imghp:-imghp, imgwp:-imgwp, :]
     return newDZ, dW, db
