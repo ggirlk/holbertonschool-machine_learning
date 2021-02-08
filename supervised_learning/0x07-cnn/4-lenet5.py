@@ -27,4 +27,4 @@ def lenet5(x, y):
     max_pred = tf.argmax(layer, 1)
     equal = tf.equal(tf.argmax(y, 1), max_pred)
     acc = tf.reduce_mean(tf.cast(equal, tf.float32))
-    return layer, train_op_adamOpt, loss, acc
+    return tf.contrib.layers.softmax(layer), train_op_adamOpt, loss, acc
