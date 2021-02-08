@@ -11,7 +11,7 @@ def lenet5(x, y):
                              kernel_initializer=init,
                              )(x)
     layer = tf.layers.MaxPooling2D(2, 2)(layer)
-    layer = tf.layers.Conv2D(16, 5, padding='same',
+    layer = tf.layers.Conv2D(16, 5, padding='valid',
                              activation='relu',
                              kernel_initializer=init,
                              )(layer)
