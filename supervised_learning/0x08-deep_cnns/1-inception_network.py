@@ -18,7 +18,7 @@ def inception_network():
     layer7x7 = Conv2D(64, 7, 2, padding='same',  activation='relu')(X)
     layerMax = MaxPooling2D(3, 2, padding='same')(layer7x7)
 
-    layer3x3 = Conv2D(64, 1, 1, padding='valid',  activation='relu')(layerMax)
+    layer3x3 = Conv2D(64, 1, 1,  activation='relu')(layerMax)
     layer3x3 = Conv2D(192, 3, 1, padding='same',  activation='relu')(layer3x3)
     layerMax_2 = MaxPooling2D(3, 2, padding='same')(layer3x3)
 
