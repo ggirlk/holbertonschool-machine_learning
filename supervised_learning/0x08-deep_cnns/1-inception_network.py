@@ -12,7 +12,7 @@ def inception_network():
     AveragePooling2D = K.layers.AveragePooling2D
     Conv2D = K.layers.Conv2D
     Concatenate = K.layers.Concatenate()
-    Dropout = K.layers.Dropout(rate=0.4)
+    Dropout = K.layers.Dropout(rate=0.6)
     Dense = K.layers.Dense
     X = K.Input(shape=(224, 224, 3))
 
@@ -41,7 +41,7 @@ def inception_network():
     layerAVG_2 = AveragePooling2D(7, 1)(inception)
 
     dropped = Dropout(layerAVG_2)
-    Y = Dense(1000, activation="relu")(dropped)
+    Y = Dense(1000, activation="softmax")(dropped)
 
     model = K.Model(inputs=X, outputs=Y)
     return model
