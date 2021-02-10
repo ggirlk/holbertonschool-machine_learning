@@ -12,7 +12,7 @@ def inception_network():
     AveragePooling2D = K.layers.AveragePooling2D
     Conv2D = K.layers.Conv2D
     Concatenate = K.layers.Concatenate()
-    Dropout = K.layers.Dropout(rate=0.6)
+    Dropout = K.layers.Dropout(rate=0.4)
     Dense = K.layers.Dense
     X = K.Input(shape=(224, 224, 3))
 
