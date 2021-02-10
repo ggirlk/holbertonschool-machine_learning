@@ -7,7 +7,6 @@ inception_block = __import__('0-inception_block').inception_block
 
 def inception_network():
     """ doc """
-    """ doc """
     MaxPooling2D = K.layers.MaxPooling2D
     AveragePooling2D = K.layers.AveragePooling2D
     Conv2D = K.layers.Conv2D
