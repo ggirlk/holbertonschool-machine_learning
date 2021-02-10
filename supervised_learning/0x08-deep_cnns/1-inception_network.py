@@ -41,8 +41,7 @@ def inception_network():
     layerAVG_2 = AveragePooling2D(7, 1)(inception)
 
     dropped = Dropout(layerAVG_2)
-    relu = Dense(1000, activation="relu")(dropped)
-    Y = Dense(1000, activation="softmax")(relu)
+    Y = Dense(1000, activation="relu")(dropped)
 
     model = K.Model(inputs=X, outputs=Y)
     return model
