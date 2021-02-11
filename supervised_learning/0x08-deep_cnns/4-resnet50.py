@@ -48,7 +48,7 @@ def resnet50():
     layer = identity_block(layer, [512, 512, 2048])
     layer = identity_block(layer, [512, 512, 2048])
 
-    layerAVG = AveragePooling2D(7)(layer)
+    layerAVG = AveragePooling2D(7, 1)(layer)
 
     Y = Dense(1000, activation="softmax",
               kernel_initializer='he_normal')(layerAVG)
