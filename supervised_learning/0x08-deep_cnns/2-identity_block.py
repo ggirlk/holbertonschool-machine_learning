@@ -5,12 +5,7 @@ import tensorflow.keras as K
 
 def identity_block(A_prev, filters):
     """ doc """
-    MaxPooling2D = K.layers.MaxPooling2D
-    AveragePooling2D = K.layers.AveragePooling2D
     Conv2D = K.layers.Conv2D
-    Dropout = K.layers.Dropout(rate=0.4)
-    Dense = K.layers.Dense
-    Concatenate = K.layers.Concatenate
     BatchNorm = K.layers.BatchNormalization
     act = K.layers.Activation
     add = K.layers.Add
