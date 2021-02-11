@@ -16,8 +16,9 @@ def resnet50():
     BatchNorm = K.layers.BatchNormalization
     Activation = K.layers.Activation
     Add = K.layers.Add
-    def layersConv(X, l, f, s=None, p='same'):
-        layer = Conv2D(l, f, s, padding=p,
+
+    def layersConv(X, k, f, s=None, p='same'):
+        layer = Conv2D(k, f, s, padding=p,
                        kernel_initializer='he_normal')(X)
         layer = BatchNorm()(layer)
         layer = Activation('relu')(layer)
