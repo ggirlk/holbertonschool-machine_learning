@@ -50,8 +50,7 @@ def resnet50():
 
     layerAVG = AveragePooling2D(7, 1)(layer)
 
-    Y = Dense(1000, activation="softmax",
-              kernel_initializer='he_normal')(layerAVG)
+    Y = Dense(1000, activation="softmax")(layerAVG)
 
     model = K.Model(inputs=X, outputs=Y)
     return model
