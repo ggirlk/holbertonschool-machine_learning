@@ -21,7 +21,7 @@ def projection_block(A_prev, filters, s=2):
     layer3x3 = BatchNorm()(layer3x3)
     layer3x3 = Activation('relu')(layer3x3)
 
-    layer1x1 = Conv2D(F12, 1, padding='same',
+    layer1x1 = Conv2D(F12, 1,
                       kernel_initializer='he_normal')(layer3x3)
     layer1x1 = BatchNorm()(layer1x1)  #
 
