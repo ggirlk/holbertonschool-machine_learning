@@ -43,6 +43,7 @@ def resnet50():
     layer = identity_block(layer, [256, 256, 1024])
     layer = identity_block(layer, [256, 256, 1024])
     layer = identity_block(layer, [256, 256, 1024])
+    layer = identity_block(layer, [256, 256, 1024])
 
     layer = projection_block(layer, [512, 512, 2048])
     layer = identity_block(layer, [512, 512, 2048])
