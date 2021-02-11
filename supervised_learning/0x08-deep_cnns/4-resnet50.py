@@ -11,11 +11,9 @@ def resnet50():
     MaxPooling2D = K.layers.MaxPooling2D
     AveragePooling2D = K.layers.AveragePooling2D
     Conv2D = K.layers.Conv2D
-    Dropout = K.layers.Dropout(rate=0.4)
     Dense = K.layers.Dense
     BatchNorm = K.layers.BatchNormalization
     Activation = K.layers.Activation
-    Add = K.layers.Add
 
     def layersConv(X, k, f, s=None, p='same'):
         layer = Conv2D(k, f, s, padding=p,
