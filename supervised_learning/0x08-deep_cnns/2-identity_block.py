@@ -15,12 +15,12 @@ def identity_block(A_prev, filters):
     layer1x1 = BatchNorm()(layer1x1)
     layer1x1 = Activation('relu')(layer1x1)
 
-    layer3x3 = Conv2D(F3, 3, padding='same',
+    layer3x3 = Conv2D(F3, 3,
                       kernel_initializer='he_normal')(layer1x1)
     layer3x3 = BatchNorm()(layer3x3)
     layer3x3 = Activation('relu')(layer3x3)
 
-    layer1x1 = Conv2D(F12, 1, padding='same',
+    layer1x1 = Conv2D(F12, 1,
                       kernel_initializer='he_normal')(layer3x3)
     layer1x1 = BatchNorm()(layer1x1)
 
