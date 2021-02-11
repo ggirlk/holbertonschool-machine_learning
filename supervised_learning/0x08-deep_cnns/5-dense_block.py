@@ -22,11 +22,11 @@ def dense_block(X, nb_filters, growth_rate, layers):
     for layer in range(layers):
         layer_new = BatchNorm()(layer_prev)
         layer_new = Activation('relu')(layer_new)
-        layer_new = layersConv(layer_new, growth_rate, 1, 'same')
+        layer_new = layersConv(layer_new, growth_rate, nb_filters, 'same')
         layer_new = BatchNorm()(layer_new)
         layer_new = Activation('relu')(layer_new)
         layer_new = layersConv(layer_new, growth_rate, 1, 'same')
-        
+
         layer_prev = Concatenate()([layer_prev, layer_new])
         nb_filters += growth_rate
     return layer_prev, nb_filters
