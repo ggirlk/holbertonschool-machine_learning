@@ -21,7 +21,7 @@ def transition_layer(X, nb_filters, compression):
     layer_new = BatchNorm()(X)
     layer_new = Activation('relu')(layer_new)
     # 4k X
-    layer_new = layersConv(layer_new, 32*4, 1, 'same')
+    layer_new = layersConv(layer_new, 32*4, 1)
     layer_new = AveragePooling2D(2, 2)(layer_new)
     nb_filters *= compression
     return layer_new, int(nb_filters)
