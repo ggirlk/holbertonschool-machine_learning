@@ -16,17 +16,14 @@ def densenet121(growth_rate=32, compression=1.0):
     Activation = K.layers.Activation
 
     def layersConv(X, k, f, s=None, p='same'):
-        layer = Conv2D(k, f, s, padding=p,
-                       kernel_initializer='he_normal')(X)
-        layer = BatchNorm()(layer)
+        layer = BatchNorm()(X)
         layer = Activation('relu')(layer)
+        layer = Conv2D(k, f, s, padding=p,
+                       kernel_initializer='he_normal')(layer)
         return layer
 
     X = K.Input(shape=(224, 224, 3))
     nb_filters = 64
-    # input BN + ReLU
-    layer = BatchNorm()(X)
-    layer = Activation('relu')(layer)
 
     # Convolution
     layer = layersConv(layer, nb_filters, 7, 2)
