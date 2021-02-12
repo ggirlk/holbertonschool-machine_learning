@@ -24,8 +24,12 @@ def densenet121(growth_rate=32, compression=1.0):
 
     X = K.Input(shape=(224, 224, 3))
     nb_filters = 64
+    # input BN + ReLU
+    layer = BatchNorm()(X)
+    layer = Activation('relu')(layer)
+
     # Convolution
-    layer = layersConv(X, nb_filters, 7, 2)
+    layer = layersConv(layer, nb_filters, 7, 2)
 
     # Pooling
     layerMax = MaxPooling2D(3, 2, padding="same")(layer)
