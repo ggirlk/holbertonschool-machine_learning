@@ -26,9 +26,9 @@ def resnet50():
 
     layer = layersConv(X, 64, 7, 2)
 
-    layerMax = MaxPooling2D(3, 2, 'same')(layer)
+    layerMax = MaxPooling2D(3, 2, padding'same')(layer)
 
-    layer = projection_block(layerMax, [64, 64, 256])
+    layer = projection_block(layerMax, [64, 64, 256], 1)
     layer = identity_block(layer, [64, 64, 256])
     layer = identity_block(layer, [64, 64, 256])
 
@@ -50,8 +50,7 @@ def resnet50():
 
     layerAVG = AveragePooling2D(7, 1)(layer)
 
-    Y = Dense(1000, activation="softmax",
-              kernel_initializer='he_normal')(layerAVG)
+    Y = Dense(1000, activation="softmax")(layerAVG)
 
     model = K.Model(inputs=X, outputs=Y)
     return model
