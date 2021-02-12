@@ -26,7 +26,7 @@ def densenet121(growth_rate=32, compression=1.0):
     nb_filters = 64
 
     # Convolution
-    layer = layersConv(layer, nb_filters, 7, 2)
+    layer = layersConv(X, nb_filters, 7, 2)
 
     # Pooling
     layerMax = MaxPooling2D(3, 2, padding='same')(layer)
