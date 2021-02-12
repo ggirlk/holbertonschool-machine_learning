@@ -26,9 +26,9 @@ def resnet50():
 
     layer = layersConv(X, 64, 7, 2)
 
-    layerMax = MaxPooling2D(3, 2, padding='same')(layer)
+    layerMax = MaxPooling2D(3, 2)(layer)
 
-    layer = projection_block(layer, [64, 64, 256], 1)
+    layer = projection_block(layer, [64, 64, 256])
     layer = identity_block(layer, [64, 64, 256])
     layer = identity_block(layer, [64, 64, 256])
 
