@@ -50,7 +50,7 @@ def densenet121(growth_rate=32, compression=1.0):
     layer, nb_filters = dense_block(layer, nb_filters, growth_rate, layers)
 
     # Classification Layer (Pooling + 1000D fully-connected, softmax)
-    layerAVG = AveragePooling2D(7, 7, padding="same")(layer)
+    layerAVG = AveragePooling2D(7)(layer)
     Y = Dense(1000, activation="softmax")(layerAVG)
 
     model = K.Model(inputs=X, outputs=Y)
