@@ -33,7 +33,7 @@ def densenet121(growth_rate=32, compression=1.0):
 
     # Dense Block / Transition Layer (1)
     layers = 6
-    layer, nb_filters = dense_block(layer, nb_filters, growth_rate, layers)
+    layer, nb_filters = dense_block(layerMax, nb_filters, growth_rate, layers)
     layer, nb_filters = transition_layer(layer, nb_filters, compression)
 
     # Dense Block / Transition Layer (2)
