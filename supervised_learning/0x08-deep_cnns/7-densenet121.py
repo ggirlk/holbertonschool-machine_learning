@@ -24,7 +24,6 @@ def densenet121(growth_rate=32, compression=1.0):
 
     X = K.Input(shape=(224, 224, 3))
     nb_filters = 64
-    layers = 6
     # Convolution
     layer = layersConv(X, nb_filters, 7, 2)
 
@@ -32,22 +31,26 @@ def densenet121(growth_rate=32, compression=1.0):
     layerMax = MaxPooling2D(3, 2, padding="same")(layer)
 
     # Dense Block / Transition Layer (1)
+    layers = 6
     layer, nb_filters = dense_block(layer, nb_filters, growth_rate, layers)
     layer, nb_filters = transition_layer(layer, nb_filters, compression)
 
     # Dense Block / Transition Layer (2)
+    layers = 12
     layer, nb_filters = dense_block(layer, nb_filters, growth_rate, layers)
     layer, nb_filters = transition_layer(layer, nb_filters, compression)
 
     # Dense Block / Transition Layer (3)
+    layers = 24
     layer, nb_filters = dense_block(layer, nb_filters, growth_rate, layers)
     layer, nb_filters = transition_layer(layer, nb_filters, compression)
 
     # Dense Block (3)
+    layers = 16
     layer, nb_filters = dense_block(layer, nb_filters, growth_rate, layers)
 
     # Classification Layer (Pooling + 1000D fully-connected, softmax)
-    layerAVG = AveragePooling2D(7)(layer)
+    layerAVG = AveragePooling2D(7, 7, padding="same")(layer)
     Y = Dense(1000, activation="softmax")(layerAVG)
 
     model = K.Model(inputs=X, outputs=Y)
