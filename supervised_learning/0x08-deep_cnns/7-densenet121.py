@@ -32,7 +32,7 @@ def densenet121(growth_rate=32, compression=1.0):
     layer = layersConv(layer, nb_filters, 7, 2)
 
     # Pooling
-    layerMax = MaxPooling2D(3, 2, padding="same")(layer)
+    layerMax = MaxPooling2D(3, 2)(layer)
 
     # Dense Block / Transition Layer (1)
     layers = 6
