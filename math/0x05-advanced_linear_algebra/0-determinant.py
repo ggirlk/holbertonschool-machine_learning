@@ -32,7 +32,7 @@ def determinant(matrix):
         for j in range(m):
             del mat[j][i]
         del mat[0]
-        det += -(-1)**i*matrix[0][i]*((mat[0][0]*mat[1][1])-(mat[0][1]*mat[1][0]))
+        det += (-1)**i*matrix[0][i]*((mat[0][0]*mat[1][1])-(mat[0][1]*mat[1][0]))
         mat = copyMatrix(matrix)
 
     return det
