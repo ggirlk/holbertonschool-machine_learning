@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """ matrix """
-import numpy as np
 
 
 def determinant(matrix):
     """ calculates the determinant of a matrix """
+    import numpy as np
     if type(matrix) is not list or len(matrix) == 0:
         raise TypeError("matrix must be a list of lists")
     if len(matrix) != len(matrix[0]):
