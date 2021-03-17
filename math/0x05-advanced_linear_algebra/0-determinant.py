@@ -11,6 +11,10 @@ def determinant(matrix):
                 return(1)
         raise ValueError("matrix must be a square matrix")
     m = len(matrix)
+    if m == 1:
+        return matrix[0][0]
+    if m == 2:
+        return ((matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0]))
     det = 0
 
     def copyMatrix(matrix):
