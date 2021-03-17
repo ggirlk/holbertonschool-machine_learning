@@ -11,4 +11,4 @@ def determinant(matrix):
         if len(matrix) == 1 and len(matrix[0]) == 0:
                 return(1)
         raise ValueError("matrix must be a square matrix")
-    return np.linalg.det(np.array(matrix)).round()
+    return int(np.linalg.det(np.array(matrix)).round())
