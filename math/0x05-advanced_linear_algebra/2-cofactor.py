@@ -50,6 +50,8 @@ def cofactor(matrix):
     """ calculate the minor matrix of a matrix """
     if type(matrix) is not list or len(matrix) == 0:
         raise TypeError("matrix must be a list of lists")
+    if len(matrix) == 1 and type(matrix[0]) and len(matrix[0]) == 1:
+        return([[1]])
     if len(matrix) != len(matrix[0]):
         raise ValueError("matrix must be a non-empty square matrix")
     m = []
