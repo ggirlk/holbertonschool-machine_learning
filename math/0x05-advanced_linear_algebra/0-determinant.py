@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ matrix """
 
+Matrix = __import__('matrix').Matrix
 
 def determinant(matrix):
     """ calculates the determinant of a matrix """
@@ -10,29 +11,5 @@ def determinant(matrix):
         if len(matrix) == 1 and len(matrix[0]) == 0:
                 return(1)
         raise ValueError("matrix must be a square matrix")
-    m = len(matrix)
-    if m == 1:
-        return matrix[0][0]
-    if m == 2:
-        return ((matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0]))
-    det = 0
-
-    def copyMatrix(matrix):
-        """ copy list """
-        mat = []
-        for i in matrix:
-            d = []
-            for j in i:
-                d.append(j)
-            mat.append(d)
-        return mat
-
-    mat = copyMatrix(matrix)
-    for i in range(m):
-        for j in range(m):
-            del mat[j][i]
-        del mat[0]
-        det += (-1)**i*matrix[0][i]*((mat[0][0]*mat[1][1])-(mat[0][1]*mat[1][0]))
-        mat = copyMatrix(matrix)
-
-    return det
+    mat = Matrix(matrix)
+    return mat.determinant()
