@@ -73,12 +73,12 @@ def inverse(matrix):
     try:
         m = matrix[:]
         det = determinant(m)
-        #special case for 2x2 matrix:
+        # secial case for 2x2 matrix:
         if len(m) == 2:
             return [[m[1][1]/det, -1*m[0][1]/det],
                     [-1*m[1][0]/det, m[0][0]/det]]
 
-        #find matrix of cofactors
+        # find matrix of cofactors
         cofactors = cofactor(matrix)
         for r in range(len(cofactors)):
             for c in range(len(cofactors)):
