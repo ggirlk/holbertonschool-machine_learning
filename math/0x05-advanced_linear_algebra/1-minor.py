@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """ matrix """
 
+determinant = __import__('0-determinant').determinant
+
 
 def minor_of_element(A, i, j):
     """ calculate the minor matrix of one element """
@@ -13,7 +15,8 @@ def minor_of_element(A, i, j):
         return 0
     if n == 1:
         return c[0][0]
-    return (c[0][0]*c[1][1] - c[0][1]*c[1][0])
+    # return (c[0][0]*c[1][1] - c[0][1]*c[1][0])
+    return determinant(c)
 
 
 def minor(matrix):
