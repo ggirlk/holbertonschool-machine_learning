@@ -56,7 +56,7 @@ def cofactor(matrix):
     for i in range(len(matrix)):
         d = []
         for j in range(len(matrix[i])):
-            d.append(minor_of_element(matrix, i, j))
+            d.append((-1)**(i+j)*minor_of_element(matrix, i, j))
         m.append(d)
 
     return m
