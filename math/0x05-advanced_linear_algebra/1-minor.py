@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 """ matrix """
-import numpy as np
 
 
 def minor_of_element(A, i, j):
     """ calculate the minor matrix of one element """
-    sub_A = np.delete(A,i-1,0)     # Delete i-th row
-    sub_A = np.delete(sub_A,j-1,1) # Delete j-th column
-    M_ij = np.linalg.det(sub_A)    # Minor of the element at ith row and jth column
-    return np.around(M_ij, decimals=3)  # Rounding the value
+    c = A
+    c = c[:i] + c[i+1:]
+    for k in range(0, len(c)):
+        c[k] = c[k][:j]+c[k][j+1:]
+    n = len(c)
+    if n == 0:
+        return 0
+    if n == 1:
+        return c[0][0]
+    return (c[0][0]*c[1][1] - c[0][1]*c[1][0])
+
 
 def minor(matrix):
     """ calculate the minor matrix of a matrix """
@@ -22,5 +28,5 @@ def minor(matrix):
         for j in range(len(matrix[i])):
             d.append(minor_of_element(matrix, i, j))
         m.append(d)
-            
+
     return m
