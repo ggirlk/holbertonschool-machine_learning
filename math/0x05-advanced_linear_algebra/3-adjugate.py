@@ -18,8 +18,11 @@ def determinant(matrix, n=0):
     if len(matrix) != len(matrix[0]):
         if len(matrix) == 1 and len(matrix[0]) == 0:
             return(1)
-        raise ValueError("matrix must be a square matrix")
+        raise ValueError("matrix must be a non-empty square matrix")
     n = len(matrix)
+    for i in range(n):
+        if type(matrix[i]) != list:
+            raise TypeError("matrix must be a list of lists")
     if n == 1:
         return matrix[0][0]
     if n == 2:
@@ -39,21 +42,43 @@ def minor_of_element(A, i, j):
         c[k] = c[k][:j]+c[k][j+1:]
     n = len(c)
     if n == 0:
-        return 0
+        return 1
     if n == 1:
         return c[0][0]
     # return (c[0][0]*c[1][1] - c[0][1]*c[1][0])
     return determinant(c)
 
 
+def minor(matrix):
+    """ calculate the minor matrix of a matrix """
+    if type(matrix) is not list or len(matrix) == 0:
+        raise TypeError("matrix must be a list of lists")
+    if len(matrix) != len(matrix[0]):
+        raise ValueError("matrix must be a non-empty square matrix")
+    m = []
+    for i in range(len(matrix)):
+        if type(matrix[i]) != list:
+            raise TypeError("matrix must be a list of lists")
+    for i in range(len(matrix)):
+        d = []
+        for j in range(len(matrix[i])):
+            d.append(minor_of_element(matrix, i, j))
+        m.append(d)
+
+    return m
+
+
 def cofactor(matrix):
     """ calculate the minor matrix of a matrix """
     if type(matrix) is not list or len(matrix) == 0:
         raise TypeError("matrix must be a list of lists")
-    if len(matrix) == 1 and type(matrix[0]) and len(matrix[0]) == 1:
+    if len(matrix) == 1 and type(matrix[0]) == list and len(matrix[0]) == 1:
         return([[1]])
     if len(matrix) != len(matrix[0]):
         raise ValueError("matrix must be a non-empty square matrix")
+    for i in range(len(matrix)):
+        if type(matrix[i]) != list:
+            raise TypeError("matrix must be a list of lists")
     m = []
     for i in range(len(matrix)):
         d = []
@@ -62,6 +87,7 @@ def cofactor(matrix):
         m.append(d)
 
     return m
+
 
 
 def transpose(matrix):
@@ -75,4 +101,7 @@ def adjugate(matrix):
         raise TypeError("matrix must be a list of lists")
     if len(matrix) != len(matrix[0]):
         raise ValueError("matrix must be a non-empty square matrix")
+    for i in range(len(matrix)):
+        if type(matrix[i]) != list:
+            raise TypeError("matrix must be a list of lists")
     return transpose(cofactor(matrix))
