@@ -2,10 +2,6 @@
 """ matrix """
 
 
-#!/usr/bin/env python3
-""" matrix """
-
-
 def minorMat(matrix, i, j):
     """ calculates the minor of a matrix """
     c = matrix
