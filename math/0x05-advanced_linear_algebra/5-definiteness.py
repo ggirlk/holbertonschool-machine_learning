@@ -27,23 +27,19 @@ def definiteness(matrix):
     """ calculates the definiteness of a matrix """
     if type(matrix) is not np.ndarray:
         raise TypeError("matrix must be a numpy.ndarray")
-    if len(matrix) == 0 or len(matrix) != len(matrix[0]):
-        return None
+    if len(matrix) > 0 and np.array_equal(matrix, matrix.T):
 
-    if is_pos_def(matrix):
-        return "Positive definite"
+        if is_pos_def(matrix):
+            return "Positive definite"
 
-    if is_pos_semi_def(matrix):
-        return "Positive semi-definite"
+        if is_pos_semi_def(matrix):
+            return "Positive semi-definite"
 
-    if is_neg_def(matrix):
-        return "Negative definite"
+        if is_neg_def(matrix):
+            return "Negative definite"
 
-    if is_neg_semi_def(matrix):
-        return "Negative semi-definite"
+        if is_neg_semi_def(matrix):
+            return "Negative semi-definite"
 
-    try:
-        np.linalg.cholesky(matrix)
-    except Exception:
         return "Indefinite"
     return None
