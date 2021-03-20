@@ -42,7 +42,7 @@ def minor_of_element(A, i, j):
         c[k] = c[k][:j]+c[k][j+1:]
     n = len(c)
     if n == 0:
-        return 0
+        return 1
     if n == 1:
         return c[0][0]
     # return (c[0][0]*c[1][1] - c[0][1]*c[1][0])
@@ -56,6 +56,9 @@ def minor(matrix):
     if len(matrix) != len(matrix[0]):
         raise ValueError("matrix must be a non-empty square matrix")
     m = []
+    for i in range(len(matrix)):
+        if type(matrix[i]) != list:
+            raise TypeError("matrix must be a list of lists")
     for i in range(len(matrix)):
         d = []
         for j in range(len(matrix[i])):
