@@ -89,12 +89,33 @@ def cofactor(matrix):
     return m
 
 
-def inverse(matrix):
-    """ matrix inverse """
+def transpose(matrix):
+    """ transpose matrix """
+    return [[row[i] for row in matrix] for i in range(len(matrix[0]))]
+
+
+def adjugate(matrix):
+    """ calculate the adjugate matrix of a matrix """
     if type(matrix) is not list or len(matrix) == 0:
         raise TypeError("matrix must be a list of lists")
     if len(matrix) != len(matrix[0]):
         raise ValueError("matrix must be a non-empty square matrix")
+    for i in range(len(matrix)):
+        if type(matrix[i]) != list:
+            raise TypeError("matrix must be a list of lists")
+    return transpose(cofactor(matrix))
+
+
+def inverse(matrix):
+    """ matrix inverse """
+    if type(matrix) is not list or len(matrix) == 0:
+        raise TypeError("matrix must be a list of lists")
+
+    for i in range(len(matrix)):
+        if type(matrix[i]) != list:
+            raise TypeError("matrix must be a list of lists")
+        if len(matrix) != len(matrix[i]):
+            raise ValueError("matrix must be a non-empty square matrix")
     try:
         m = matrix[:]
         det = determinant(m)
@@ -102,12 +123,11 @@ def inverse(matrix):
         if len(m) == 2:
             return [[m[1][1]/det, -1*m[0][1]/det],
                     [-1*m[1][0]/det, m[0][0]/det]]
-
-        # find matrix of cofactors
-        cofactors = cofactor(matrix)
-        for r in range(len(cofactors)):
-            for c in range(len(cofactors)):
-                cofactors[r][c] = cofactors[r][c]/det
-        return cofactors
+        # find matrix of adjugates
+        adjugates = adjugate(matrix)
+        for r in range(len(adjugates)):
+            for c in range(len(adjugates)):
+                adjugates[r][c] = adjugates[r][c]/det
+        return adjugates
     except Exception:
         return None
