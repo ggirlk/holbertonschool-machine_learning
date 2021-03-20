@@ -89,7 +89,6 @@ def cofactor(matrix):
     return m
 
 
-
 def transpose(matrix):
     """ transpose matrix """
     return [[row[i] for row in matrix] for i in range(len(matrix[0]))]
