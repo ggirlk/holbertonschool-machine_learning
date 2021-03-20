@@ -2,7 +2,7 @@
 """ matrix """
 
 
-def minor(matrix, i, j):
+def minorMat(matrix, i, j):
     """ calculates the minor of a matrix """
     c = matrix
     c = c[:i] + c[i+1:]
@@ -20,12 +20,15 @@ def determinant(matrix, n=0):
             return(1)
         raise ValueError("matrix must be a square matrix")
     n = len(matrix)
+    for i in range(n):
+        if type(matrix[i]) != list:
+            raise TypeError("matrix must be a list of lists")
     if n == 1:
         return matrix[0][0]
     if n == 2:
         return matrix[0][0]*matrix[1][1] - matrix[0][1]*matrix[1][0]
     det = 0
     for i in range(n):
-        m = minor(matrix, 0, i)
+        m = minorMat(matrix, 0, i)
         det += ((-1)**i)*matrix[0][i]*determinant(m, n-1)
     return det
