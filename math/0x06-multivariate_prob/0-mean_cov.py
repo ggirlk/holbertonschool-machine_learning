@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-""" corr """
+""" mean cov """
 import numpy as np
 
 
-def correlation(C):
+def mean_cov(X):
     """
-    calculate a correlation matrix
+    calculate the mean and
+    covariance of a data set
     """
-    if type(C) is not np.ndarray:
-        raise TypeError("C must be a numpy.ndarray")
-    if C.shape[0] != C.shape[1]:
-        raise ValueError("C must be a 2D square")
-    corr = np.ndarray((C.shape))
-    d = C.shape[0]
-    for i in range(d):
-        for j in range(d):
-            corr[i,j] = C[i,j]/(np.sqrt(C[i,i]*C[j,j]))
-    return corr
+    if type(X) != np.ndarray or (len(X.shape) != 2):
+        raise TypeError("X must be a 2D numpy.ndarray")
+    n = X.shape[0] - 1
+    if n < 2:
+        raise ValueError("X must contain multiple data points")
+    mean = X.mean(axis=0, keepdims=True)
+    x = X - mean
+    cov = np.dot(x.T, X.conj()) / n
+    return mean, cov
