@@ -35,7 +35,7 @@ class MultiNormal():
     def pdf(self, x):
         """ calculate the PDF at a data point """
         if type(x) is not np.ndarray:
-            raise TypeError("x must be a numpy.ndarray")
+            raise TypeError("x must be a numpy.ndarrays")
         if len(x.shape) < 2 or x.shape[1] != 1:
             raise ValueError("x must have the shape ({d}, 1)")
         d = x.shape[0]
