@@ -31,3 +31,14 @@ class MultiNormal():
 
         self.mean = data.mean(axis=1, keepdims=True)
         _, self.cov = mean_cov(data.T)
+
+    def pdf(self, x):
+        """ calculate the PDF at a data point """
+        if type(x) is not np.ndarray:
+            raise TypeError("x must be a numpy.ndarray")
+        if len(x.shape) < 2 or x.shape[1] != 1:
+            raise ValueError("x must have the shape ({d}, 1)")
+        d = x.shape[0]
+        x_m = x - self.mean
+        return (1 / (np.sqrt((2 * np.pi)**d * np.linalg.det(self.cov))) *
+                np.exp(-(np.linalg.solve(self.cov, x_m).T.dot(x_m)) / 2))[0, 0]
