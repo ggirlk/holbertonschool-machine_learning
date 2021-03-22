@@ -40,7 +40,7 @@ class MultiNormal():
            or x.shape[0] != self.mean.shape[0]:
             raise ValueError("x must have the shape ({}, 1)"
                              .format(self.mean.shape[0]))
-        d = x.shape[0]
+        d = self.cov.shape[0]
         x_m = x - self.mean
         sqrt = np.sqrt((2 * np.pi)**d * np.linalg.det(self.cov))
         exp = np.exp(-(np.linalg.solve(self.cov, x_m).T.dot(x_m)) / 2)
