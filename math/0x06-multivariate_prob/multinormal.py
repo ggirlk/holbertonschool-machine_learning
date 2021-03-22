@@ -26,5 +26,5 @@ class MultiNormal():
         """ constructor """
         if type(data) is not np.ndarray:
             raise TypeError("data must be a 2D numpy.ndarray")
-        self.mean = data.mean(axis=0, keepdims=True)
-        _, self.cov = mean_cov(data)
+        self.mean = data.mean(axis=1, keepdims=True)
+        _, self.cov = mean_cov(data.T)
