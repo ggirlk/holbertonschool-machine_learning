@@ -38,7 +38,7 @@ class MultiNormal():
             raise TypeError("x must be a numpy.ndarray")
         if len(x.shape) != 2 or x.shape[1] != 1\
            or x.shape[0] != self.mean.shape[0]:
-            raise ValueError("x must have the shape ({d}, 1)"
+            raise ValueError("x must have the shape ({}, 1)"
                              .format(self.mean.shape[0]))
         d = x.shape[0]
         x_m = x - self.mean
