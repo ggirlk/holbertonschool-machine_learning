@@ -21,7 +21,7 @@ def mean_cov(X):
 
 class MultiNormal():
     """ Multivariate Normal distribution """
-    
+
     def __init__(self, data):
         """ constructor """
         if type(data) is not np.ndarray or len(data.shape) < 2:
