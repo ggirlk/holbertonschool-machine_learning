@@ -10,7 +10,7 @@ def correlation(C):
     if type(C) is not np.ndarray:
         raise TypeError("C must be a numpy.ndarray")
     d = C.shape[0]
-    if d < 2 or C.shape[0] != C.shape[1]:
+    if len(C.shape) < 2 or C.shape[0] != C.shape[1]:
         raise ValueError("C must be a 2D square")
     corr = np.ndarray((C.shape))
     for i in range(d):
