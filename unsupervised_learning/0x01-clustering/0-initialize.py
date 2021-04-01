@@ -6,8 +6,8 @@ import numpy as np
 
 def initialize(X, k):
     """ doc """
-    n, d = X.shape
     try:
+		n, d = X.shape
         return np.random.uniform(X.min(axis=0),
 								 X.max(axis=0),
 								 size=(k, d))
