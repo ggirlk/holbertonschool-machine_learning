@@ -6,7 +6,7 @@ import numpy as np
 
 def variance(X, C):
     """ doc """
-    if len(X.shape) < 2 or type(X) is not np.ndarray\
+    if X.ndim != 2 or type(X) is not np.ndarray\
        or type(C) is not np.ndarray:
         return None
 
