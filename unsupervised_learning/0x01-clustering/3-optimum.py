@@ -3,8 +3,11 @@
 
 import numpy as np
 
+kmeans = __import__('1-kmeans').kmeans
+variance = __import__('2-variance').variance
 
-def variance(X, C):
+
+def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     """ doc """
     if type(X) is not np.ndarray or X.ndim != 2\
        or type(C) is not np.ndarray or C.ndim != 2:
@@ -12,7 +15,6 @@ def variance(X, C):
 
     try:
         sub = np.apply_along_axis(np.subtract, 1, X, C)
-        return (np.linalg.norm(sub, axis=2)**2).min(axis=1).sum()
-        # return ((sub)**2).sum(axis=2).min(axis=1).sum()
+        return ((sub)**2).sum(axis=2).min(axis=1).sum()
     except Exception:
         return None
