@@ -15,7 +15,11 @@ def expectation(X, pi, m, S):
         return None, None
     try:
         n, d = X.shape
-        k, d = m.shape
+        k = pi.shape[0]
+        k1, d1 = m.shape
+        k2, d2, d3 = S.shape
+        if (k != k1 != k2) or (d != d1 != d2 != d3):
+            return None, None
         pdfs = np.ndarray((k, n))
         for i in range(k):
             pdfs[i] = pdf(X, m[i], S[i])
