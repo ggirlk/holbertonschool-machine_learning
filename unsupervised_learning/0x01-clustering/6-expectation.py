@@ -29,8 +29,9 @@ def expectation(X, pi, m, S):
             pdfs[i] = pdf(X, m[i], S[i])
         pdfs = pdfs * pi[:, np.newaxis]
         pdfsum = pdfs.sum(axis=0)
+        # posterior probabilities for each data point in each cluster
         g = pdfs / pdfsum
-        l = np.log(pdfsum).sum()
-        return g, l
+        total_log_likelihood = np.log(pdfsum).sum()
+        return g, total_log_likelihood
     except Exception:
         return None, None
