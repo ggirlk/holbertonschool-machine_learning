@@ -18,9 +18,11 @@ def expectation(X, pi, m, S):
         k = pi.shape[0]
         k1, d1 = m.shape
         k2, d2, d3 = S.shape
-        if (k != k1 != k2) or (d != d1 != d2 != d3)\
-           or np.any(np.linalg.det(S)) == 0 or not\
-           np.isclose(pi.sum(), 1):
+        if (k != k1 or k != k2 or k1 != k2)\
+           or (d != d1 or d != d2 or d != d3)\
+           or (d1 != d2 or d1 != d3 or d2 != d3)\
+           or np.any(np.linalg.det(S)) == 0\
+           or not np.isclose(pi.sum(), 1):
             return None, None
         pdfs = np.ndarray((k, n))
         for i in range(k):
