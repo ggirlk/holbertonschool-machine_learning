@@ -6,7 +6,6 @@ import sklearn.mixture.GaussianMixture as gm
 
 def gmm(X, k):
     """ doc """
-    n, d = X.shape
     gmm = sm.GaussianMixture(n_components=k).fit(X)
     pi = gmm.weights_
     m = gmm.means_
