@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """ performs K-means on a dataset """
 
-import sklearn.mixture.GaussianMixture as gm
+import sklearn.mixture as gm
 
 
 def gmm(X, k):
     """ doc """
-    gmm = sm.GaussianMixture(n_components=k).fit(X)
+    gmm = gm.GaussianMixture(n_components=k).fit(X)
     pi = gmm.weights_
     m = gmm.means_
     S = gmm.covariances_
