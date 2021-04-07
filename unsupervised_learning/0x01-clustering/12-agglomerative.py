@@ -23,6 +23,6 @@ def agglomerative(X, dist):
                    color_threshold=55,
                    distance_sort='descending',
                    show_leaf_counts=True)
-    
+
     plt.show()
     return scp.fcluster(linked, t=dist, criterion='distance')
