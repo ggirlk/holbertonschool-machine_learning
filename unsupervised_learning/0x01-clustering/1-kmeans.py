@@ -30,7 +30,7 @@ def kmeans(X, k, iterations=1000):
         for itr in range(iterations):
             prevC = C.copy()
             clss = np.apply_along_axis(np.subtract, 1, X, C)
-            clss = np.argmin(np.square(clss).sum(axis=2), axis=1)
+            clss = np.argmin(np.square(clss).sum(axis=1), axis=1)
             for cent in range(k):
                 Xs = np.argwhere(clss == cent)
                 if Xs.shape[0] == 0:
@@ -38,7 +38,10 @@ def kmeans(X, k, iterations=1000):
                 else:
                     C[cent] = np.mean(X[Xs], axis=0)
             if np.all(prevC == C):
-                break;
+                break
         return C, clss
+    clss = np.apply_along_axis(np.subtract, 1, X, C)
+    clss = np.argmin(np.square(clss).sum(axis=2), axis=1) 
     except Exception:
+        raise
         return None, None
