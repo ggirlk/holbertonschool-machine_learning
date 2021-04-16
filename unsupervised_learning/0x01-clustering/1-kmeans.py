@@ -41,7 +41,6 @@ def kmeans(X, k, iterations=1000):
                 break
         return C, clss
     clss = np.apply_along_axis(np.subtract, 1, X, C)
-    clss = np.argmin(np.square(clss).sum(axis=2), axis=1) 
+    clss = np.argmin(np.square(clss).sum(axis=2), axis=1)
     except Exception:
-        raise
         return None, None
