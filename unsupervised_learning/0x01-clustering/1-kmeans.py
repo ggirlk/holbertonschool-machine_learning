@@ -39,8 +39,8 @@ def kmeans(X, k, iterations=1000):
                     C[cent] = np.mean(X[Xs], axis=0)
             if np.all(prevC == C):
                 break
+        clss = np.apply_along_axis(np.subtract, 1, X, C)
+        clss = np.argmin(np.square(clss).sum(axis=2), axis=1)
         return C, clss
-    clss = np.apply_along_axis(np.subtract, 1, X, C)
-    clss = np.argmin(np.square(clss).sum(axis=2), axis=1)
     except Exception:
         return None, None
