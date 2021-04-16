@@ -27,7 +27,7 @@ def kmeans(X, k, iterations=1000):
         if C is None:
             return None, None
         clss = None
-        for itr in range(iterations):
+        for itr in range(iterations+1):
             prevC = C.copy()
             clss = np.apply_along_axis(np.subtract, 1, X, C)
             clss = np.argmin(np.square(clss).sum(axis=2), axis=1)
