@@ -16,8 +16,7 @@ def maximization(X, g):
         S = np.ndarray((m.shape[0], m.shape[1], m.shape[1]))
         for i in range(g.shape[0]):
             X_m = X - m[i]
-            S[i] = (np.matmul((X_m * g[i, :, np.newaxis]).T, X_m)
-                          / gsum[i])
+            S[i] = (np.matmul((X_m * g[i, :, np.newaxis]).T, X_m) / gsum[i])
         return pi, m, S
     except Exception:
         return None, None, None
