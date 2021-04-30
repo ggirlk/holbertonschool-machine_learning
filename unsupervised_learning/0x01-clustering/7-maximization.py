@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ performs K-means on a dataset """
+import numpy as np
 
 
 def maximization(X, g):
