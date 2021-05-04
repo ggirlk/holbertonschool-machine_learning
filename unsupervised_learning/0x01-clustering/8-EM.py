@@ -10,6 +10,7 @@ maximization = __import__('7-maximization').maximization
 def expectation_maximization(X, k, iterations=1000, tol=1e-5, verbose=False):
     """ doc """
     if type(X) is not np.ndarray or X.ndim != 2\
+       or type(verbose) is not bool or tol < 0\
        or type(k) is not int or k < 0:
         return None, None, None, None, None
     try:
