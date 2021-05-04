@@ -11,6 +11,7 @@ def expectation_maximization(X, k, iterations=1000, tol=1e-5, verbose=False):
     """ doc """
     if type(X) is not np.ndarray or X.ndim != 2\
        or type(verbose) is not bool or tol < 0\
+       or type(tol) is not float or iterations < 0\
        or type(k) is not int or k < 0:
         return None, None, None, None, None
     try:
@@ -27,7 +28,7 @@ def expectation_maximization(X, k, iterations=1000, tol=1e-5, verbose=False):
             prevl = l
             pi, m, S = maximization(X, g)
             i += 1
-
+        g, l = expectation(X, pi, m, S)
         return pi, m, S, g, l
     except Exception:
         return None, None, None, None, None
