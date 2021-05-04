@@ -28,7 +28,6 @@ def expectation_maximization(X, k, iterations=1000, tol=1e-5, verbose=False):
             prevl = l
             pi, m, S = maximization(X, g)
             i += 1
-        g, l = expectation(X, pi, m, S)
         return pi, m, S, g, l
     except Exception:
         return None, None, None, None, None
