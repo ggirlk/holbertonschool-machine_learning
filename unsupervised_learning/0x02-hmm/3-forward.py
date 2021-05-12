@@ -19,7 +19,7 @@ def forward(Obs, Emiss, Trans, Init):
             else:
                 alpha[s, t] = np.sum(alpha[:, t - 1]
                                      * Trans[:, s]
-                                     * Emiss[:, Obs[t]])
+                                     * Emiss[s, Obs[t]])
 
 
     return np.sum(alpha[:, T-1]), alpha 
