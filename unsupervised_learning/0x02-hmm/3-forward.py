@@ -21,5 +21,4 @@ def forward(Obs, Emiss, Trans, Init):
                                      * Trans[:, s]
                                      * Emiss[s, Obs[t]])
 
-
-    return np.sum(alpha[:, T-1]), alpha 
+    return np.sum(alpha[:, T-1]), alpha
