@@ -11,14 +11,10 @@ def backward(Obs, Emiss, Trans, Init):
     T = Obs.shape[0]
     N, M = Emiss.shape
     alpha = np.zeros((N, T))
-
-    for t in range(T):
-        for s in range(N):
-            if t == 0:
-                alpha[s, 0] = Init[s, 0] * Emiss[s, Obs[t]]
-            else:
-                alpha[s, t] = np.sum(alpha[:, t - 1]
-                                     * Trans[:, s]
-                                     * Emiss[s, Obs[t]])
-
-    return np.sum(alpha[:, T-1]), alpha
+    state = np.asarray([1] * N)
+    alpha[:, -1] = state
+    for t in range(T - 2, -1, -1):
+        state = np.matmul(Trans, state * Emiss[:, Obs[t + 1]])
+        alpha[:, t] = state
+    return (alpha[:, 0] * Init[:, 0]
+            * Emiss[:, Obs[0]]).sum(), alpha
