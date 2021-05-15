@@ -47,9 +47,9 @@ def baum_welch(Obs, Trans, Emiss, Init, iterations=1000):
         for emit in range(M):
             gammanum = gamma[:, Obs == emit]
             Emiss[:, emit] = gammanum.sum(axis=1) / gamma.sum(axis=1)
-        if (np.all(transprev == Trans)
-            and np.all(emprev == Emiss)
-            and np.all(initprev == Init)):
+        if transprev is not None
+           and sum(sum(abs(transprev[:]-Trans[:])))
+                   + sum(sum(abs(emprev-Emiss))) <= tol:
             return Trans, Emiss
         transprev = Trans
         initprev = Init
