@@ -43,13 +43,13 @@ def baum_welch(Obs, Trans, Emiss, Init, iterations=1000):
         forbackga = alpha * beta
         gamma = forbackga / forbackga.sum(axis=0)
         Trans = xi.sum(axis=2) / xi.sum(axis=(1, 2))
-        Trans = Trans.T
+        # Trans = Trans.T
         for emit in range(M):
             gammanum = gamma[:, Obs == emit]
             Emiss[:, emit] = gammanum.sum(axis=1) / gamma.sum(axis=1)
-        if ((np.all(transprev == Trans)
-             and np.all(emprev == Emiss)
-             and np.all(initprev == Init))):
+        if (np.all(transprev == Trans)
+            and np.all(emprev == Emiss)
+            and np.all(initprev == Init)):
             return Trans, Emiss
         transprev = Trans
         initprev = Init
