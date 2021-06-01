@@ -42,4 +42,3 @@ class RNNCell():
         ai = np.tanh(np.dot(hx, self.Wh) + self.bh)
         yi = np.dot(ai, self.Wy) + self.by
         return ai, self.softmax(yi)
-
