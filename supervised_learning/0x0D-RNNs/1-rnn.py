@@ -6,7 +6,7 @@ import numpy as np
 def rnn(rnn_cell, X, h_0):
     """ forward propagation for a simple RNN """
     t, m, i = X.shape
-    m0, h = h_0.shape
+    _, h = h_0.shape
     # numpy.ndarray containing all of the hidden states
     H = np.ndarray((t+1, m, h))
     # numpy.ndarray containing all of the outputs
