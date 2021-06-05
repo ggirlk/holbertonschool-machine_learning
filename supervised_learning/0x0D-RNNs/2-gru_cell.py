@@ -14,13 +14,13 @@ class GRUCell():
         @o: the dimensionality of the outputs
         """
 
-        self.Wh = np.random.randn(h+i, h)
         self.Wz = np.random.randn(h+i, h)
         self.Wr = np.random.randn(h+i, h)
+        self.Wh = np.random.randn(h+i, h)
         self.Wy = np.random.randn(h, o)
-        self.bh = np.zeros((1, h))
         self.bz = np.zeros((1, h))
         self.br = np.zeros((1, h))
+        self.bh = np.zeros((1, h))
         self.by = np.zeros((1, o))
 
 
