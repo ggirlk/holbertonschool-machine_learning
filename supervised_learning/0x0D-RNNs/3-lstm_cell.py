@@ -61,5 +61,5 @@ class LSTMCell():
 
         ai = f * c_prev + u * ai
         ci = o * np.tanh(ai)
-        yi = np.dot(ai, self.Wy) + self.by
+        yi = np.dot(ci, self.Wy) + self.by
         return ai, ci, self.softmax(yi)
