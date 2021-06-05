@@ -23,7 +23,6 @@ class GRUCell():
         self.bh = np.zeros((1, h))
         self.by = np.zeros((1, o))
 
-
     def softmax(self, A):
         """ calculate the softmax """
         e = np.exp(A)
@@ -57,4 +56,3 @@ class GRUCell():
         ai = (1 - g2) * h_prev + g2 * ai
         yi = np.dot(ai, self.Wy) + self.by
         return ai, self.softmax(yi)
-
