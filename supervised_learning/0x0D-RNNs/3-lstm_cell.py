@@ -25,7 +25,6 @@ class LSTMCell():
         self.bo = np.zeros((1, h))
         self.by = np.zeros((1, o))
 
-
     def softmax(self, A):
         """ calculate the softmax """
         e = np.exp(A)
@@ -59,7 +58,7 @@ class LSTMCell():
         u = self.sigmoid(np.dot(hx, self.Wu) + self.bu)
         o = self.sigmoid(np.dot(hx, self.Wo) + self.bo)
 
-        ai = f * c_prev + u * ai
-        ci = o * np.tanh(ai)
-        yi = np.dot(ci, self.Wy) + self.by
+        ci = f * c_prev + u * ai
+        ai = o * np.tanh(ci)
+        yi = np.dot(ai, self.Wy) + self.by
         return ai, ci, self.softmax(yi)
