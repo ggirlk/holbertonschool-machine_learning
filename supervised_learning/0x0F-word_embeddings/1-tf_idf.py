@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Bag Of Words """
 import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 bag_of_words = __import__('0-bag_of_words').bag_of_words
 
 
