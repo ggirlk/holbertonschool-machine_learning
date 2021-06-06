@@ -63,3 +63,17 @@ class GaussianProcess():
         K_s2 = self.kernel(X_s, X_s)
         sigma = K_s2 - np.matmul(np.matmul(K_s, K_inv), K_s.T)
         return mu, np.diagonal(sigma)
+
+    def update(self, X_new, Y_new):
+        """
+        updates a Gaussian Process
+        => Updates the public instance attributes X, Y, and K
+
+        X_new: is a numpy.ndarray of shape (1,)
+               that represents the new sample point
+        Y_new: is a numpy.ndarray of shape (1,)
+               that represents the new sample function value
+        """
+        self.X = np.append(self.X, X_new[:, None], axis=0)
+        self.Y = np.append(self.Y, Y_new[:, None], axis=0)
+        self.K = self.kernel(self.X, self.X)
