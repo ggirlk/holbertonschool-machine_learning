@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ Hyperparameter Tuning """
 import numpy as np
-from scipy.stats import norm
 
 GP = __import__('2-gp').GaussianProcess
 
@@ -16,9 +15,9 @@ class BayesianOptimization():
         ***************** constructor *******************
         *************************************************
         @f: is the black-box function to be optimized
-        @X_init: is a numpy.ndarray of shape (t, 1) representing
+        @X_init: is a numpy.ndarray of shape (t, 1) representing 
                  the inputs already sampled with the black-box function
-        @Y_init: is a numpy.ndarray of shape (t, 1) representing
+        @Y_init: is a numpy.ndarray of shape (t, 1) representing 
                  the outputs of the black-box function for each input in X_init
         @t: is the number of initial samples
         @bounds: is a tuple of (min, max) representing the bounds of
@@ -37,23 +36,3 @@ class BayesianOptimization():
         self.xsi = xsi
         self.minimize = minimize
         self.gp = GP(X_init, Y_init, l=l, sigma_f=sigma_f)
-
-    def acquisition(self):
-        """
-        calculates the next best sample location by
-        Using the Expected Improvement acquisition function
-        Returns: X_next, EI
-                 X_next: is a numpy.ndarray of shape (1,)
-                 representing the next best sample point
-                 EI: is a numpy.ndarray of shape (ac_samples,)
-                 containing the expected improvement of each potential sample
-        """
-        mu, sig = self.gp.predict(self.gp.X)
-        next_mu, sigs = self.gp.predict(self.X_s)
-        opt = np.min(mu)
-        improves = opt - next_mu - self.xsi
-        if not self.minimize:
-            improve = -improves
-        Z = improves / sigs
-        eis = improves * norm.cdf(Z) + sigs * norm.pdf(Z)
-        return self.X_s[np.argmax(eis)], eis 
