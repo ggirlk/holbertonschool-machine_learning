@@ -55,7 +55,7 @@ class BayesianOptimization():
         if not self.minimize:
             improve = -improves
 
-        Z = improves * sigs/100
+        Z = improves/sigs
         eis = improves * norm.cdf(Z) + sigs * norm.pdf(Z)
         return self.X_s[np.argmax(eis)], eis
 
