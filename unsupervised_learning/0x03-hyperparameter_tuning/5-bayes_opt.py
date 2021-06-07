@@ -16,9 +16,9 @@ class BayesianOptimization():
         ***************** constructor *******************
         *************************************************
         @f: is the black-box function to be optimized
-        @X_init: is a numpy.ndarray of shape (t, 1) representing 
+        @X_init: is a numpy.ndarray of shape (t, 1) representing
                  the inputs already sampled with the black-box function
-        @Y_init: is a numpy.ndarray of shape (t, 1) representing 
+        @Y_init: is a numpy.ndarray of shape (t, 1) representing
                  the outputs of the black-box function for each input in X_init
         @t: is the number of initial samples
         @bounds: is a tuple of (min, max) representing the bounds of
@@ -65,12 +65,10 @@ class BayesianOptimization():
         eis = improves * norm.cdf(Z) + sigs * norm.pdf(Z)
         return self.X_s[np.argmax(eis)], eis
 
-
-
     def optimize(self, iterations=100):
         """
         Optimizes the black-box function
-        @iterations is the maximum number of iterations to perform
+        @iterations:is the maximum number of iterations to perform
 
         *** If the next proposed point is one that has already been sampled,
             optimization should be stopped early
@@ -80,19 +78,34 @@ class BayesianOptimization():
                  Y_opt: is a numpy.ndarray of shape (1,) representing
                         the optimal function value
         """
-        prev = None
-        f_x = None
-        f_y = None
+
+        X_all_s = []
         while iterations:
-            X_next, eis = self.acquisition()
-            new_y = self.f(X_next)
-            if X_next == prev:
-                break
-            self.gp.update(X_next, new_y)
-            pycodehack = f_y is None or self.minimize and f_y > new_y
-            if ((pycodehack or not self.minimize and f_y < new_y)):
-                f_y = new_y
-                f_x = X_next
-            prev = X_next
             iterations -= 1
-        return f_x, f_y
+            # Find the next sampling point xt by optimizing the acquisition
+            # function over the GP: xt = argmaxx μ(x | D1:t−1)
+
+            x_opt, _ = self.acquisition()
+            # If the next proposed point is one that has already been sampled,
+            # optimization should be stopped early
+            if x_opt in X_all_s:
+                break
+
+            y_opt = self.f(x_opt)
+
+            # Add the sample to previous samples
+            # D1: t = {D1: t−1, (xt, yt)} and update the GP
+            self.gp.update(x_opt, y_opt)
+            X_all_s.append(x_opt)
+
+        if self.minimize is True:
+            indx = np.argmin(self.gp.Y)
+        else:
+            indx = np.argmax(self.gp.Y)
+
+        self.gp.X = self.gp.X[:-1]
+
+        x_opt = self.gp.X[indx]
+        y_opt = self.gp.Y[indx]
+
+        return x_opt, y_opt

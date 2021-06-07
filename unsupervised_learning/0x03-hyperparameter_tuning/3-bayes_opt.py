@@ -15,9 +15,9 @@ class BayesianOptimization():
         ***************** constructor *******************
         *************************************************
         @f: is the black-box function to be optimized
-        @X_init: is a numpy.ndarray of shape (t, 1) representing 
+        @X_init: is a numpy.ndarray of shape (t, 1) representing
                  the inputs already sampled with the black-box function
-        @Y_init: is a numpy.ndarray of shape (t, 1) representing 
+        @Y_init: is a numpy.ndarray of shape (t, 1) representing
                  the outputs of the black-box function for each input in X_init
         @t: is the number of initial samples
         @bounds: is a tuple of (min, max) representing the bounds of
