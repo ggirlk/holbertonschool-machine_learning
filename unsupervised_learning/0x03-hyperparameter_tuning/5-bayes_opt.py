@@ -55,7 +55,13 @@ class BayesianOptimization():
         if not self.minimize:
             improve = -improves
 
-        Z = improves/sigs
+        Z = np.zeros(sigs.shape[0])
+
+        for i in range(sigs.shape[0]):
+            if sigs[i] != 0:
+                Z[i] = improves[i] / sigs[i]
+            else:
+                Z[i] = 0
         eis = improves * norm.cdf(Z) + sigs * norm.pdf(Z)
         return self.X_s[np.argmax(eis)], eis
 
