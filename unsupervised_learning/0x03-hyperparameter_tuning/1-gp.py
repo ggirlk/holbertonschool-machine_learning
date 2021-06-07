@@ -40,7 +40,8 @@ class GaussianProcess():
         Returns: the covariance kernel matrix as
                  a numpy.ndarray of shape (m, n)
         """
-        return self.sigma_f**2 * np.exp(pow(X1 - X2.T, 2)/-2/self.l**2)
+        a = pow(X1 - X2.T, 2) / -2 / self.l**2
+        return self.sigma_f**2 * np.exp(a)
 
     def predict(self, X_s):
         """
