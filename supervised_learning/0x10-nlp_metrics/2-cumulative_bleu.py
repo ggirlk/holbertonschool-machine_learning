@@ -62,7 +62,8 @@ def ngram_modscore(references, sentence, n):
     in_ref = 0
     for gram in sent_dict:
         in_ref += min(max_dict.get(gram, 0), sent_dict[gram])
-    return  np.log(in_ref / len(sentence))
+    return np.log(in_ref / len(sentence))
+
 
 def cumulative_bleu(references, sentence, n):
     """
