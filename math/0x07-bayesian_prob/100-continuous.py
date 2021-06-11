@@ -25,7 +25,8 @@ def posterior(x, n, p1, p2):
     *** If p1 or p2 are not floats within the range [0, 1], raise a
         ValueError with the message {p} must be a float in the range [0, 1]
         where {p} is the corresponding variable
-    *** If p2 <= p1, raise a ValueError with the message p2 must be greater than p1
+    *** If p2 <= p1, raise a ValueError with the message p2 must be
+        greater than p1
     *** The only import you are allowed to use is from scipy import special
     Returns:
             the posterior probability that p is within the range
