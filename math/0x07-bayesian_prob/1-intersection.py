@@ -43,6 +43,7 @@ def likelihood(x, n, P):
         raise ValueError("All values in P must be in the range [0, 1]")
     return special.binom(n, x) * pow(P, x) * pow(1 - P, n - x)
 
+
 def intersection(x, n, P, Pr):
     """
     *********************************************************************
