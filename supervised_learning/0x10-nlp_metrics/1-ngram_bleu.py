@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" BLEU: bilingual evaluation understudy """
 import numpy as np
 
 
