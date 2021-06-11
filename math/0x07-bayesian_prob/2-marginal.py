@@ -129,10 +129,10 @@ def marginal(x, n, P, Pr):
 
     """
     likeliH = likelihood(x, n, P)
-    if np.where(Pr > 1, 1, 0).any() or np.where(Pr < 0, 1, 0).any():
-        raise ValueError("All values in Pr must be in the range [0, 1]")
     if type(Pr) is not np.ndarray or P.shape != Pr.shape:
         raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
+    if np.where(Pr > 1, 1, 0).any() or np.where(Pr < 0, 1, 0).any():
+        raise ValueError("All values in Pr must be in the range [0, 1]")
     if not np.isclose(Pr.sum(), 1):
         raise ValueError("Pr must sum to 1")
     return (likeliH * Pr).sum()
