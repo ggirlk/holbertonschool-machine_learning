@@ -2,6 +2,7 @@
 """ Self Attention """
 import tensorflow as tf
 
+
 class SelfAttention(tf.keras.layers.Layer):
     """ calculate the attention for machine translation """
 
