@@ -29,7 +29,8 @@ class RNNDecoder(tf.keras.layers.Layer):
         # return both the full sequence of output
         # as well as the last hidden state
         self.gru = tf.keras.layers.GRU(units, return_sequences=True,
-                                       return_state=True)
+                                       return_state=True,
+                                       recurrent_initializer='glorot_uniform')
         # Dense layer with vocab units
         self.F = tf.keras.layers.Dense(vocab)
 
@@ -50,7 +51,8 @@ class RNNDecoder(tf.keras.layers.Layer):
                 s: is a tensor of shape (batch, units) containing
                    the new decoder hidden state
         """
-        context, weights = SelfAttention(s_prev.get_shape()[1])(s_prev, hidden_states)
+        attention = SelfAttention(s_prev.shape[1])
+        context, weights = attention(s_prev, hidden_states)
         x = self.embedding(x)
         x = tf.concat([tf.expand_dims(context, 1), x], -1)
         output, s = self.gru(x)
