@@ -27,9 +27,9 @@ class SelfAttention(tf.keras.layers.Layer):
 
     def call(self, s_prev, hidden_states):
         """
-        **********************************************************
+        ************************************************************
         *****************calls the Attention layers*****************
-        **********************************************************
+        ************************************************************
         @s_prev: is a tensor of shape (batch, units) containing the
                  previous decoder hidden state
         @hidden_states: is a tensor of shape (batch, input_seq_len,
