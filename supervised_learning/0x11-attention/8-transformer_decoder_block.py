@@ -9,7 +9,7 @@ class DecoderBlock(tf.keras.layers.Layer):
     """Transformer Decoder Block"""
 
     def __init__(self, dm, h, hidden, drop_rate=0.1):
-         """
+        """
         *********************************************
         *****************Constructor*****************
         *********************************************
