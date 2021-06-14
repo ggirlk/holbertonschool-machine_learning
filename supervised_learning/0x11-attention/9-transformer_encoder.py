@@ -25,12 +25,19 @@ class Encoder(tf.keras.layers.Layer):
         @drop_rate: the dropout rate
         """
         super(Encoder, self).__init__()
+        # the number of blocks in the encoder
         self.N = N
+        # the dimensionality of the model
         self.dm = dm
+        # the embedding layer for the inputs
         self.embedding = tf.keras.layers.Embedding(target_vocab, dm)
+        # a np.ndarray of shape (max_seq_len, dm)
+        # containing the positional encodings
         self.dropout = tf.keras.layers.Dropout(drop_rate)
+        # a list of length N containing all of the EncoderBlock‘s
         self.blocks = [EncoderBlock(dm, h, hidden, drop_rate)
                        for _ in range(N)]
+        # the dropout layer, to be applied to the positional encodings
         self.positional_encoding = positional_encoding(max_seq_len, dm)
 
     def call(self, x, training, mask):
