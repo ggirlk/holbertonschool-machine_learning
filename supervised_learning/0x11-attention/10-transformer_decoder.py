@@ -24,12 +24,19 @@ class Decoder(tf.keras.layers.Layer):
         @drop_rate: the dropout rate
         """
         super(Decoder, self).__init__()
+        # the number of blocks in the encoder
         self.N = N
+        # the dimensionality of the model
         self.dm = dm
+        # the embedding layer for the targets
         self.embedding = tf.keras.layers.Embedding(target_vocab, dm)
+        # np.ndarray of shape (max_seq_len, dm) containing
+        # the positional encodings
         self.dropout = tf.keras.layers.Dropout(drop_rate)
+        # list of length N containing all of the DecoderBlock‘s
         self.blocks = [DecoderBlock(dm, h, hidden, drop_rate)
                        for _ in range(N)]
+        # the dropout layer, to be applied to the positional encodings
         self.positional_encoding = positional_encoding(max_seq_len, dm)
 
     def call(self, x, encoder_output, training, look_ahead_mask,
@@ -47,7 +54,7 @@ class Decoder(tf.keras.layers.Layer):
                           head attention layer
         @padding_mask: the mask to be applied to the second multi
                        head attention layer
-        Returns: 
+        Returns:
                 a tensor of shape (batch, target_seq_len, dm)
                 containing the decoder output
         """
