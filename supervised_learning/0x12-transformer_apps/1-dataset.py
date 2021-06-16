@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """Encode Tokens"""
+# 👇 V=1.15
 import tensorflow.compat.v2 as tf
+# 👇 V=3.2.1
 import tensorflow_datasets as tfds
+
+tf.compat.v1.enable_eager_execution()
 
 
 class Dataset():
@@ -43,7 +47,6 @@ class Dataset():
                 tokenizer_pt: is the Portuguese tokenizer
                 tokenizer_en: is the English tokenizer
         """
-        # tf.compat.v1.enable_eager_execution()
         builder = tfds.features.text.SubwordTextEncoder.build_from_corpus
         pt = builder((pt.numpy() for pt, _ in data.repeat(1)), 2**15)
         en = builder((en.numpy() for _, en in data.repeat(1)), 2**15)
