@@ -24,4 +24,12 @@ This repository contains the Machine Learning projects that we've done at Holber
     - Object Detection
     - Face Verification
     - Neural Style Transfer
+    - Recurrent Neural Networks
+    - Deep Recurrent Architectures
+    - Natural Language Processing
+    - Time Series Analysis
+    - Dimensionality Reduction
+    - Clustering
+    - Hidden Markov Models
+    - Neural Style Transfer
 
