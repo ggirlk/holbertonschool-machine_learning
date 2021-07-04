@@ -56,3 +56,8 @@ The modern definition is by [Tom M. Mitchell](https://fr.wikipedia.org/wiki/Tom_
 ![](scikit.png)
 ![](keras.png)
 ![](tensorflow.png)
+
+
+<hr>
+
+By [Khouloud](https://www.linkedin.com/in/khouloud-alkhammassi-3a9078129) Software engineer at [HolbertonSchool®️](https://www.holbertonschool.com)
