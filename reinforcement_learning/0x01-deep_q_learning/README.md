@@ -6,9 +6,17 @@
 
 > Python script that utilizes keras, keras-rl, and gym to train an agent that can play Atari’s Breakout
 
+# 🧠 Learning Objectives
+> - What is Deep Q-learning?
+> - What is the policy network?
+> - What is replay memory?
+> - What is the target network?
+> - Why must we utilize two separate networks during training?
+> - What is keras-rl? How do you use it?
+
 # 📕 Dependencies
 
-<b> ⛔️ If you have keras-rl2 already installed delete it before you start</b>.
+> <b> ⛔️ If you have keras-rl2 already installed delete it before you start</b>.
 
 ```
 pip install --user keras-rl==0.4.2
@@ -25,25 +33,34 @@ unrar e -ad Roms.rar
 python -m atari_py.import_roms Roms
 ```
 
-# 📝 Learning Objectives
-> - What is Deep Q-learning?
-> - What is the policy network?
-> - What is replay memory?
-> - What is the target network?
-> - Why must we utilize two separate networks during training?
-> - What is keras-rl? How do you use it?
+# 🕹 How it works
+
+## 🧗‍♀️ Training
+The model is already trained and the weights have been saved in <em>policy.h5f</em> file but if you want to redo it again just type
+
+```
+python train.py
+```
+> ⛔️ It takes seviral time
+## ⛹️‍♀️ Playing
+
+```
+python play.py
+```
 
 # 🔗 Resources
 
-- [Deep Q-Learning - Combining Neural Networks and Reinforcement Learning]()
-- [Replay Memory Explained - Experience for Deep Q-Network Training]()
-- [Training a Deep Q-Network - Reinforcement Learning]()
-- [Training a Deep Q-Network with Fixed Q-targets - Reinforcement Learning]()
-- [keras-rl]()
-- [rl.policy]()
-- [rl.memory]()
-- [rl.agents.dqn]()
-- [Playing Atari with Deep Reinforcement Learning]()
+- [Deep Q-Learning - Combining Neural Networks and Reinforcement Learning](https://www.youtube.com/watch?v=wrBUkpiRvCA&list=PLZbbT5o_s2xoWNVdDudn51XM8lOuZ_Njv&index=11)
+- [Replay Memory Explained - Experience for Deep Q-Network Training](https://www.youtube.com/watch?v=Bcuj2fTH4_4&list=PLZbbT5o_s2xoWNVdDudn51XM8lOuZ_Njv&index=12)
+- [Training a Deep Q-Network - Reinforcement Learning](https://www.youtube.com/watch?v=0bt0SjbS3xc&list=PLZbbT5o_s2xoWNVdDudn51XM8lOuZ_Njv&index=13)
+- [Training a Deep Q-Network with Fixed Q-targets - Reinforcement Learning](https://www.youtube.com/watch?v=xVkPh9E9GfE&list=PLZbbT5o_s2xoWNVdDudn51XM8lOuZ_Njv&index=14)
+- [keras-rl](https://github.com/keras-rl/keras-rl)
+    - [rl.policy](https://github.com/keras-rl/keras-rl/blob/master/rl/policy.py)
+    - [rl.memory](https://github.com/keras-rl/keras-rl/blob/master/rl/memory.py)
+    - [rl.agents.dqn](https://github.com/keras-rl/keras-rl/blob/master/rl/agents/dqn.py)
+- [Playing Atari with Deep Reinforcement Learning](https://arxiv.org/pdf/1312.5602.pdf)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/playing-atari-with-deep-reinforcement/atari-games-on-atari-2600-breakout)](https://paperswithcode.com/sota/atari-games-on-atari-2600-breakout?p=playing-atari-with-deep-reinforcement)
 <hr>
 
 By [Khouloud](https://www.linkedin.com/in/khouloud-alkhammassi-3a9078129) Software engineer at [HolbertonSchool®️](https://www.holbertonschool.com)
