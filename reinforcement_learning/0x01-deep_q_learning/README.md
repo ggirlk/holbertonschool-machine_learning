@@ -1,6 +1,6 @@
-# 0x01. Deep Q-learning
+# ![](holberton-logo.png) 0x01. Deep Q-learning
 
-<img src="atari.gif" align="center" width="100%" height="100%">
+<img src="atari.gif" align="center" width="50%" height="50%">
 
 # 🧑🏻‍💻 Intro
 
@@ -8,7 +8,7 @@
 
 # 📕 Dependencies
 
-<b style='color:red'> ⛔️ If you have keras-rl2 already installed delete it before you start</b>.
+<b> ⛔️ If you have keras-rl2 already installed delete it before you start</b>.
 
 ```
 pip install --user keras-rl==0.4.2
