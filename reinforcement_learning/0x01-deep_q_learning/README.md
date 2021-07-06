@@ -1,6 +1,6 @@
 # ![](holberton-logo.png) 0x01. Deep Q-learning
 
-<center><img src="atari.gif" align="center" width="50%" height="50%"></center>
+<center><img src="atari.gif" align="center" width="80%" height="50%"></center>
 
 # 🧑🏻‍💻 Intro
 
