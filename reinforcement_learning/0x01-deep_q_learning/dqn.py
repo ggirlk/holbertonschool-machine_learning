@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+""" DQNAgent """
+
 from __future__ import division
 
 from PIL import Image
@@ -98,7 +101,6 @@ def dqndef():
     # Note that we set it to 0.05
     # so that the agent still performs some random actions. This ensures
     # that the agent cannot get stuck.
-    """"""
 
     policy = GreedyQPolicy()
 
