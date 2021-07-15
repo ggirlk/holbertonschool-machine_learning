@@ -45,13 +45,13 @@ def td_lambtha(env, V, policy, lambtha, episodes=5000,
             state, action, Returns, new_state = episode[t]
             # calculate Gt de n step
             G = gamma**t * G + Returns  # summing returns (rewards)
-            Gtn = R + gamma**(n) * V[new_state]  # adding V(s of t+1)
+            Gtn = G + gamma**(n) * V[new_state]  # adding V(s of t+1)
             # calculate Gtn lambda by weights decay:
             #                             a factor λ with n,  λ^(n−1)
             Gtnlamda = (1 - lambtha) * (Gtn + lambtha**(n - 1))  # λ-return
             # Value Estimation
             if state not in episode[:ep, 0]:
-                V[state] = (1 - alpha) * (V[state] + Gtnlamda)
+                # V[state] = (1 - alpha) * (V[state] + Gtnlamda)
                 V[state] = V[state] + alpha * (Gtnlamda - V[state])
                 V[state] = V[state] + alpha * (Returns + gamma
                                                * V[new_state] - V[state])
