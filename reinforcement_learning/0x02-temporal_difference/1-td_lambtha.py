@@ -23,19 +23,8 @@ def td_lambtha(env, V, policy, lambtha=1, episodes=5000,
     for ep in range(episodes):
         # Reseting the environment
         state = env.reset()
-        episode = []
-        for step in range(max_steps):
-            # Taking action
-            action = policy(state)
-            # Getting the reward and outcome state
-            new_state, reward, done, info = env.step(action)
-            # Appending results for each state of episode
-            episode.append([state, action, reward, new_state])
-            if done:
-                break
-            # Incrementing the satete
-            state = new_state
-        # Cast and turn episode list to np.ndarray
+        # Create Cast and turn episode list to np.ndarray
+        episode = [[0, 0, 0, 0]] * max_steps
         episode = np.array(episode, dtype=int)
         # initiate needed variabes
         T = len(episode)  # total number of states starting from 0
@@ -43,8 +32,17 @@ def td_lambtha(env, V, policy, lambtha=1, episodes=5000,
         n = 1  # number of steps
         Gtn = 0
         Gtnlamda = 0
-        for t in range(T):
-            state, action, Returns, new_state = episode[t]
+        for step in range(max_steps):
+            t = step
+            # Taking action
+            action = policy(state)
+            # Getting the reward and outcome state
+            new_state, Returns, done, info = env.step(action)
+            # Appending results for each state of episode
+            episode[step] = state, action, Returns, new_state
+            # end of game
+            if done:
+                break
             # calculate Gt de n step and sum it
             G += gamma**t * Returns  # summing returns (rewards)
             Gtn += (G + gamma**(n) * V[new_state]) * lambtha**(n - 1)
@@ -58,5 +56,7 @@ def td_lambtha(env, V, policy, lambtha=1, episodes=5000,
                 # V[state] = V[state] + alpha * (Returns + gamma
                 #                                * V[new_state] - V[state])
             n += 1
+            # Incrementing the state
+            state = new_state
     # Returning the updated Value Estimate
     return V
