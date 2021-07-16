@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" TD(λ) """
+""" TD(λ) Off-line λ-return algorithm """
 import numpy as np
 
 
