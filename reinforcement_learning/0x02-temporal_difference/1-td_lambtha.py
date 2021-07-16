@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def td_lambtha(env, V, policy, lambtha, episodes=5000,
+def td_lambtha(env, V, policy, lambtha=1, episodes=5000,
                max_steps=100, alpha=0.1, gamma=0.99):
     """
     ************************************************************
@@ -41,20 +41,22 @@ def td_lambtha(env, V, policy, lambtha, episodes=5000,
         T = len(episode)  # total number of states starting from 0
         G = 0  # empirical return
         n = 1  # number of steps
+        Gtn = 0
+        Gtnlamda = 0
         for t in range(T):
             state, action, Returns, new_state = episode[t]
-            # calculate Gt de n step
-            G = gamma**t * G + Returns  # summing returns (rewards)
-            Gtn = G + gamma**(n) * V[new_state]  # adding V(s of t+1)
+            # calculate Gt de n step and sum it
+            G += gamma**t * Returns  # summing returns (rewards)
+            Gtn += (G + gamma**(n) * V[new_state]) * lambtha**(n - 1)
             # calculate Gtn lambda by weights decay:
             #                             a factor λ with n,  λ^(n−1)
-            Gtnlamda = (1 - lambtha) * (Gtn + lambtha**(n - 1))  # λ-return
+            Gtnlamda = (1 - lambtha) * Gtn  # λ-return
             # Value Estimation
             if state not in episode[:ep, 0]:
-                # V[state] = (1 - alpha) * (V[state] + Gtnlamda)
+                # V[state] = (1 - alpha) * V[state] + alpha * Gtnlamda
                 V[state] = V[state] + alpha * (Gtnlamda - V[state])
-                V[state] = V[state] + alpha * (Returns + gamma
-                                               * V[new_state] - V[state])
+                # V[state] = V[state] + alpha * (Returns + gamma
+                #                                * V[new_state] - V[state])
             n += 1
     # Returning the updated Value Estimate
     return V

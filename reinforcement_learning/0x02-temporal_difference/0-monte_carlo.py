@@ -43,7 +43,7 @@ def monte_carlo(env, V, policy, episodes=5000,
         for t in range(T):
             state, action, Returns = episode[t]
             # calculate empirical return
-            G = gamma**t * G + Returns  # summing returns (rewards)
+            G += gamma**t * Returns  # summing returns (rewards)
             # Value Estimation
             if state not in episode[:ep, 0]:
                 V[state] = V[state] + alpha * (G - V[state])
