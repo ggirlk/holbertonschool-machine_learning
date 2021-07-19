@@ -65,8 +65,8 @@ def train(env, nb_episodes, alpha=0.00045, gamma=0.98, show_result=False):
             # Gt = ∑k=0 to ∞ (γ^(k) * R(t+k+1))
             G = sum(gamma**(k) * R[k+t+1] for k in range(T-t-1))
             # θ ← θ + α * γ^(t) * Gt * ∇θlnπθ(At|St) ; from Barto Satton book
-            W[:, action] += alpha * Grads[t][:, action] * gamma**(t) * G
+            # W[:, action] += alpha * Grads[t][:, action] * gamma**(t) * G
             # θ ← θ + α * ∇θlogπθ(st, at) * vt ; from David Silver course
-            # W[:, action] += alpha * Grads[t][:, action] * G
+            W[:, action] += alpha * Grads[t][:, action] * G
 
     return scores
