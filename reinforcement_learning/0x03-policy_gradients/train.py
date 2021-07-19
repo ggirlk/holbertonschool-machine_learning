@@ -5,7 +5,7 @@ import numpy as np
 from policy_gradient import policy_gradient
 
 
-def train(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False):
+def train(env, nb_episodes, alpha=0.00045, gamma=0.98, show_result=False):
     """
     *********************************************
     ******Implementation of a full training******
@@ -18,7 +18,7 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False):
         all values of the score (sum of all rewards
         during one episode loop)
     """
-    # Inisiate scores list
+    # Initiate scores list
     scores = []
     # Initiate θ to random
     # np.random.seed(0)
@@ -65,8 +65,8 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False):
             # Gt = ∑k=0 to ∞ (γ^(k) * R(t+k+1))
             G = sum(gamma**(k) * R[k+t+1] for k in range(T-t-1))
             # θ ← θ + α * γ^(t) * Gt * ∇θlnπθ(At|St) ; from Barto Satton book
-            # W[:, action] += alpha * Grads[t][:, action] * gamma**(t) * G
+            W[:, action] += alpha * Grads[t][:, action] * gamma**(t) * G
             # θ ← θ + α * ∇θlogπθ(st, at) * vt ; from David Silver course
-            W[:, action] += alpha * Grads[t][:, action] * G
+            # W[:, action] += alpha * Grads[t][:, action] * G
 
     return scores
