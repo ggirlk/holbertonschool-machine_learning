@@ -25,12 +25,10 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False):
     # env.seed(0)
     W = np.random.rand(env.observation_space.shape[0],
                        env.action_space.n)
-    # W = np.zeros((env.observation_space.shape[0],
-    #                          env.action_space.n))
     for ep in range(nb_episodes):
-        # Generating episode
+        # **** Generating episode *****************************
         # Reseting the environment each time as per requirement
-        state = env.reset()[None,:]
+        state = env.reset()[None, :]
         # initiate needed variabes
         done = False
         t = 0
@@ -38,24 +36,26 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False):
         Grads = []
         Actions = []
         while not done:
-            # Renderig the environment every 1000 
+            # Renderig the environment every 1000
             if show_result and not ep % 1000:
                 env.render()
-            # taking action
+            # Taking action and gradient
             action, grad = policy_gradient(state, W)
-            # Taking the action and getting the reward and outcome state
+            # Getting the reward and outcome state
             new_state, Returns, done, info = env.step(action)
             # Appending needed Values
             Actions.append(action)
             R.append(Returns)
             Grads.append(grad)
-            state = new_state[None,:]
+            # Incrementing state
+            state = new_state[None, :]
             t += 1
         # Appending summed score
         scores.append(sum(R))
-        print("Episode N°: "+ str(ep) +" Score: "+ str(sum(R)), end="\r", flush=False)
+        print("Episode N°: " + str(ep) + " Score: " + str(sum(R)),
+              end="\r", flush=False)
 
-        # Updating θ
+        # **** Updating θ ***************************************************
         # initiate needed variabes
         G = 0  # empirical return
         T = t
@@ -67,6 +67,6 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False):
             # θ ← θ + α * γ^(t) * Gt * ∇θlnπθ(At|St) ; from Barto Satton book
             # W[:, action] += alpha * Grads[t][:, action] * gamma**(t) * G
             # θ ← θ + α * ∇θlogπθ(st, at) * vt ; from David Silver course
-            W[:, action] += alpha * Grads[t][:, action] * G 
+            W[:, action] += alpha * Grads[t][:, action] * G
 
     return scores
