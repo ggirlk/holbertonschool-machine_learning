@@ -37,18 +37,19 @@ df = df.drop("Weighted_Price", axis=1)
 df = df.rename(columns={"Timestamp": "Datetime"})
 df['Datetime'] = pd.to_datetime(df['Datetime'], unit='s')
 df.set_index("Datetime", inplace=True)
-df["Close"] = df["Close"].fillna(method='backfill')
+df["Close"] = df["Close"].fillna(method='ffill')
 v = df["Close"]
 df = df.fillna(value={"High": v, "Low": v, "Open": v,
                       "Volume_(BTC)": 0, "Volume_(Currency)": 0})
 
 dfm = df['2017-01-01 00:00:00'::]
-High = dfm.groupby(dfm.index)['High'].max()
-Low = dfm.groupby(dfm.index)['Low'].min()
-Open = dfm.groupby(dfm.index)['Open'].mean()
-Close = dfm.groupby(dfm.index)['Close'].mean()
-btc = dfm.groupby(dfm.index)['Volume_(BTC)'].sum()
-cur = dfm.groupby(dfm.index)['Volume_(Currency)'].sum()
+
+High = dfm.groupby(dfm.index.to_period("D"))['High'].max()
+Low = dfm.groupby(dfm.index.to_period("D"))['Low'].min()
+Open = dfm.groupby(dfm.index.to_period("D"))['Open'].mean()
+Close = dfm.groupby(dfm.index.to_period("D"))['Close'].mean()
+btc = dfm.groupby(dfm.index.to_period("D"))['Volume_(BTC)'].sum()
+cur = dfm.groupby(dfm.index.to_period("D"))['Volume_(Currency)'].sum()
 
 df = pd.concat([High, Low, Open, Close, btc, cur], axis=1)
 df.plot(kind='line', figsize=(10, 8))
