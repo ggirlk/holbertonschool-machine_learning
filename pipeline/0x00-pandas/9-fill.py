@@ -19,7 +19,8 @@ df = from_file('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv', ',')
 df = df.drop(columns=["Weighted_Price"])
 df["Close"] = df["Close"].fillna(method='backfill')
 v = dfp["Close"]
-df.fillna(value={"High": v, "Low" :v, "Open": v}, inplace=True)
+df.fillna(value={"High": v, "Low": v, "Open": v,
+                 "Volume_(BTC)": 0, "Volume_(Currency)": 0}, inplace=True)
 
 print(df.head())
 print(df.tail())
