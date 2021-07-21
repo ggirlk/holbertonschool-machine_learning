@@ -23,7 +23,7 @@ Close: mean
 
 Volume_(BTC): sum
 
-Volume_(Currency): sum 
+Volume_(Currency): sum
 """
 from datetime import date
 import matplotlib.pyplot as plt
@@ -39,8 +39,9 @@ df['Datetime'] = pd.to_datetime(df['Datetime'], unit='s')
 df.set_index("Datetime", inplace=True)
 df["Close"] = df["Close"].fillna(method='backfill')
 v = df["Close"]
-df = df.fillna(value={"High": v, "Low" :v, "Open": v})
-df = df.fillna(value={"Volume_(BTC)": 0, "Volume_(Currency)" :0})
+df = df.fillna(value={"High": v, "Low": v, "Open": v,
+                      "Volume_(BTC)": 0, "Volume_(Currency)": 0})
 
-df['2017-01-01 00:00:00'::].plot(kind='line', figsize=(8, 6))
+df['2017-01-01 00:00:00'::].plot(kind='line', figsize=(10, 6))
+
 plt.show()
