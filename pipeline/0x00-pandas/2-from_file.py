@@ -14,11 +14,12 @@ def from_file(filename, delimiter):
     Returns:
             the loaded pd.DataFrame
     """
-    with open(filename, 'r') as f:
+    df = pd.read_csv(filename, delimiter)
+    """with open(filename, 'r') as f:
         headers = list(f.readline().strip().split(delimiter))
         body = []
         for line in f.readlines():
             body.append(np.array(line.strip().split(delimiter)))
     df = pd.DataFrame(np.array(body))
-    df.columns = headers
+    df.columns = headers"""
     return df
