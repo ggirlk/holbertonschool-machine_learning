@@ -25,7 +25,7 @@ def availableShips(passengerCount):
                 k = 0
                 for n in ps:
                     if (int(n) >= passengerCount):
-                         k = 1
+                        k = 1
                 if k == 1:
                     ships.append(ship['name'])
             except Exception:
