@@ -19,9 +19,7 @@ if __name__ == '__main__':
             reset = r.headers['X-Ratelimit-Reset']
             reset = int(reset) - int(time.time())
             print("Reset in {} min".format(int(reset / 60)))
-        else:
-            print("Not found")
+
         if r.status_code == 200:
             json = r.json()
             print(json["location"])
-        
