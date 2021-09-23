@@ -10,7 +10,7 @@ def availableShips(passengerCount):
     *********************************************
     @passengerCount: a given number of passengers
     Return:
-           List of ships or empty list 
+           List of ships or empty list
     """
     url = "https://swapi-api.hbtn.io/api/starships"
     r = requests.get(url)
