@@ -7,7 +7,7 @@ import requests
 
 if __name__ == '__main__':
     req = requests.get('https://api.spacexdata.com/v4/launches',
-                        headers={'pagination': 'false'})
+                       headers={'pagination': 'false'})
     rockets = {}
     for launch in req.json():
         rocket = launch['rocket']
