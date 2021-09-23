@@ -20,16 +20,11 @@ def availableShips(passengerCount):
 
         res = json['results']
         for ship in res:
-            ps = ship['passengers'].split(",")
-            try:
-                k = 0
-                for n in ps:
-                    if (int(n) >= passengerCount):
-                        k = 1
-                if k == 1:
-                    ships.append(ship['name'])
-            except Exception:
-                pass
+            passengers = ship['passengers'].replace(',', '')
+            if passengers == 'n/a' or passengers == 'unknown':
+                passengers = -1
+            if int(passengers) >= passengerCount:
+                ships.append(ship['name'])
         url = json["next"]
         if (url is not None):
             r = requests.get(url)
