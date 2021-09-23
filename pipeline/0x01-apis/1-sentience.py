@@ -14,24 +14,13 @@ def sentientPlanets():
     r = requests.get(url)
     json = r.json()
     planets = []
-    while r.status_code == 200:
-        res = json['results']
-        for spec in res:
-            if spec["designation"] == "sentient":
-
-                urlh = spec["homeworld"]
-
-                if (urlh is not None):
-                    rh = requests.get(urlh)
-                    jsonh = rh.json()
-                    if jsonh['name'] != "unknown":
-                        planets.append(jsonh['name'])
-
-        url = json["next"]
-
-        if (url is None):
-            break
-        r = requests.get(url)
-        json = r.json()
-
+    while url is not None:
+        data = requests.get(url).json()
+        for species in data['results']:
+            if ((species['designation'] == 'sentient'
+                 or species['designation'] == 'reptilian')):
+                if species['homeworld'] is not None:
+                    jsonh = requests.get(species['homeworld']).json()
+                    planets.append(jsonh['name'])
+        url = data['next']
     return planets
