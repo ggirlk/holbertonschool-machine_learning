@@ -17,11 +17,19 @@ def availableShips(passengerCount):
     json = r.json()
     ships = []
     while r.status_code == 200:
+
         res = json['results']
         for ship in res:
-            if (ship['passengers'] >= str(passengerCount)):
-                ships.append(ship['name'])
-
+            ps = ship['passengers'].split(",")
+            try:
+                k = 0
+                for n in ps:
+                    if (int(n) >= passengerCount):
+                         k = 1
+                if k == 1:
+                    ships.append(ship['name'])
+            except Exception:
+                pass
         url = json["next"]
         if (url is not None):
             r = requests.get(url)
