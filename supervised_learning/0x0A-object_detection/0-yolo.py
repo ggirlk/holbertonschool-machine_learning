@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import tensorflow.keras as K
-import cv2
 
 
 class Yolo:
